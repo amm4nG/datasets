@@ -1,13 +1,13 @@
 @extends('layouts.app')
 @section('content')
-    <header id="header" class="fixed-top ">
+    <header id="header" class="fixed-top " style="background-color: #38527E">
         <div class="container d-flex align-items-center">
 
             <h1 class="logo me-auto"><a href="index.html">Datasets</a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
-            <nav id="navbar" class="navbar">
+            <nav id="navbar" class="navbar ">
                 <ul>
                     <li><a class="nav-link scrollto active" href="#hero">Datasets</a></li>
                     <li class="dropdown"><a href="#"><span>Contribute dataset</span> <i
@@ -40,39 +40,59 @@
         </div>
     </header><!-- End Header -->
 
-    <!-- ======= Hero Section ======= -->
-    <section id="hero" class="d-flex align-items-center">
-
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
-                    data-aos="fade-up" data-aos-delay="200">
-                    <h1>Welcome</h1>
-                    <h2>We are team of talented designers making websites with Bootstrap</h2>
-                    <div class="d-flex justify-content-center justify-content-lg-start">
-                        <a href="{{ url('datasets') }}" class="btn-get-started scrollto">View Datasets</a>
-                        <a href="#" class="btn-get-started scrollto ms-3">Contribute a Dataset</a>
-                    </div>
-
-                </div>
-                <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
-                    <img src="assets/img/hero-img.png" class="img-fluid animated" alt="">
-                </div>
-            </div>
-        </div>
-
-    </section><!-- End Hero -->
-
     <main id="main">
-        <div class="container mt-4">
+        <div class="container" style="margin-top: 7rem">
+
             <div class="row">
-                <div class="col-md-6">
-                    <div class="card p-4 text-center fs-4 rounded-top-4 shadow-sm fw-bold " style="color:#38527E">
-                        Popular Datasets</div>
+                <div class="col-md-12 mb-2">
+                    <div class="card p-2 ">
+                        <div class="row align-items-center">
+                            <div class="col-md-1" id="img-dataset">
+                                <img class="img-fluid" src="{{ asset('assets/img/clients/client-6.png') }}" alt="">
+                            </div>
+                            <div class="col-md-11 mb-2">
+                                <a href="{{ url('detail') }}">
+                                    <h2 class="mt-3" style="color: #38527E">Iris</h2>
+                                </a>
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+
+                            </div>
+                            <div class="col-md-12 ms-3">
+                                <p>A small classic dataset from Fisher, 1936. One of the earliest known datasets used for
+                                    evaluating classification methods.</p>
+                            </div>
+                            <div class="col-md-3 ms-3">
+                                <h4>Dataset Characteristics</h4>
+                                <p>Tabular</p>
+                            </div>
+                            <div class="col-md-3 ms-3">
+                                <h4>Subject Area</h4>
+                                <p>Biology
+                                </p>
+                            </div>
+                            <div class="col-md-3 ms-3">
+                                <h4>Associated Tasks</h4>
+                                <p>Classification</p>
+                            </div>
+                            <div class="col-md-3 ms-3">
+                                <h4>Feature Type</h4>
+                                <p>Real</p>
+                            </div>
+                            <div class="col-md-3 ms-3">
+                                <h4># Instances</h4>
+                                <p>150</p>
+                            </div>
+                            <div class="col-md-3 ms-3">
+                                <h4># Features</h4>
+                                <p>4</p>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="card p-4 text-center fs-4 rounded-4 shadow-sm fw-bold " style="color:#38527E">New
-                        Datasets</div>
+
+                <div class="col-md-12">
+                    
                 </div>
             </div>
         </div>
