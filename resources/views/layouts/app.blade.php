@@ -12,6 +12,7 @@
     <!-- Favicons -->
     <link href="{{ asset('/') }}assets/img/favicon.png" rel="icon">
     <link href="{{ asset('/') }}assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    
 
     <!-- Google Fonts -->
     <link
@@ -39,6 +40,23 @@
             #img-dataset {
                 display: block;
             }
+        }
+
+        .divider {
+            width: 100%;
+            text-align: center;
+            border-bottom: 1px solid grey;
+            line-height: 0.1em;
+            margin: 10px 0 20px;
+            margin-top: 35px;
+            margin-bottom: 35px
+        }
+
+        .divider span {
+            background-color: #f8f9fa;
+            padding: 0 10px;
+            color: grey;
+            font-size: 14px;
         }
     </style>
 
@@ -135,6 +153,7 @@
     <script src="{{ asset('/') }}assets/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="{{ asset('/') }}assets/vendor/waypoints/noframework.waypoints.js"></script>
     <script src="{{ asset('/') }}assets/vendor/php-email-form/validate.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 
     <!-- Template Main JS File -->
     <script src="{{ asset('/') }}assets/js/main.js"></script>
