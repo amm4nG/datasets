@@ -23,6 +23,39 @@ Route::get('datasets', function () {
 
 Route::get('detail', function () {
     return view('detail');
+}); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Route::get('admin/dashboard', function () {
+return view('admin.dashboard');
+});
+
+Route::get('admin/manage/datasets', function () {
+return view('admin.manage-datasets');
+});
+
+Route::get('admin/manage/users', function () {
+return view('admin.manage-users');
+});
+
+Route::get('admin/detail/dataset', function () {
+return view('admin.detail-dataset');
 });
 
 Route::get('login', function () {
@@ -40,4 +73,4 @@ Route::get('forgot', function () {
 Route::get('donation', function () {
     return view('donation');
 });
-
+ 
