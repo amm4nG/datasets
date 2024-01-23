@@ -23,8 +23,7 @@ Route::get('datasets', function () {
 
 Route::get('detail', function () {
     return view('detail');
-});
-
+}); 
 
 
 
@@ -58,3 +57,20 @@ return view('admin.manage-users');
 Route::get('admin/detail/dataset', function () {
 return view('admin.detail-dataset');
 });
+
+Route::get('login', function () {
+    return view('login');
+});
+
+Route::get('register', function () {
+    return view('register');
+});
+
+Route::get('forgot', function () {
+    return view('forgot');
+});
+
+Route::get('donation', function () {
+    return view('donation');
+});
+ 
