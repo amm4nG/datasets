@@ -13,7 +13,7 @@
                     <li class="dropdown"><a href="#"><span>Contribute dataset</span> <i
                                 class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a href="#">Donate New</a></li>
+                            <li><a href="{{ url('donation') }}">Donate New</a></li>
                             <li><a href="#">Link External</a></li>
                         </ul>
                     </li>
@@ -28,7 +28,7 @@
                             data-bs-target="#exampleModal"><i class="bi bi-search me-2"></i>Search</a>
                     </li>
                     <li>
-                        <a class="text-center">Login</a>
+                        <a href="{{ url('login') }}" class="text-center">Login</a>
                     </li>
                 </ul>
 
@@ -69,7 +69,10 @@
                 <div class="col-md-6">
                     <div class="card p-4 text-center fs-4 rounded-top-4 shadow-sm fw-bold " style="color:#38527E">
                         Popular Datasets</div>
+
                 </div>
+
+
                 <div class="col-md-6">
                     <div class="card p-4 text-center fs-4 rounded-4 shadow-sm fw-bold " style="color:#38527E">New
                         Datasets</div>
