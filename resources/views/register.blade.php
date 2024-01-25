@@ -3,17 +3,17 @@
     <header id="header" class="fixed-top " style="background-color: #38527E">
         <div class="container d-flex align-items-center">
 
-            <h1 class="logo me-auto"><a href="index.html">Datasets</a></h1>
+            <h1 class="logo me-auto"><a href="{{ url('/') }}">Datasets</a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
             <nav id="navbar" class="navbar ">
                 <ul>
-                    <li><a class="nav-link scrollto active" href="#hero">Datasets</a></li>
+                    <li><a class="nav-link scrollto" href="{{ url('datasets') }}">Datasets</a></li>
                     <li class="dropdown"><a href="#"><span>Contribute dataset</span> <i
                                 class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a href="#">Donate New</a></li>
+                            <li><a href="{{ url('donation') }}">Donate New</a></li>
                             <li><a href="#">Link External</a></li>
                         </ul>
                     </li>
@@ -28,7 +28,7 @@
                             data-bs-target="#exampleModal"><i class="bi bi-search me-2"></i>Search</a>
                     </li>
                     <li>
-                        <a class="text-center">Login</a>
+                        <a href="{{ url('login') }}" class="text-center">Login</a>
                     </li>
                 </ul>
 
@@ -48,7 +48,7 @@
                         <div class="card-body">
                             <form>
                                 <h4 class="fs-2" style="color: #38527E">Sign Up</h4>
-                                <h5>Already have an account? <a href="{{url('login')}}">Sign In</a></h5>
+                                <h5>Already have an account? <a href="{{ url('login') }}">Sign In</a></h5>
                                 <div class="mb-3">
                                     <label for="Fullname" class="form-label">Full Name</label>
                                     <input type="text" class="form-control" id="fullname" placeholder="">
