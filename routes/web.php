@@ -45,4 +45,7 @@ Route::get('forgot', function () {
 Route::get('donation', function () {
     return view('donation');
 });
- 
+
+Route::get('donation_paper', function () {
+    return view('donation_paper');
+});
