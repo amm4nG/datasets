@@ -20,8 +20,8 @@
 
                     <li class="dropdown"><a href="#"><span>About Us</span><i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a href="#">Who We Are</a></li>
-                            <li><a href="#">Contact Information</a></li>
+                            <li><a href="{{ url('about') }}">Who We Are</a></li>
+                            <li><a href="{{ url('contact/information') }}">Contact Information</a></li>
                         </ul>
                     </li>
                     <li><a class="getstarted scrollto" href="#" data-bs-toggle="modal"
@@ -46,28 +46,51 @@
                 <div class="col-md-5">
                     <div class="card p-5 rounded-3">
                         <div class="card-body">
-                            <form>
+                            <form action="{{ url('register/user') }}" method="post">
+                                @csrf
                                 <h4 class="fs-2" style="color: #38527E">Sign Up</h4>
                                 <h5>Already have an account? <a href="{{ url('login') }}">Sign In</a></h5>
                                 <div class="mb-3">
                                     <label for="Fullname" class="form-label">Full Name</label>
-                                    <input type="text" class="form-control" id="fullname" placeholder="">
+                                    <input type="text" value="{{ old('full_name') }}"
+                                        class="form-control @error('full_name') is-invalid                                        
+                                    @enderror"
+                                        id="fullname" name="full_name" placeholder="">
+                                    @error('full_name')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" placeholder="">
+                                    <input type="email" value="{{ old('email') }}" name="email"
+                                        class="form-control @error('email') is-invalid                                        
+                                    @enderror"
+                                        id="email" placeholder="">
+                                    @error('email')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label for="password" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="password" placeholder="">
+                                    <input type="password" name="password"
+                                        class="form-control @error('password') is-invalid                                        
+                                    @enderror"
+                                        id="password" placeholder="">
+                                    @error('password')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label for="confirm password" class="form-label">Confirm Password</label>
-                                    <input type="password" class="form-control" id="confirm password" placeholder="">
+                                    <input type="password" name="password_confirmation" class="form-control @error('password') is-invalid @enderror"
+                                        id="confirm password" placeholder="">
                                 </div>
-
-
-
                                 <button type="submit" class="btn  w-40" style="background-color: #38527E">
                                     <h5 class="text-light mt-2">Submit</h5>
                                 </button>

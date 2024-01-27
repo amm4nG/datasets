@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ContributeDatasetController;
+use App\Http\Controllers\RegistrationController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -12,40 +16,49 @@ Route::get('datasets', function () {
 
 Route::get('detail', function () {
     return view('detail');
-}); 
-
-Route::get('admin/dashboard', function () {
-return view('admin.dashboard');
 });
 
-Route::get('admin/manage/datasets', function () {
-return view('admin.manage-datasets');
-});
+Route::get('login', [AuthController::class, 'index'])
+    ->name('login')
+    ->middleware('guest');
+Route::get('logout', [AuthController::class, 'logout'])->middleware('auth');
+Route::post('login/validation', [AuthController::class, 'validation']);
 
-Route::get('admin/manage/users', function () {
-return view('admin.manage-users');
-});
+Route::get('register', [RegistrationController::class, 'index'])->middleware('guest');
+Route::post('register/user', [RegistrationController::class, 'store']);
 
-Route::get('admin/detail/dataset', function () {
-return view('admin.detail-dataset');
-});
+Route::get('donation', [ContributeDatasetController::class, 'index'])->middleware('auth');
+Route::post('donation/store', [ContributeDatasetController::class, 'store'])->middleware('auth');
 
-Route::get('login', function () {
-    return view('login');
-});
+Route::group(['middleware' => ['auth', 'role:admin']], function () {
+    Route::get('admin/dashboard', function () {
+        return view('admin.dashboard');
+    });
 
-Route::get('register', function () {
-    return view('register');
+    Route::get('admin/manage/datasets', function () {
+        return view('admin.manage-datasets');
+    });
+
+    Route::get('admin/manage/users', function () {
+        return view('admin.manage-users');
+    });
+
+    Route::get('admin/detail/dataset', function () {
+        return view('admin.detail-dataset');
+    });
 });
 
 Route::get('forgot', function () {
     return view('forgot');
 });
 
-Route::get('donation', function () {
-    return view('donation');
+Route::get('donation/paper', function () {
+    return view('donation-paper');
 });
 
-Route::get('donation_paper', function () {
-    return view('donation_paper');
+Route::get('contact/information', function () {
+    return view('contact-information');
+});
+Route::get('about', function () {
+    return view('about');
 });

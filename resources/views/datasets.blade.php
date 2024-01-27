@@ -20,15 +20,30 @@
 
                     <li class="dropdown"><a href="#"><span>About Us</span><i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a href="#">Who We Are</a></li>
-                            <li><a href="#">Contact Information</a></li>
+                            <li><a href="{{ url('about') }}">Who We Are</a></li>
+                            <li><a href="{{ url('contact/information') }}">Contact Information</a></li>
                         </ul>
                     </li>
                     <li><a class="getstarted scrollto" href="#" data-bs-toggle="modal"
                             data-bs-target="#exampleModal"><i class="bi bi-search me-2"></i>Search</a>
                     </li>
-                    <li>
-                        <a class="text-center" href="{{ url('login') }}">Login</a>
+                    @auth
+                        <li class="dropdown"><a href="#"><span>{{ Auth::user()->email }}</span><i
+                                    class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                @if (Auth::user()->role == 'admin')
+                                    <li><a href="{{ url('admin/dashboard') }}">Dashboard Admin</a></li>
+                                @else
+                                    <li><a href="#">Profile</a></li>
+                                @endif
+                                <li><a href="{{ url('logout') }}">Logout</a></li>
+                            </ul>
+                        </li>
+                    @endauth
+                    </li>
+                    @guest
+                        <a href="{{ url('login') }}" class="text-center">Login</a>
+                    @endguest
                     </li>
                 </ul>
 
@@ -190,7 +205,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Search</button>
+                        <button type="button" class="btn text-white" style="background-color:  #38527E">Search</button>
                     </div>
                 </div>
             </div>

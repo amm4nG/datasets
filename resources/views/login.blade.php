@@ -20,8 +20,8 @@
 
                     <li class="dropdown"><a href="#"><span>About Us</span><i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a href="#">Who We Are</a></li>
-                            <li><a href="#">Contact Information</a></li>
+                            <li><a href="{{ url('about') }}">Who We Are</a></li>
+                            <li><a href="{{ url('contact/information') }}">Contact Information</a></li>
                         </ul>
                     </li>
                     <li><a class="getstarted scrollto" href="#" data-bs-toggle="modal"
@@ -46,23 +46,42 @@
                 <div class="col-md-5">
                     <div class="card p-5 rounded-3">
                         <div class="card-body">
-                            <form>
+                            <form action="{{ url('login/validation') }}" method="post">
+                                @csrf
                                 <h4 class="fs-2" style="color: #38527E">Sign In</h4>
-                                <h5>Don't have an account? <a href="{{url('register')}}">Sign Up</a></h5>
+                                <h5>Don't have an account? <a href="{{ url('register') }}">Sign Up</a></h5>
+                                @error('message')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                                 <div class="mb-3">
                                     <label for="Email" class="form-label">Email</label>
-                                    <input type="text" class="form-control" id="email" placeholder="">
+                                    <input type="text" value="{{ old('email') }}" name="email"
+                                        class="form-control @error('email')
+                                        is-invalid                                        
+                                    @enderror"
+                                        id="email" placeholder="">
+                                    @error('email')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label for="password" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="password" placeholder="">
+                                    <input type="password" name="password"
+                                        class="form-control @error('password')
+                                        is-invalid                                        
+                                    @enderror"
+                                        id="password" placeholder="">
+                                    @error('password')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <a href="{{url('forgot')}}">Forgot Password?</a>
+                                    <a href="{{ url('forgot') }}">Forgot Password?</a>
                                 </div>
-
-
-
                                 <button type="submit" class="btn  w-100" style="background-color: #38527E">
                                     <h5 class="text-light mt-2">Submit</h5>
                                 </button>
