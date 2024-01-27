@@ -241,7 +241,7 @@
 
             let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 
-            fetch('/donation/store', {
+            fetch('/donation/advance', {
                     method: 'POST',
                     headers: {
                         // 'Content-Type': 'application/json',
@@ -256,10 +256,18 @@
                     return response.json();
                 })
                 .then(data => {
-                    // console.log(data.formData);
+                    if (data.status == 422) {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: data.message,
+                        });
+                    } else {
+
+                    }
                 })
                 .catch(error => {
-                    console.error('Ada kesalahan:', error.message);
+                    console.error('Ada kesalahan:', error);
                 });
         }
     </script>
