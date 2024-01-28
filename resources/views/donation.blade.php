@@ -55,7 +55,7 @@
         </div>
     </header><!-- End Header -->
 
-    <main id="main">
+    <main id="basic-info">
         <div class="container login-container" style="margin-top: 7rem; margin-bottom: 3rem">
             <div class="text-center">
                 <h1 class="fw-bold" style="color: #38527E">Dataset Donation Form</h1>
@@ -167,12 +167,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="row justify-content-center">
-                    <div class="col-md-8">
-                        <p class="card-title fs-2 mt-3 text-start" style="color: #38527E;">Dataset Information</p>
-                        <textarea name="information" id="information" cols="30" class="form-control" rows="10"></textarea>
-                    </div>
-                </div>
                 <div class="row justify-content-center mt-3">
                     <div class="col-md-8">
                         <a onclick="next()">
@@ -183,7 +177,33 @@
                 </div>
             </form>
         </div>
-    </main><!-- End #main -->
+    </main>
+    <main id="more-info" style="display: none">
+        <div class="container" style="margin-top: 6rem; margin-bottom: 3rem">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <p class="card-title fs-2 mt-3 text-start" style="color: #38527E;">Dataset Information</p>
+                    <textarea name="information" id="information" cols="30" class="form-control" rows="10"></textarea>
+                </div>
+            </div>
+            <div class="row justify-content-center mt-3">
+                <div class="col-md-8">
+                    <p class="card-title fs-2 text-start" style="color: #38527E;">File Dataset</p>
+                    <div class="card p-4">
+                        <input type="file" multiple class="form-control" name="" id="file">
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center mt-4">
+                <div class="col-md-8">
+                    <a onclick="submit()">
+                        <button type="button" class="btn fs-5 text-light"
+                            style="background-color: #38527E">Submit</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
 @endsection
 @section('scripts')
     <script>
@@ -236,12 +256,9 @@
             });
             formData.append('featureTypes', featureTypes)
 
-            let information = document.getElementById('information').value
-            formData.append('information', information)
-
             let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 
-            fetch('/donation/advance', {
+            fetch('/more/info', {
                     method: 'POST',
                     headers: {
                         // 'Content-Type': 'application/json',
@@ -263,7 +280,52 @@
                             text: data.message,
                         });
                     } else {
+                        document.getElementById('basic-info').style.display = "none"
+                        document.getElementById('more-info').style.display = "block"
+                    }
+                })
+                .catch(error => {
+                    console.error('Ada kesalahan:', error);
+                });
+        }
 
+        function submit() {
+            let information = document.getElementById('information').value
+            if (information != "" || information != null || information != undefined) {
+                formData.append('information', information)
+            }
+
+            let input = document.getElementById('file')
+            let files = input.files
+            Array.from(files).forEach(file => {
+                formData.append('files[]', file)
+            });
+
+            let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+            fetch('/donation/store', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken,
+                    },
+                    body: formData,
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.status == 422) {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: data.message,
+                        });
+                    } else {
+                        console.log(data);
+                        // document.getElementById('basic-info').style.display = "none"
+                        // document.getElementById('more-info').style.display = "block"
                     }
                 })
                 .catch(error => {
@@ -273,7 +335,7 @@
     </script>
     <script>
         $('#information').summernote({
-            placeholder: 'Hello stand alone ui',
+            placeholder: 'Enter your dataset information here!',
             tabsize: 2,
             height: 120,
             toolbar: [
@@ -282,7 +344,8 @@
                 ['color', ['color']],
                 ['para', ['ul', 'ol', 'paragraph']],
                 ['table', ['table']],
-                ['insert', ['link', 'picture', ]],
+                ['insert', ['link']],
+                // ['insert', ['link', 'picture', ]],
             ]
         });
     </script>

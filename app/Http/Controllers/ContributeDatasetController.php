@@ -20,7 +20,7 @@ class ContributeDatasetController extends Controller
         return view('donation', compact(['characteristics', 'subjectAreas', 'associatedTasks', 'featureTypes']));
     }
 
-    public function advance(Request $request)
+    public function moreInfo(Request $request)
     {
         $validator = Validator::make(
             $request->all(),
@@ -49,5 +49,36 @@ class ContributeDatasetController extends Controller
                 'message' => $validator->errors()->first(),
             ]);
         }
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'success',
+        ]);
+    }
+
+    public function store(Request $request)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'information' => ['required'],
+                'files' => ['required'],
+            ],
+            [
+                'information.required' => 'The dataset information field is required',
+                'files' => 'The file dataset field is required',
+            ],
+        );
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 422,
+                'message' => $validator->errors()->first(),
+            ]);
+        }
+
+        return response()->json([
+            'data' => $request->all(),
+        ]);
     }
 }

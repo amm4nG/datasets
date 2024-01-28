@@ -28,7 +28,8 @@ Route::get('register', [RegistrationController::class, 'index'])->middleware('gu
 Route::post('register/user', [RegistrationController::class, 'store']);
 
 Route::get('donation', [ContributeDatasetController::class, 'index'])->middleware('auth');
-Route::post('donation/advance', [ContributeDatasetController::class, 'advance'])->middleware('auth');
+Route::post('more/info', [ContributeDatasetController::class, 'moreInfo'])->middleware('auth');
+Route::post('donation/store', [ContributeDatasetController::class, 'store'])->middleware('auth');
 
 Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::get('admin/dashboard', function () {
