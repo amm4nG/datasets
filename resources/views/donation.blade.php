@@ -46,12 +46,9 @@
                     @endguest
                     </li>
                 </ul>
-
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
             <!-- Modal -->
-
-
         </div>
     </header><!-- End Header -->
     @if (optional($myDataset)->count() < 1)
@@ -64,7 +61,7 @@
                         publicly
                         available on our
                         repository. Donators are free to edit their donated datasets, but edits must be approved before
-                        finalizing. <a href="">Show My Dataset</a></h5>
+                        finalizing. <a href="{{ url('my/dataset') }}">Show My Dataset</a></h5>
                 </div>
                 <form>
                     <div class="row justify-content-center mt-5">
@@ -226,7 +223,7 @@
                             uploaded previously
                             has been approved.
                             <p class="mt-2"><span class="badge bg-info">Status : pending</span></p>
-                            <a href="{{ url('show/my/datasets') }}" class="btn text-white mt-3"
+                            <a href="{{ url('my/dataset') }}" class="btn text-white mt-3"
                                 style="background-color: #38527E; max-width: 10rem;">Show My
                                 Dataset</a>
                         </div>
@@ -244,7 +241,7 @@
                             you uploaded previously
                             has been approved.
                             <p class="mt-2"><span class="badge bg-info">Status : pending</span></p>
-                            <a href="" class="btn text-white mt-1"
+                            <a href="{{ url('my/dataset') }}" class="btn text-white mt-1"
                                 style="background-color: #38527E; max-width: 12rem;">Show My Datasets</a>
                         </div>
                     </div>

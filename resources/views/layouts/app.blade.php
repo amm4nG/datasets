@@ -27,17 +27,10 @@
     <link href="{{ asset('/') }}assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="{{ asset('/') }}assets/vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="{{ asset('/') }}assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     <!-- Template Main CSS File -->
     <link href="{{ asset('/') }}assets/css/style.css" rel="stylesheet">
-    <!-- include libraries(jQuery, bootstrap) -->
-    {{-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet"> --}}
-    {{-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> --}}
-    {{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> --}}
-
-    <!-- include summernote css/js -->
-    {{-- <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script> --}}
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
     </script>
@@ -47,6 +40,13 @@
     <style>
         #img-dataset {
             display: none;
+        }
+
+        #my-datasets_length{
+            margin-bottom: 10px
+        }
+        #my-datasets_filter{
+            margin-bottom: 10px
         }
 
         @media (min-width: 1200px) {
@@ -72,14 +72,6 @@
             font-size: 14px;
         }
     </style>
-
-    <!-- =======================================================
-  * Template Name: Arsha
-  * Updated: Jan 09 2024 with Bootstrap v5.3.2
-  * Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -167,7 +159,9 @@
     <script src="{{ asset('/') }}assets/vendor/waypoints/noframework.waypoints.js"></script>
     <script src="{{ asset('/') }}assets/vendor/php-email-form/validate.js"></script>
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
     <!-- Template Main JS File -->
     <script src="{{ asset('/') }}assets/js/main.js"></script>
     @yield('scripts')

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContributeDatasetController;
+use App\Http\Controllers\MyDatasetController;
 use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,7 @@ Route::post('register/user', [RegistrationController::class, 'store']);
 Route::get('donation', [ContributeDatasetController::class, 'index'])->middleware('auth');
 Route::post('more/info', [ContributeDatasetController::class, 'moreInfo'])->middleware('auth');
 Route::post('donation/store', [ContributeDatasetController::class, 'store'])->middleware('auth');
+Route::get('my/dataset', [MyDatasetController::class, 'index'])->middleware('auth');
 
 Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::get('admin/dashboard', function () {
