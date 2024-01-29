@@ -54,162 +54,212 @@
 
         </div>
     </header><!-- End Header -->
-
-    <main id="basic-info">
-        <div class="container login-container" style="margin-top: 7rem; margin-bottom: 3rem">
-            <div class="text-center">
-                <h1 class="fw-bold" style="color: #38527E">Dataset Donation Form</h1>
-                <h5 style="color: gray">We offer users the option to upload their dataset data to our repository.</h5>
-                <h5 style="color: gray">Users can provide tabular or non-tabular dataset data which will be made publicly
-                    available on our
-                    repository. Donators are free to edit their donated datasets, but edits must be approved before
-                    finalizing.</h5>
+    @if (optional($myDataset)->count() < 1)
+        <main id="basic-info">
+            <div class="container login-container" style="margin-top: 7rem; margin-bottom: 3rem">
+                <div class="text-center">
+                    <h1 class="fw-bold" style="color: #38527E">Dataset Donation Form </h1>
+                    <h5 style="color: gray">We offer users the option to upload their dataset data to our repository.</h5>
+                    <h5 style="color: gray">Users can provide tabular or non-tabular dataset data which will be made
+                        publicly
+                        available on our
+                        repository. Donators are free to edit their donated datasets, but edits must be approved before
+                        finalizing. <a href="">Show My Dataset</a></h5>
+                </div>
+                <form>
+                    <div class="row justify-content-center mt-5">
+                        <div class="col-md-8">
+                            <p class="card-title fs-2 text-start" style="color: #38527E; ">Basic
+                                Info</p>
+                            <div class="card p-4 rounded-3">
+                                <div class="card-body ">
+                                    <div class="mb-3 position-relative">
+                                        <label for="" class="form-label">Dataset Name</label>
+                                        <input type="text" class="form-control" id="name" placeholder="">
+                                        <hr class="border-bottom">
+                                    </div>
+                                    <div class="mb-3 position-relative">
+                                        <label for="" class="form-label">Abstract</label>
+                                        {{-- <input type="text" class="form-control p-5" id="abstract" placeholder=""> --}}
+                                        <textarea name="" id="abstract" cols="30" class="form-control" rows="5"></textarea>
+                                        <p style="color: gray">Maximum 1000 Characters.</p>
+                                        <hr class="border-bottom">
+                                    </div>
+                                    <div class="mb-3 position-relative">
+                                        <label for="" class="form-label">Number of Instances (Rows) in
+                                            Dataset</label>
+                                        <input type="number" class="form-control" id="instances" placeholder="">
+                                        <hr class="border-bottom">
+                                    </div>
+                                    <div class="mb-3 position-relative">
+                                        <label for="" class="form-label">Number of Features in Dataset</label>
+                                        <input type="number" class="form-control" id="features" placeholder="">
+                                        <hr class="border-bottom">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-3">
+                        <div class="col-md-8">
+                            <p class="card-title fs-2 text-start" style="color: #38527E;">Dataset Characteristics</p>
+                            <div class="card p-1 rounded-3">
+                                <div class="card-body">
+                                    @foreach ($characteristics as $characteristic)
+                                        <div class="form-check d-flex align-items-center">
+                                            <label class="form-check-label"
+                                                for="flexCheckDefault">{{ $characteristic->name_characteristic }}</label>
+                                            <input class="form-check-input ms-auto characteristic" type="checkbox"
+                                                value="{{ $characteristic->id }}" style="border-color: #38527E;">
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-3">
+                        <div class="col-md-8">
+                            <p class="card-title fs-2 text-start" style="color: #38527E;">Subject Area</p>
+                            <div class="card p-1 rounded-3">
+                                <div class="card-body">
+                                    @foreach ($subjectAreas as $subjectArea)
+                                        <div class="form-check d-flex align-items-center">
+                                            <label class="form-check-label"
+                                                for="tabular">{{ $subjectArea->name_subject_area }}</label>
+                                            <input class="form-check-input ms-auto subjectArea" type="radio"
+                                                name="subjectArea" id="subjectArea" value="{{ $subjectArea->id }}"
+                                                style="border-color: #38527E;">
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-3">
+                        <div class="col-md-8">
+                            <p class="card-title fs-2 text-start" style="color: #38527E;">Associated Task</p>
+                            <div class="card p-1 rounded-3">
+                                <div class="card-body">
+                                    @foreach ($associatedTasks as $associatedTask)
+                                        <div class="form-check d-flex align-items-center">
+                                            <label class="form-check-label"
+                                                for="flexCheckDefault">{{ $associatedTask->name_associated_task }}</label>
+                                            <input class="form-check-input ms-auto associatedTasks" type="checkbox"
+                                                value="{{ $associatedTask->id }}" style="border-color: #38527E;">
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-3">
+                        <div class="col-md-8">
+                            <p class="card-title fs-2 text-start" style="color: #38527E;">Feature Types</p>
+                            <div class="card p-1 rounded-3">
+                                <div class="card-body">
+                                    @foreach ($featureTypes as $featureType)
+                                        <div class="form-check d-flex align-items-center">
+                                            <label class="form-check-label"
+                                                for="flexCheckDefault">{{ $featureType->name_feature_type }}</label>
+                                            <input class="form-check-input ms-auto featureTypes" type="checkbox"
+                                                value="{{ $featureType->id }}" style="border-color: #38527E;">
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-3">
+                        <div class="col-md-8">
+                            <button type="button" id="btnNext" onclick="next()" class="btn fs-5 text-light"
+                                style="background-color: #38527E; width: 6rem">Next
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <form>
-                <div class="row justify-content-center mt-5">
+        </main>
+        <main id="more-info" style="display: none">
+            <div class="container" style="margin-top: 6rem; margin-bottom: 3rem">
+                <div class="row justify-content-center">
                     <div class="col-md-8">
-                        <p class="card-title fs-2 text-start" style="color: #38527E; ">Basic
-                            Info</p>
-                        <div class="card p-4 rounded-3">
-                            <div class="card-body ">
-                                <div class="mb-3 position-relative">
-                                    <label for="" class="form-label">Dataset Name</label>
-                                    <input type="text" class="form-control" id="name" placeholder="">
-                                    <hr class="border-bottom">
-                                </div>
-                                <div class="mb-3 position-relative">
-                                    <label for="text" class="form-label">Abstract</label>
-                                    {{-- <input type="text" class="form-control p-5" id="abstract" placeholder=""> --}}
-                                    <textarea name="" id="abstract" cols="30" class="form-control" rows="5"></textarea>
-                                    <p style="color: gray">Maximum 1000 Characters.</p>
-                                    <hr class="border-bottom">
-                                </div>
-                                <div class="mb-3 position-relative">
-                                    <label for="text" class="form-label">Number of Instances (Rows) in Dataset</label>
-                                    <input type="number" class="form-control" id="instances" placeholder="">
-                                    <hr class="border-bottom">
-                                </div>
-                                <div class="mb-3 position-relative">
-                                    <label for="" class="form-label">Number of Features in Dataset</label>
-                                    <input type="number" class="form-control" id="features" placeholder="">
-                                    <hr class="border-bottom">
-                                </div>
-                            </div>
+                        <p class="card-title fs-2 mt-3 text-start" style="color: #38527E;">Dataset Information</p>
+                        <textarea name="information" id="information" cols="30" class="form-control" rows="10"></textarea>
+                    </div>
+                </div>
+                <div class="row justify-content-center mt-3">
+                    <div class="col-md-8">
+                        <p class="card-title fs-2 text-start" style="color: #38527E;">File Dataset</p>
+                        <div class="card p-4">
+                            <input type="file" multiple class="form-control" name="" id="file">
                         </div>
                     </div>
                 </div>
                 <div class="row justify-content-center mt-3">
                     <div class="col-md-8">
-                        <p class="card-title fs-2 text-start" style="color: #38527E;">Dataset Characteristics</p>
-                        <div class="card p-1 rounded-3">
-                            <div class="card-body">
-                                @foreach ($characteristics as $characteristic)
-                                    <div class="form-check d-flex align-items-center">
-                                        <label class="form-check-label"
-                                            for="flexCheckDefault">{{ $characteristic->name_characteristic }}</label>
-                                        <input class="form-check-input ms-auto characteristic" type="checkbox"
-                                            value="{{ $characteristic->id }}" style="border-color: #38527E;">
-                                    </div>
-                                @endforeach
-                            </div>
+                        <p class="card-title fs-2 text-start" style="color: #38527E;">Paper</p>
+                        <div class="card p-4">
+                            <input type="text" placeholder="Title paper" class="form-control mb-3" name=""
+                                id="title">
+                            <textarea name="" id="description" cols="30" class="form-control mb-3" rows="5"
+                                placeholder="Description"></textarea>
+                            <input type="text" class="form-control" placeholder="Link paper" name=""
+                                id="urlPaper">
                         </div>
                     </div>
                 </div>
-                <div class="row justify-content-center mt-3">
+                <div class="row justify-content-center mt-4">
                     <div class="col-md-8">
-                        <p class="card-title fs-2 text-start" style="color: #38527E;">Subject Area</p>
-                        <div class="card p-1 rounded-3">
-                            <div class="card-body">
-                                @foreach ($subjectAreas as $subjectArea)
-                                    <div class="form-check d-flex align-items-center">
-                                        <label class="form-check-label"
-                                            for="tabular">{{ $subjectArea->name_subject_area }}</label>
-                                        <input class="form-check-input ms-auto subjectArea" type="radio"
-                                            name="subjectArea" id="subjectArea" value="{{ $subjectArea->id }}"
-                                            style="border-color: #38527E;">
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row justify-content-center mt-3">
-                    <div class="col-md-8">
-                        <p class="card-title fs-2 text-start" style="color: #38527E;">Associated Task</p>
-                        <div class="card p-1 rounded-3">
-                            <div class="card-body">
-                                @foreach ($associatedTasks as $associatedTask)
-                                    <div class="form-check d-flex align-items-center">
-                                        <label class="form-check-label"
-                                            for="flexCheckDefault">{{ $associatedTask->name_associated_task }}</label>
-                                        <input class="form-check-input ms-auto associatedTasks" type="checkbox"
-                                            value="{{ $associatedTask->id }}" style="border-color: #38527E;">
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row justify-content-center mt-3">
-                    <div class="col-md-8">
-                        <p class="card-title fs-2 text-start" style="color: #38527E;">Feature Types</p>
-                        <div class="card p-1 rounded-3">
-                            <div class="card-body">
-                                @foreach ($featureTypes as $featureType)
-                                    <div class="form-check d-flex align-items-center">
-                                        <label class="form-check-label"
-                                            for="flexCheckDefault">{{ $featureType->name_feature_type }}</label>
-                                        <input class="form-check-input ms-auto featureTypes" type="checkbox"
-                                            value="{{ $featureType->id }}" style="border-color: #38527E;">
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row justify-content-center mt-3">
-                    <div class="col-md-8">
-                        <a onclick="next()">
-                            <button type="button" class="btn fs-5 text-light"
-                                style="background-color: #38527E">Next</button>
-                        </a>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </main>
-    <main id="more-info" style="display: none">
-        <div class="container" style="margin-top: 6rem; margin-bottom: 3rem">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <p class="card-title fs-2 mt-3 text-start" style="color: #38527E;">Dataset Information</p>
-                    <textarea name="information" id="information" cols="30" class="form-control" rows="10"></textarea>
-                </div>
-            </div>
-            <div class="row justify-content-center mt-3">
-                <div class="col-md-8">
-                    <p class="card-title fs-2 text-start" style="color: #38527E;">File Dataset</p>
-                    <div class="card p-4">
-                        <input type="file" multiple class="form-control" name="" id="file">
-                    </div>
-                </div>
-            </div>
-            <div class="row justify-content-center mt-4">
-                <div class="col-md-8">
-                    <a onclick="submit()">
-                        <button type="button" class="btn fs-5 text-light"
+                        <button id="submit" onclick="submit()" type="button" class="btn fs-5 text-light"
                             style="background-color: #38527E">Submit</button>
-                    </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </main>
+        </main>
+        <main id="pending" style="display: none">
+            <div class="container login-container" style="margin-top: 7rem; margin-bottom: 3rem">
+                <div class="row justify-content-center">
+                    <div class="col-md-10">
+                        <div class="card p-4">
+                            The dataset you uploaded is being processed, you can contribute a new dataset after the dataset
+                            you
+                            uploaded previously
+                            has been approved.
+                            <p class="mt-2"><span class="badge bg-info">Status : pending</span></p>
+                            <a href="{{ url('show/my/datasets') }}" class="btn text-white mt-3"
+                                style="background-color: #38527E; max-width: 10rem;">Show My
+                                Dataset</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    @else
+        <main id="pending">
+            <div class="container login-container" style="margin-top: 7rem; margin-bottom: 3rem">
+                <div class="row justify-content-center">
+                    <div class="col-md-10">
+                        <div class="card p-4">
+                            The dataset you uploaded is being processed, you can contribute a new dataset after the dataset
+                            you uploaded previously
+                            has been approved.
+                            <p class="mt-2"><span class="badge bg-info">Status : pending</span></p>
+                            <a href="" class="btn text-white mt-1"
+                                style="background-color: #38527E; max-width: 12rem;">Show My Datasets</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    @endif
 @endsection
 @section('scripts')
     <script>
         let formData = new FormData()
 
         function next() {
+
+            document.getElementById('btnNext').disabled = true
 
             let name = document.getElementById('name').value
             let abstract = document.getElementById('abstract').value
@@ -274,6 +324,7 @@
                 })
                 .then(data => {
                     if (data.status == 422) {
+                        document.getElementById('btnNext').disabled = false
                         Swal.fire({
                             icon: "error",
                             title: "Oops...",
@@ -285,11 +336,13 @@
                     }
                 })
                 .catch(error => {
+                    document.getElementById('btnNext').disabled = false
                     console.error('Ada kesalahan:', error);
                 });
         }
 
         function submit() {
+            document.getElementById('submit').disabled = true
             let information = document.getElementById('information').value
             if (information != "" || information != null || information != undefined) {
                 formData.append('information', information)
@@ -300,6 +353,17 @@
             Array.from(files).forEach(file => {
                 formData.append('files[]', file)
             });
+
+            let title = document.getElementById('title').value
+            formData.append('title', title)
+
+            let description = document.getElementById('description').value
+            formData.append('description', description)
+
+            let urlPaper = document.getElementById('urlPaper').value
+            formData.append('urlPaper', urlPaper)
+
+            console.log(urlPaper);
 
             let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
             fetch('/donation/store', {
@@ -316,20 +380,32 @@
                     return response.json();
                 })
                 .then(data => {
-                    if (data.status == 422) {
+                    if (data.status == 422 || data.status == 500) {
                         Swal.fire({
                             icon: "error",
                             title: "Oops...",
                             text: data.message,
                         });
+                        document.getElementById('submit').disabled = false
                     } else {
-                        console.log(data);
-                        // document.getElementById('basic-info').style.display = "none"
-                        // document.getElementById('more-info').style.display = "block"
+                        Swal.fire({
+                            title: "Good job!",
+                            text: "Your dataset is being processed!",
+                            icon: "success"
+                        });
+                        document.getElementById('basic-info').style.display = "none"
+                        document.getElementById('more-info').style.display = "none"
+                        document.getElementById('pending').style.display = "block"
                     }
                 })
                 .catch(error => {
                     console.error('Ada kesalahan:', error);
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "There is an error",
+                    });
+                    document.getElementById('submit').disabled = false
                 });
         }
     </script>

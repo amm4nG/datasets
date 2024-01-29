@@ -19,7 +19,8 @@ return new class extends Migration {
             $table->integer('instances');
             $table->integer('features');
             $table->text('information');
-            $table->string('url_file');
+            $table->enum('status', ['pending', 'valid', 'invalid'])->default('pending');
+            $table->string('note')->nullable();
             $table->timestamps();
         });
     }
