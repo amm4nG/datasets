@@ -69,10 +69,11 @@
                                             <td>{{ Str::limit($dataset->abstract, 23, '...') }}
                                             </td>
                                             <td><span
-                                                    class="badge @if ($dataset->status == 'pending') bg-info @else bg-success @endif p-1">{{ $dataset->status }}</span>
+                                                    class="badge bg-info p-1">{{ $dataset->status }}</span>
                                             </td>
-                                            <td><a href="" class="btn btn-sm btn-primary"><i
-                                                        class="bi bi-eye text-white"></i></a></td>
+                                            <td><a href="{{ url('my/dataset/' . $dataset->id) }}"
+                                                    class="btn btn-sm btn-primary"><i
+                                                        class="bi bi-eye text-white fw-bold"></i></a></td>
                                         </tr>
                                     @endforeach
                                 </tbody>

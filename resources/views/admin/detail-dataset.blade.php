@@ -197,15 +197,13 @@
                                     </div>
                                     <div class="col-md-11 mb-2">
                                         <a href="#" class="nav-link">
-                                            <h2 class="mt-3" style="color: #38527E">Iris</h2>
+                                            <h2 class="mt-3" style="color: #38527E">{{ $dataset->name }}</h2>
                                         </a>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-
+                                        <p style="margin-bottom: 0px">{{ $dataset->full_name }} </p>
+                                        <span class="badge bg-info p-1">{{ $dataset->status }}</span>
                                     </div>
                                     <div class="col-md-12 p-3">
-                                        <p>A small classic dataset from Fisher, 1936. One of the earliest known datasets
-                                            used for
-                                            evaluating classification methods.</p>
+                                        <p>{{$dataset->abstract}}</p>
                                     </div>
                                     <div class="col-md-3 ms-3">
                                         <h4>Dataset Characteristics</h4>

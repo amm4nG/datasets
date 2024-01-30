@@ -201,38 +201,24 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td class="align-middle">1</td>
-                                                <td class="align-middle">Iris</td>
-                                                <td class="align-middle">Arman</td>
-                                                <td class="align-middle"><span
-                                                        class="badge bg-success text-white p-2">Valid</span></td>
-                                                <td class="align-middle">
-                                                    <a href="{{ url('admin/detail/dataset') }}"
-                                                        class="ml-1 btn btn-primary btn-sm mb-1 text-center"
-                                                        style="width: 1cm"><i class="fas fa-eye"></i></a>
-                                                    <a href="#" onclick="confirmDelete()"
-                                                        class="ml-1 btn btn-sm btn-danger mb-1 text-center"
-                                                        style="width: 1cm"><i class="fas fa-trash"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="align-middle">2</td>
-                                                <td class="align-middle">Movies</td>
-                                                <td class="align-middle">Arman</td>
-                                                <td class="align-middle"><span
-                                                        class="badge bg-info text-white p-2">Pending</span></td>
-                                                <td class="align-middle">
-                                                    <a href="{{ url('admin/detail/dataset') }}"
-                                                        class="ml-1 btn btn-primary btn-sm mb-1 text-center"
-                                                        style="width: 1cm"><i class="fas fa-eye"></i></a>
-                                                    <a href="#" onclick="confirmReject()"
-                                                        class="ml-1 btn btn-sm btn-danger mb-1 text-center"
-                                                        style="width: 1cm"><i class="fas fa-times"></i></a>
-                                                    <a href="" class="ml-1 btn btn-sm btn-success mb-1 text-center"
-                                                        style="width: 1cm"><i class="fas fa-check"></i></a>
-                                                </td>
-                                            </tr>
+                                            @foreach ($datasets as $dataset)
+                                                <tr>
+                                                    <td class="align-middle">{{ $loop->iteration }}</td>
+                                                    <td class="align-middle text-capitalize">{{ $dataset->name }}</td>
+                                                    <td class="align-middle">{{ $dataset->full_name }}</td>
+                                                    <td class="align-middle"><span
+                                                            class="badge bg-info text-white p-1">{{ $dataset->status }}</span>
+                                                    </td>
+                                                    <td class="align-middle">
+                                                        <a href="{{ url('admin/detail/dataset/' . $dataset->id) }}"
+                                                            class="ml-1 btn btn-primary btn-sm mb-1 text-center"
+                                                            style="width: 1cm"><i class="fas fa-eye"></i></a>
+                                                        <a href="#" onclick="confirmDelete()"
+                                                            class="ml-1 btn btn-sm btn-danger mb-1 text-center"
+                                                            style="width: 1cm"><i class="fas fa-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

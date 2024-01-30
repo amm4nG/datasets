@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ManageDatasetsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContributeDatasetController;
 use App\Http\Controllers\MyDatasetController;
@@ -32,23 +33,20 @@ Route::get('donation', [ContributeDatasetController::class, 'index'])->middlewar
 Route::post('more/info', [ContributeDatasetController::class, 'moreInfo'])->middleware('auth');
 Route::post('donation/store', [ContributeDatasetController::class, 'store'])->middleware('auth');
 Route::get('my/dataset', [MyDatasetController::class, 'index'])->middleware('auth');
+Route::get('my/dataset/{id}', [MyDatasetController::class, 'show'])->middleware('auth');
 
 Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::get('admin/dashboard', function () {
         return view('admin.dashboard');
     });
 
-    Route::get('admin/manage/datasets', function () {
-        return view('admin.manage-datasets');
-    });
+    Route::get('admin/manage/datasets', [ManageDatasetsController::class, 'index']);
 
     Route::get('admin/manage/users', function () {
         return view('admin.manage-users');
     });
 
-    Route::get('admin/detail/dataset', function () {
-        return view('admin.detail-dataset');
-    });
+    Route::get('admin/detail/dataset/{id}', [ManageDatasetsController::class, 'show']);
 });
 
 Route::get('forgot', function () {

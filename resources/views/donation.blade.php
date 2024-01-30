@@ -406,20 +406,5 @@
                 });
         }
     </script>
-    <script>
-        $('#information').summernote({
-            placeholder: 'Enter your dataset information here!',
-            tabsize: 2,
-            height: 120,
-            toolbar: [
-                ['style', ['style']],
-                ['font', ['bold', 'underline', 'clear']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['table', ['table']],
-                ['insert', ['link']],
-                // ['insert', ['link', 'picture', ]],
-            ]
-        });
-    </script>
+    
 @endsection
