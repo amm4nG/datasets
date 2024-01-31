@@ -31,33 +31,33 @@ class ContributeDatasetController extends Controller
 
     public function moreInfo(Request $request)
     {
-        // $validator = Validator::make(
-        //     $request->all(),
-        //     [
-        //         'name' => ['required'],
-        //         'abstract' => ['required', 'max:1000'],
-        //         'instances' => ['required', 'numeric'],
-        //         'features' => ['nullable', 'numeric'],
-        //         'characteristics' => ['required'],
-        //         'subjectArea' => ['required'],
-        //         'associatedTasks' => ['required'],
-        //         'featureTypes' => ['nullable'],
-        //     ],
-        //     [
-        //         'name.required' => 'The dataset name field is required',
-        //         'instances.required' => 'The number of instances field is required',
-        //         'characteristics.required' => 'Select dataset characteristics',
-        //         'subjectArea.required' => 'Please select subject area',
-        //         'associatedTasks.required' => 'Please select associated task',
-        //     ],
-        // );
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'name' => ['required'],
+                'abstract' => ['required', 'max:1000'],
+                'instances' => ['required', 'numeric'],
+                'features' => ['nullable', 'numeric'],
+                'characteristics' => ['required'],
+                'subjectArea' => ['required'],
+                'associatedTasks' => ['required'],
+                'featureTypes' => ['nullable'],
+            ],
+            [
+                'name.required' => 'The dataset name field is required',
+                'instances.required' => 'The number of instances field is required',
+                'characteristics.required' => 'Select dataset characteristics',
+                'subjectArea.required' => 'Please select subject area',
+                'associatedTasks.required' => 'Please select associated task',
+            ],
+        );
 
-        // if ($validator->fails()) {
-        //     return response()->json([
-        //         'status' => 422,
-        //         'message' => $validator->errors()->first(),
-        //     ]);
-        // }
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 422,
+                'message' => $validator->errors()->first(),
+            ]);
+        }
 
         return response()->json([
             'status' => 200,

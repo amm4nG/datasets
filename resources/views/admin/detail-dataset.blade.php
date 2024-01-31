@@ -197,13 +197,15 @@
                                     </div>
                                     <div class="col-md-11 mb-2">
                                         <a href="#" class="nav-link">
-                                            <h2 class="mt-3" style="color: #38527E">{{ $dataset->name }}</h2>
+                                            <h2 class="mt-3 text-capitalize" style="color: #38527E">{{ $dataset->name }}
+                                            </h2>
                                         </a>
-                                        <p style="margin-bottom: 0px">{{ $dataset->full_name }} </p>
-                                        <span class="badge bg-info p-1">{{ $dataset->status }}</span>
+                                        <p class="text-capitalize]" style="margin-bottom: 0px">{{ $dataset->full_name }}
+                                        </p>
+                                        <span id="status" class="badge bg-info p-1">{{ $dataset->status }}</span>
                                     </div>
                                     <div class="col-md-12 p-3">
-                                        <p>{{$dataset->abstract}}</p>
+                                        <p>{{ $dataset->abstract }}</p>
                                     </div>
                                     <div class="col-md-3 ms-3">
                                         <h4>Dataset Characteristics</h4>
@@ -251,19 +253,22 @@
                                     from each other.</p>
                             </div>
                         </div>
+                        @if ($dataset->status == 'pending')
+                            <div class="col-md-3" id="btnValidate">
+                                <a href="#" onclick="valid({{ $id }})"
+                                    class="btn btn-success btn-sm mt-2"><i class="fas fa-check mr-2"></i>Valid</a>
+                                <button data-toggle="modal" data-target="#exampleModal"
+                                    class="btn btn-danger btn-sm mt-2"><i class="fas fa-times mr-2"></i>Invalid</button>
+                            </div>
+                        @endif
                     </div>
-
                     <!-- Content Row -->
                     <div class="row">
-
                     </div>
-
                 </div>
                 <!-- /.container-fluid -->
-
             </div>
             <!-- End of Main Content -->
-
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
@@ -273,18 +278,14 @@
                 </div>
             </footer>
             <!-- End of Footer -->
-
         </div>
         <!-- End of Content Wrapper -->
-
     </div>
     <!-- End of Page Wrapper -->
-
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -304,6 +305,71 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Note!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" placeholder="Enter notes" class="form-control" name="note" id="note">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn text-white" style="background-color: #38527E">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @section('scripts')
+    <script>
+        function valid(id) {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, validate it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+                    fetch('/admin/validate/dataset/' + id, {
+                            method: 'PUT',
+                            headers: {
+                                'X-CSRF-TOKEN': csrfToken,
+                            },
+                            body: {
+                                id: id
+                            },
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! Status: ${response.status}`);
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            document.getElementById('btnValidate').style.display = "none"
+                            document.getElementById('status').innerHTML = "valid"
+                            Swal.fire({
+                                title: "Validated!",
+                                text: "Success",
+                                icon: "success"
+                            });
+                        })
+                        .catch(error => {
+                            console.error('Ada kesalahan:', error.message);
+                        });
+                }
+            });
+        }
+    </script>
 @endsection

@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\ManageDatasetsController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContributeDatasetController;
+use App\Http\Controllers\DatasetController;
 use App\Http\Controllers\MyDatasetController;
 use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Auth;
@@ -12,9 +14,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('datasets', function () {
-    return view('datasets');
-});
+Route::get('datasets', [DatasetController::class, 'index']);
 
 Route::get('detail', function () {
     return view('detail');
@@ -39,14 +39,11 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::get('admin/dashboard', function () {
         return view('admin.dashboard');
     });
-
     Route::get('admin/manage/datasets', [ManageDatasetsController::class, 'index']);
-
-    Route::get('admin/manage/users', function () {
-        return view('admin.manage-users');
-    });
-
     Route::get('admin/detail/dataset/{id}', [ManageDatasetsController::class, 'show']);
+    Route::put('admin/validate/dataset/{id}', [ManageDatasetsController::class, 'update']);
+
+    Route::get('admin/manage/users', [UserController::class, 'index']);
 });
 
 Route::get('forgot', function () {

@@ -200,17 +200,19 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach ($users as $user)
                                             <tr>
-                                                <td class="align-middle">1</td>
-                                                <td class="align-middle">Arman</td>
-                                                <td class="align-middle">ammangdeveloper@gmail.com</td>
+                                                <td class="align-middle">{{ $loop->iteration }}</td>
+                                                <td class="align-middle">{{ $user->full_name }}</td>
+                                                <td class="align-middle">{{ $user->email }}</td>
                                                 <td class="align-middle">
                                                     <a href="" class="ml-1 btn btn-primary btn-sm mb-1 text-center"
-                                                        style="width: 1cm"><i class="fas fa-eye"></i></a>
+                                                    style="width: 1cm"><i class="fas fa-eye"></i></a>
                                                     <a href="" class="ml-1 btn btn-sm btn-danger mb-1 text-center"
-                                                        style="width: 1cm"><i class="fas fa-trash"></i></a>
+                                                    style="width: 1cm"><i class="fas fa-trash"></i></a>
                                                 </td>
                                             </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
