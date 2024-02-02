@@ -406,5 +406,4 @@
                 });
         }
     </script>
-    
 @endsection

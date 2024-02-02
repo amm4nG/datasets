@@ -9,16 +9,46 @@ use App\Http\Controllers\MyDatasetController;
 use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+// Route::get('download', function () {
+//     $paths = 'datasets';
+
+//     $files = Storage::files('public/' . $paths);
+//     // var_dump($files);
+
+//     $zip = new ZipArchive();
+//     $zipFileName = 'downloaded_files.zip';
+
+//     if ($zip->open(storage_path($zipFileName), ZipArchive::CREATE) === true) {
+//         // Tambahkan setiap file ke dalam zip
+//         foreach ($files as $file) {
+//             // Ambil nama file dari path lengkap
+//             $fileName = pathinfo($file, PATHINFO_BASENAME);
+//             // Tambahkan file ke dalam zip dengan nama yang sama
+//             $zip->addFile(storage_path('app/' . $file), $fileName);
+//         }
+
+//         //     // Tutup zip setelah semua file ditambahkan
+//         $zip->close();
+
+//         // Kirimkan file zip sebagai tanggapan (response)
+//         return response()
+//             ->download(storage_path($zipFileName))
+//             ->deleteFileAfterSend(true);
+//     } else {
+//         // Jika terjadi kesalahan saat membuat zip
+//         return response()->json(['error' => 'Gagal membuat file zip'], 500);
+//     }
+// });
+
 Route::get('datasets', [DatasetController::class, 'index']);
 
-Route::get('detail', function () {
-    return view('detail');
-});
+Route::get('detail/dataset/{id}', [DatasetController::class, 'show']);
 
 Route::get('login', [AuthController::class, 'index'])
     ->name('login')
@@ -34,6 +64,7 @@ Route::post('more/info', [ContributeDatasetController::class, 'moreInfo'])->midd
 Route::post('donation/store', [ContributeDatasetController::class, 'store'])->middleware('auth');
 Route::get('my/dataset', [MyDatasetController::class, 'index'])->middleware('auth');
 Route::get('my/dataset/{id}', [MyDatasetController::class, 'show'])->middleware('auth');
+Route::delete('delete/my/dataset/{id}', [MyDatasetController::class, 'destroy'])->middleware('auth');
 
 Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::get('admin/dashboard', function () {
@@ -41,7 +72,8 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     });
     Route::get('admin/manage/datasets', [ManageDatasetsController::class, 'index']);
     Route::get('admin/detail/dataset/{id}', [ManageDatasetsController::class, 'show']);
-    Route::put('admin/validate/dataset/{id}', [ManageDatasetsController::class, 'update']);
+    Route::put('admin/validate/dataset/{id}', [ManageDatasetsController::class, 'valid']);
+    Route::put('admin/invalid/dataset/{id}', [ManageDatasetsController::class, 'invalid']);
 
     Route::get('admin/manage/users', [UserController::class, 'index']);
 });

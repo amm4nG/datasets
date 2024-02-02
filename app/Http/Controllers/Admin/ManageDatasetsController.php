@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Dataset;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ManageDatasetsController extends Controller
 {
@@ -22,13 +23,35 @@ class ManageDatasetsController extends Controller
         return view('admin.detail-dataset', compact(['dataset', 'id']));
     }
 
-    public function update($id)
+    public function valid($id)
     {
         $dataset = Dataset::findOrFail($id);
         $dataset->status = 'valid';
         $dataset->update();
         return response()->json([
             'message' => 'success',
+        ]);
+    }
+
+    public function invalid(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'note' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 422,
+                'message' => $validator->errors()->first(),
+            ]);
+        }
+
+        $dataset = Dataset::findOrFail($id);
+        $dataset->status = 'invalid';
+        $dataset->update();
+        return response()->json([
+            'status' => 200,
+            'message' => 'invalid',
         ]);
     }
 }

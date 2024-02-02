@@ -68,12 +68,16 @@
                                             <td>{{ $dataset->name }}</td>
                                             <td>{{ Str::limit($dataset->abstract, 23, '...') }}
                                             </td>
-                                            <td><span
-                                                    class="badge bg-info p-1">{{ $dataset->status }}</span>
+                                            <td><span class="badge bg-info p-1">{{ $dataset->status }}</span>
                                             </td>
-                                            <td><a href="{{ url('my/dataset/' . $dataset->id) }}"
+                                            <td>
+                                                <a href="{{ url('my/dataset/' . $dataset->id) }}"
                                                     class="btn btn-sm btn-primary"><i
-                                                        class="bi bi-eye text-white fw-bold"></i></a></td>
+                                                        class="bi bi-eye text-white fw-bold"></i></a>
+                                                <a href="#" onclick="deleteDataset({{ $dataset->id }})"
+                                                    class="btn btn-sm btn-danger"><i
+                                                        class="bi bi-trash text-white fw-bold"></i></a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -90,5 +94,50 @@
         $(document).ready(function() {
             $('#my-datasets').DataTable();
         });
+
+        function deleteDataset(id) {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+                    let formData = new FormData();
+                    formData.append('name', 'Arman');
+
+                    fetch('/delete/my/dataset/' + id, {
+                            method: 'DELETE',
+                            headers: {
+                                'X-CSRF-TOKEN': csrfToken,
+                            },
+                            body: {
+                                id: id
+                            },
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! Status: ${response.status}`);
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            console.log(data);
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                        })
+                        .catch(error => {
+                            console.error('Ada kesalahan:', error.message);
+                        });
+                }
+            });
+        }
     </script>
 @endsection

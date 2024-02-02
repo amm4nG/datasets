@@ -61,7 +61,7 @@
                 <div class="col-md-12">
                     <h3 style="color: #38527E">Browse Datasets</h3>
 
-                    <div class="dropdown">
+                    {{-- <div class="dropdown">
                         <a class="btn btn-secondary dropdown-toggle" style="background-color: #38527E" href="#"
                             role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-filter-left"
                                 style="color: #FFD000"></i>
@@ -73,127 +73,44 @@
                             <li><a class="dropdown-item" href="#">Another action</a></li>
                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
-                    </div>
+                    </div> --}}
 
                     <div class="row mt-4">
-                        <div class="col-md-12 mb-2 shadow-sm">
-                            <div class="card p-4">
-                                <div class="row align-items-center">
-                                    <div class="col-md-1" id="img-dataset">
-                                        <img class="img-fluid" src="{{ asset('assets/img/clients/client-6.png') }}"
-                                            alt="">
-                                    </div>
-                                    <div class="col-md-11 mb-2">
-                                        <a href="{{ url('detail') }}">
-                                            <h5 class="" style="color: #38527E">Iris</h5>
-                                        </a>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                        <div class="input-group gap-5">
-                                            <a href="" class="nav-link"><i
-                                                    class="bi bi-search me-2"></i>Clasification</a>
-                                            <a href="" class="nav-link"><i
-                                                    class="bi bi-journal-text me-2"></i>Tabular</a>
-                                            <a href="" class="nav-link"><i class="bi bi-building me-2"></i>150
-                                                Instances</a>
-                                            <a href="" class="nav-link"><i class="bi bi-table me-2"></i>4
-                                                Features</a>
+                        @foreach ($datasets as $dataset)
+                            <div class="col-md-12 mb-2 shadow-sm">
+                                <div class="card p-4">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-1" id="img-dataset">
+                                            <img class="img-fluid" src="{{ asset('assets/img/clients/client-6.png') }}"
+                                                alt="">
+                                        </div>
+                                        <div class="col-md-11 mb-2">
+                                            <a href="{{ url('detail/dataset/' . $dataset->id) }}">
+                                                <h5 class="text-capitalize" style="color: #38527E">{{ $dataset->name }}</h5>
+                                            </a>
+                                            <p>{{ $dataset->abstract }}
+                                            </p>
+                                            <div class="input-group gap-5">
+                                                <a href="" class="nav-link"><i
+                                                        class="bi bi-search me-2"></i>Clasification</a>
+                                                <a href="" class="nav-link"><i
+                                                        class="bi bi-journal-text me-2"></i>Tabular</a>
+                                                <a href="" class="nav-link"><i class="bi bi-building me-2"></i>{{ $dataset->instances }}
+                                                    Instances</a>
+                                                <a href="" class="nav-link"><i class="bi bi-table me-2"></i>{{ $dataset->features }}
+                                                    Features</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-12 mb-2 shadow-sm">
-                            <div class="card p-4">
-                                <div class="row align-items-center">
-                                    <div class="col-md-1" id="img-dataset">
-                                        <img class="img-fluid" src="{{ asset('assets/img/clients/client-6.png') }}"
-                                            alt="">
-                                    </div>
-                                    <div class="col-md-11 mb-2">
-                                        <a href="{{ url('detail') }}">
-                                            <h5 class="" style="color: #38527E">Iris</h5>
-                                        </a>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                        <div class="input-group gap-5">
-                                            <a href="" class="nav-link"><i
-                                                    class="bi bi-search me-2"></i>Clasification</a>
-                                            <a href="" class="nav-link"><i
-                                                    class="bi bi-journal-text me-2"></i>Tabular</a>
-                                            <a href="" class="nav-link"><i class="bi bi-building me-2"></i>150
-                                                Instances</a>
-                                            <a href="" class="nav-link"><i class="bi bi-table me-2"></i>4
-                                                Features</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12 mb-2 shadow-sm">
-                            <div class="card p-4">
-                                <div class="row align-items-center">
-                                    <div class="col-md-1" id="img-dataset">
-                                        <img class="img-fluid" src="{{ asset('assets/img/clients/client-6.png') }}"
-                                            alt="">
-                                    </div>
-                                    <div class="col-md-11 mb-2">
-                                        <a href="{{ url('detail') }}">
-                                            <h5 class="" style="color: #38527E">Iris</h5>
-                                        </a>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                        <div class="input-group gap-5">
-                                            <a href="" class="nav-link"><i
-                                                    class="bi bi-search me-2"></i>Clasification</a>
-                                            <a href="" class="nav-link"><i
-                                                    class="bi bi-journal-text me-2"></i>Tabular</a>
-                                            <a href="" class="nav-link"><i class="bi bi-building me-2"></i>150
-                                                Instances</a>
-                                            <a href="" class="nav-link"><i class="bi bi-table me-2"></i>4
-                                                Features</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12 mb-2 shadow-sm">
-                            <div class="card p-4">
-                                <div class="row align-items-center">
-                                    <div class="col-md-1" id="img-dataset">
-                                        <img class="img-fluid" src="{{ asset('assets/img/clients/client-6.png') }}"
-                                            alt="">
-                                    </div>
-                                    <div class="col-md-11 mb-2">
-                                        <a href="{{ url('detail') }}">
-                                            <h5 class="" style="color: #38527E">Iris</h5>
-                                        </a>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                        <div class="input-group gap-5">
-                                            <a href="" class="nav-link"><i
-                                                    class="bi bi-search me-2"></i>Clasification</a>
-                                            <a href="" class="nav-link"><i
-                                                    class="bi bi-journal-text me-2"></i>Tabular</a>
-                                            <a href="" class="nav-link"><i class="bi bi-building me-2"></i>150
-                                                Instances</a>
-                                            <a href="" class="nav-link"><i class="bi bi-table me-2"></i>4
-                                                Features</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
+                        @endforeach
                     </div>
-
-
                 </div>
-
             </div>
         </div>
 
-
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">

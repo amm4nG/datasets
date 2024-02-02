@@ -54,61 +54,87 @@
 
     <main id="main">
         <div class="container" style="margin-top: 7rem">
-
             <div class="row">
-                <div class="col-md-12 mb-2">
-                    <div class="card p-2 ">
+                <div class="col-md-12">
+                    <h1 class="fw-bold" style="color: #38527E"><a style="color: #38527E" href="{{ url('datasets') }}"><i
+                                class="bi bi-arrow-left-short fs-2 "></i></a>Detail Dataset</h1>
+                    <div class="card p-3">
                         <div class="row align-items-center">
                             <div class="col-md-1" id="img-dataset">
                                 <img class="img-fluid" src="{{ asset('assets/img/clients/client-6.png') }}" alt="">
                             </div>
                             <div class="col-md-11 mb-2">
                                 <a href="{{ url('detail') }}">
-                                    <h2 class="mt-3" style="color: #38527E">Iris</h2>
+                                    <h2 class="mt-3 text-capitalize" style="color: #38527E">{{ $dataset->name }}</h2>
                                 </a>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                <p><span class="">Creator by {{ $dataset->full_name }}</span></p>
 
                             </div>
                             <div class="col-md-12 ms-3">
-                                <p>A small classic dataset from Fisher, 1936. One of the earliest known datasets used for
-                                    evaluating classification methods.</p>
+                                <a href="" class="btn btn-warning btn-sm mb-2">Download</a>
+                                <p>{{ $dataset->abstract }}</p>
                             </div>
                             <div class="col-md-3 ms-3">
                                 <h4>Dataset Characteristics</h4>
-                                <p>Tabular</p>
+                                <p>
+                                    @foreach ($characteristics as $characteristic)
+                                        {{ $characteristic->name_characteristic }}
+                                    @endforeach
+                                </p>
                             </div>
                             <div class="col-md-3 ms-3">
                                 <h4>Subject Area</h4>
-                                <p>Biology
+                                <p>
+                                    {{ $dataset->name_subject_area }}
                                 </p>
                             </div>
                             <div class="col-md-3 ms-3">
                                 <h4>Associated Tasks</h4>
-                                <p>Classification</p>
+                                <p>
+                                    @foreach ($associatedTasks as $associatedTask)
+                                        {{ $associatedTask->name_associated_task }}
+                                    @endforeach
+                                </p>
                             </div>
                             <div class="col-md-3 ms-3">
                                 <h4>Feature Type</h4>
-                                <p>Real</p>
+                                <p>
+                                    @foreach ($featureTypes as $featureType)
+                                        {{ $featureType->name_feature_type }}
+                                    @endforeach
+                                </p>
                             </div>
                             <div class="col-md-3 ms-3">
                                 <h4># Instances</h4>
-                                <p>150</p>
+                                <p>{{ $dataset->instances }}</p>
                             </div>
                             <div class="col-md-3 ms-3">
                                 <h4># Features</h4>
-                                <p>4</p>
+                                <p>{{ $dataset->features }}</p>
                             </div>
 
                         </div>
                     </div>
                 </div>
-
+            </div>
+            <div class="row mt-3">
                 <div class="col-md-12">
-
+                    <div class="card p-4">
+                        {!! $dataset->information !!}
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <div class="card p-4">
+                        <h4>Papers</h4>
+                        @foreach ($papers as $paper)
+                            <p><i class="bi bi-book me-2"></i><a href="" style="color: #38527E">{{ $paper->title }}</a></p>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
-
 
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -127,10 +153,5 @@
                 </div>
             </div>
         </div>
-
-    </main><!-- End #main -->
-
-    <!-- ======= Footer ======= -->
-@endsection
-
-<!-- ======= Header ======= -->
+    </main> 
+@endsection 

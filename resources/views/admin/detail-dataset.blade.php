@@ -257,7 +257,7 @@
                             <div class="col-md-3" id="btnValidate">
                                 <a href="#" onclick="valid({{ $id }})"
                                     class="btn btn-success btn-sm mt-2"><i class="fas fa-check mr-2"></i>Valid</a>
-                                <button data-toggle="modal" data-target="#exampleModal"
+                                <button data-toggle="modal" data-target="#modalInvalid"
                                     class="btn btn-danger btn-sm mt-2"><i class="fas fa-times mr-2"></i>Invalid</button>
                             </div>
                         @endif
@@ -307,7 +307,7 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalInvalid" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -317,11 +317,15 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="text" placeholder="Enter notes" class="form-control" name="note" id="note">
+                    <input type="text" placeholder="Enter notes" class="form-control" id="note">
+                    <div style="display: none" id="noteRequired" class="invalid-feedback">
+                        The note field is required.
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn text-white" style="background-color: #38527E">Yes</button>
+                    <button type="button" id="invalid" onclick="invalid({{ $id }})" class="btn text-white"
+                        style="background-color: #38527E">Yes</button>
                 </div>
             </div>
         </div>
@@ -370,6 +374,40 @@
                         });
                 }
             });
+        }
+
+        function invalid(id) {
+            let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+            let note = document.getElementById('note').value
+            document.getElementById('invalid').disabled = true
+            let formData = new FormData()
+            formData.append('note', note)
+            fetch('/admin/invalid/dataset/3', {
+                    method: 'PUT',
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken,
+                    },
+                    body: formData,
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.status == 422) {
+                        document.getElementById('note').classList.add('is-invalid')
+                        document.getElementById('noteRequired').style.display = "block"
+                        document.getElementById('invalid').disabled = false
+                    } else {
+                        document.getElementById('modalInvalid').style.display = "none"
+                    }
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error('Ada kesalahan:', error.message);
+                });
         }
     </script>
 @endsection
