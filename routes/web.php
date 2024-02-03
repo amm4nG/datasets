@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContributeDatasetController;
 use App\Http\Controllers\DatasetController;
+use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\MyDatasetController;
 use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Auth;
@@ -16,27 +17,26 @@ Route::get('/', function () {
 });
 
 // Route::get('download', function () {
-//     $paths = 'datasets';
+//     $paths = '8';
 
-//     $files = Storage::files('public/' . $paths);
+//     $files = Storage::files('public/datasets/' . $paths);
 //     // var_dump($files);
 
 //     $zip = new ZipArchive();
-//     $zipFileName = 'downloaded_files.zip';
+//     $zipFileName = 'downloaded.zip';
 
 //     if ($zip->open(storage_path($zipFileName), ZipArchive::CREATE) === true) {
 //         // Tambahkan setiap file ke dalam zip
 //         foreach ($files as $file) {
 //             // Ambil nama file dari path lengkap
 //             $fileName = pathinfo($file, PATHINFO_BASENAME);
+//             // echo $fileName;
 //             // Tambahkan file ke dalam zip dengan nama yang sama
 //             $zip->addFile(storage_path('app/' . $file), $fileName);
 //         }
-
-//         //     // Tutup zip setelah semua file ditambahkan
+//         // Tutup zip setelah semua file ditambahkan
 //         $zip->close();
 
-//         // Kirimkan file zip sebagai tanggapan (response)
 //         return response()
 //             ->download(storage_path($zipFileName))
 //             ->deleteFileAfterSend(true);
@@ -45,6 +45,8 @@ Route::get('/', function () {
 //         return response()->json(['error' => 'Gagal membuat file zip'], 500);
 //     }
 // });
+
+Route::get('download/{id}', [DownloadController::class, 'download'])->middleware('auth');
 
 Route::get('datasets', [DatasetController::class, 'index']);
 

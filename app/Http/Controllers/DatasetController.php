@@ -30,6 +30,6 @@ class DatasetController extends Controller
             ->where('id_dataset', $id)
             ->get();
         $papers = Paper::where('id_dataset', $id)->get();
-        return view('detail', compact(['dataset', 'characteristics', 'featureTypes', 'associatedTasks', 'papers']));
+        return view('detail', compact(['dataset', 'characteristics', 'featureTypes', 'associatedTasks', 'papers', 'id']));
     }
 }

@@ -71,7 +71,7 @@
 
                             </div>
                             <div class="col-md-12 ms-3">
-                                <a href="" class="btn btn-warning btn-sm mb-2">Download</a>
+                                <a href="{{ url('download/' . $id) }}" class="btn btn-warning btn-sm mb-2">Download</a>
                                 <p>{{ $dataset->abstract }}</p>
                             </div>
                             <div class="col-md-3 ms-3">
@@ -129,7 +129,8 @@
                     <div class="card p-4">
                         <h4>Papers</h4>
                         @foreach ($papers as $paper)
-                            <p><i class="bi bi-book me-2"></i><a href="" style="color: #38527E">{{ $paper->title }}</a></p>
+                            <p><i class="bi bi-book me-2"></i><a href=""
+                                    style="color: #38527E">{{ $paper->title }}</a></p>
                         @endforeach
                     </div>
                 </div>
@@ -153,5 +154,10 @@
                 </div>
             </div>
         </div>
-    </main> 
-@endsection 
+    </main>
+@endsection
+@section('scripts')
+    <script>
+        
+    </script>
+@endsection

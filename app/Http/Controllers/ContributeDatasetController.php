@@ -25,7 +25,9 @@ class ContributeDatasetController extends Controller
         $subjectAreas = SubjectArea::all();
         $associatedTasks = AssociatedTask::all();
         $featureTypes = FeatureType::all();
-        $myDataset = Dataset::where('id_user', Auth::user()->id)->where('status', 'pending')->first();
+        $myDataset = Dataset::where('id_user', Auth::user()->id)
+            ->where('status', 'pending')
+            ->first();
         return view('donation', compact(['characteristics', 'subjectAreas', 'associatedTasks', 'featureTypes', 'myDataset']));
     }
 
@@ -104,7 +106,8 @@ class ContributeDatasetController extends Controller
             foreach ($request->file('files') as $file) {
                 $urlFiles = new UrlFile();
                 $urlFiles->id_dataset = $dataset->id;
-                $path = $file->store('public/datasets');
+                // $path = $file->store('public/datasets');
+                $path = $file->storeAs('public/datasets/' . $dataset->id, $file->getClientOriginalName());
                 $urlFiles->url_file = str_replace('public/', '', $path);
                 $urlFiles->save();
             }
