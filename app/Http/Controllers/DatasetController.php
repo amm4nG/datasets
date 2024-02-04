@@ -6,6 +6,7 @@ use App\Models\Dataset;
 use App\Models\DatasetAssociatedTask;
 use App\Models\DatasetCharacteristic;
 use App\Models\DatasetFeatureType;
+use App\Models\Download;
 use App\Models\Paper;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,14 @@ class DatasetController extends Controller
     public function index()
     {
         $datasets = Dataset::where('status', 'valid')->get();
-        return view('datasets', compact('datasets'));
+        $countDownloads = [];
+        foreach ($datasets as $dataset) {
+            $downloads = Download::where('id_dataset', $dataset->id)->get();
+            foreach ($downloads as $download) {
+                $countDownloads[] = $dataset->id;
+            }
+        }
+        return view('datasets', compact('datasets', 'countDownloads'));
     }
 
     public function show($id)

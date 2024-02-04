@@ -7,7 +7,7 @@
         <ul class="navbar-nav sidebar sidebar-dark accordion" style="background-color: #38527E" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/') }}">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -154,7 +154,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->email }}</span>
                                 <img class="img-profile rounded-circle" src="{{ asset('img/undraw_profile.svg') }}">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -197,6 +197,7 @@
                                                 <th class="text-center">Name Dataset</th>
                                                 <th class="text-center">Creator</th>
                                                 <th class="text-center">Status</th>
+                                                <th class="text-center">Note</th>
                                                 <th class="text-center">Action</th>
                                             </tr>
                                         </thead>
@@ -210,10 +211,17 @@
                                                             class="badge bg-info text-white p-1">{{ $dataset->status }}</span>
                                                     </td>
                                                     <td class="align-middle">
+                                                        @if ($dataset->note == null || $dataset->note == '')
+                                                            -
+                                                        @else
+                                                            {{ Str::limit($dataset->note, 20, '...') }}
+                                                        @endif
+                                                    </td>
+                                                    <td class="align-middle">
                                                         <a href="{{ url('admin/detail/dataset/' . $dataset->id) }}"
                                                             class="ml-1 btn btn-primary btn-sm mb-1 text-center"
                                                             style="width: 1cm"><i class="fas fa-eye"></i></a>
-                                                        <a href="#" onclick="confirmDelete()"
+                                                        <a href="#" onclick="deleteDataset({{ $dataset->id }})"
                                                             class="ml-1 btn btn-sm btn-danger mb-1 text-center"
                                                             style="width: 1cm"><i class="fas fa-trash"></i></a>
                                                     </td>
@@ -295,7 +303,7 @@
         });
     </script>
     <script>
-        function confirmDelete() {
+        function deleteDataset(id) {
             Swal.fire({
                 title: "Are you sure?",
                 text: "You won't be able to revert this!",
@@ -306,11 +314,39 @@
                 confirmButtonText: "Yes, delete it!"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Swal.fire({
-                        title: "Deleted!",
-                        text: "Your file has been deleted.",
-                        icon: "success"
-                    });
+                    let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+                    let formData = new FormData();
+                    formData.append('name', 'Arman');
+
+                    fetch('/delete/my/dataset/' + id, {
+                            method: 'DELETE',
+                            headers: {
+                                'X-CSRF-TOKEN': csrfToken,
+                            },
+                            body: {
+                                id: id
+                            },
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! Status: ${response.status}`);
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            console.log(data);
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                            setTimeout(() => {
+                                location.reload()
+                            }, 1500);
+                        })
+                        .catch(error => {
+                            console.error('Ada kesalahan:', error.message);
+                        });
                 }
             });
         }

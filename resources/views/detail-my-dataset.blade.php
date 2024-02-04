@@ -58,7 +58,7 @@
                                 <a href="{{ url('detail') }}">
                                     <h2 class="mt-3 text-capitalize" style="color: #38527E">{{ $dataset->name }}</h2>
                                 </a>
-                                <p><span class="badge bg-info p-1">{{ $dataset->status }}</span></p>
+                                <p><span class="badge bg-info p-1 me-2">{{ $dataset->status }}</span></span><span class="text-danger">{{ $dataset->note }}</span></p>
 
                             </div>
                             <div class="col-md-12 ms-3">

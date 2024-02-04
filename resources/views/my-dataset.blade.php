@@ -56,8 +56,8 @@
                                     <tr>
                                         <th class="text-center">No</th>
                                         <th class="text-center">Name Dataset</th>
-                                        <th class="text-center">Abstract</th>
                                         <th class="text-center">Status</th>
+                                        <th class="text-center">Note</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -66,9 +66,14 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $dataset->name }}</td>
-                                            <td>{{ Str::limit($dataset->abstract, 23, '...') }}
-                                            </td>
                                             <td><span class="badge bg-info p-1">{{ $dataset->status }}</span>
+                                            </td>
+                                            <td>
+                                                @if ($dataset->note == null || $dataset->note == '')
+                                                    -
+                                                @else
+                                                    {{ Str::limit($dataset->note, 20, '...') }}
+                                                @endif
                                             </td>
                                             <td>
                                                 <a href="{{ url('my/dataset/' . $dataset->id) }}"
@@ -132,6 +137,9 @@
                                 text: "Your file has been deleted.",
                                 icon: "success"
                             });
+                            setTimeout(() => {
+                                location.reload()
+                            }, 1500);
                         })
                         .catch(error => {
                             console.error('Ada kesalahan:', error.message);

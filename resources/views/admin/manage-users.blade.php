@@ -7,7 +7,7 @@
         <ul class="navbar-nav sidebar sidebar-dark accordion" style="background-color: #38527E" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/') }}">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -154,7 +154,8 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span
+                                    class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->email }}</span>
                                 <img class="img-profile rounded-circle" src="{{ asset('img/undraw_profile.svg') }}">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -201,17 +202,19 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($users as $user)
-                                            <tr>
-                                                <td class="align-middle">{{ $loop->iteration }}</td>
-                                                <td class="align-middle">{{ $user->full_name }}</td>
-                                                <td class="align-middle">{{ $user->email }}</td>
-                                                <td class="align-middle">
-                                                    <a href="" class="ml-1 btn btn-primary btn-sm mb-1 text-center"
-                                                    style="width: 1cm"><i class="fas fa-eye"></i></a>
-                                                    <a href="" class="ml-1 btn btn-sm btn-danger mb-1 text-center"
-                                                    style="width: 1cm"><i class="fas fa-trash"></i></a>
-                                                </td>
-                                            </tr>
+                                                <tr>
+                                                    <td class="align-middle">{{ $loop->iteration }}</td>
+                                                    <td class="align-middle">{{ $user->full_name }}</td>
+                                                    <td class="align-middle">{{ $user->email }}</td>
+                                                    <td class="align-middle">
+                                                        <a href=""
+                                                            class="ml-1 btn btn-primary btn-sm mb-1 text-center"
+                                                            style="width: 1cm"><i class="fas fa-eye"></i></a>
+                                                        <a href=""
+                                                            class="ml-1 btn btn-sm btn-danger mb-1 text-center"
+                                                            style="width: 1cm"><i class="fas fa-trash"></i></a>
+                                                    </td>
+                                                </tr>
                                             @endforeach
                                         </tbody>
                                     </table>

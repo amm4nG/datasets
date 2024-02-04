@@ -12,7 +12,7 @@ class ManageDatasetsController extends Controller
     public function index()
     {
         $datasets = Dataset::join('users', 'users.id', '=', 'datasets.id_user')
-            ->select('datasets.id', 'name', 'full_name', 'status')
+            ->select('datasets.id', 'name', 'full_name', 'status', 'note')
             ->get();
         return view('admin.manage-datasets', compact(['datasets']));
     }
@@ -48,6 +48,7 @@ class ManageDatasetsController extends Controller
 
         $dataset = Dataset::findOrFail($id);
         $dataset->status = 'invalid';
+        $dataset->note = $request->note;
         $dataset->update();
         return response()->json([
             'status' => 200,

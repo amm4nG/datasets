@@ -7,7 +7,7 @@
         <ul class="navbar-nav sidebar sidebar-dark accordion" style="background-color: #38527E" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/') }}">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -154,7 +154,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->email }}</span>
                                 <img class="img-profile rounded-circle" src="{{ asset('img/undraw_profile.svg') }}">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -202,7 +202,9 @@
                                         </a>
                                         <p class="text-capitalize]" style="margin-bottom: 0px">{{ $dataset->full_name }}
                                         </p>
-                                        <span id="status" class="badge bg-info p-1">{{ $dataset->status }}</span>
+                                        <span id="status"
+                                            class="badge bg-info p-1 me-2">{{ $dataset->status }}</span><span
+                                            class="text-danger">{{ $dataset->note }}</span>
                                     </div>
                                     <div class="col-md-12 p-3">
                                         <p>{{ $dataset->abstract }}</p>
@@ -377,13 +379,13 @@
         }
 
         function invalid(id) {
+            let formData = new FormData()
             let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
             let note = document.getElementById('note').value
             document.getElementById('invalid').disabled = true
-            let formData = new FormData()
             formData.append('note', note)
-            fetch('/admin/invalid/dataset/3', {
-                    method: 'PUT',
+            fetch('/admin/invalid/dataset/' + id, {
+                    method: 'POST',
                     headers: {
                         'X-CSRF-TOKEN': csrfToken,
                     },
@@ -401,6 +403,7 @@
                         document.getElementById('noteRequired').style.display = "block"
                         document.getElementById('invalid').disabled = false
                     } else {
+                        location.reload();
                         document.getElementById('modalInvalid').style.display = "none"
                     }
                     console.log(data);

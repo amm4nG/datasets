@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dataset;
+use App\Models\Download;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use ZipArchive;
 
@@ -13,6 +15,14 @@ class DownloadController extends Controller
     {
         $dataset = Dataset::findOrFail($id);
         $path = $id;
+
+        $check = Download::where('id_user', Auth::user()->id)->where('id_dataset', $id)->first(); 
+        if (!$check) {
+            $download = new Download();
+            $download->id_user = Auth::user()->id;
+            $download->id_dataset = $id;
+            $download->save();
+        }
 
         $files = Storage::files('public/datasets/' . $path);
  

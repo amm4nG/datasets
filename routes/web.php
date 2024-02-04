@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ManageDatasetsController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
@@ -8,43 +9,39 @@ use App\Http\Controllers\DatasetController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\MyDatasetController;
 use App\Http\Controllers\RegistrationController;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Dataset;
+use App\Models\Download;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Storage;
 
 Route::get('/', function () {
-    return view('welcome');
+    $datasets = Dataset::where('status', 'valid')->get();
+    $countDownloads = [];
+    foreach ($datasets as $dataset) {
+        $downloads = Download::where('id_dataset', $dataset->id)->get();
+        foreach ($downloads as $download) {
+            $countDownloads[] = $dataset->id;
+        }
+    }
+
+    $count = max(array_count_values($countDownloads));
+
+    $dataset = Dataset::where('status', 'valid')
+        ->latest()
+        ->first(); 
+
+    // Menghitung berapa kali setiap nilai muncul dalam array
+    $counts = array_count_values($countDownloads);
+
+    // Menentukan nilai yang paling banyak muncul
+    $maxCount = max($counts);
+
+    // Mendapatkan nilai yang paling banyak muncul
+    $mostCommonValue = array_search($maxCount, $counts);
+
+    $popularDataset = Dataset::findOrFail($mostCommonValue);
+
+    return view('welcome', compact(['dataset', 'countDownloads', 'popularDataset']));
 });
-
-// Route::get('download', function () {
-//     $paths = '8';
-
-//     $files = Storage::files('public/datasets/' . $paths);
-//     // var_dump($files);
-
-//     $zip = new ZipArchive();
-//     $zipFileName = 'downloaded.zip';
-
-//     if ($zip->open(storage_path($zipFileName), ZipArchive::CREATE) === true) {
-//         // Tambahkan setiap file ke dalam zip
-//         foreach ($files as $file) {
-//             // Ambil nama file dari path lengkap
-//             $fileName = pathinfo($file, PATHINFO_BASENAME);
-//             // echo $fileName;
-//             // Tambahkan file ke dalam zip dengan nama yang sama
-//             $zip->addFile(storage_path('app/' . $file), $fileName);
-//         }
-//         // Tutup zip setelah semua file ditambahkan
-//         $zip->close();
-
-//         return response()
-//             ->download(storage_path($zipFileName))
-//             ->deleteFileAfterSend(true);
-//     } else {
-//         // Jika terjadi kesalahan saat membuat zip
-//         return response()->json(['error' => 'Gagal membuat file zip'], 500);
-//     }
-// });
 
 Route::get('download/{id}', [DownloadController::class, 'download'])->middleware('auth');
 
@@ -69,13 +66,11 @@ Route::get('my/dataset/{id}', [MyDatasetController::class, 'show'])->middleware(
 Route::delete('delete/my/dataset/{id}', [MyDatasetController::class, 'destroy'])->middleware('auth');
 
 Route::group(['middleware' => ['auth', 'role:admin']], function () {
-    Route::get('admin/dashboard', function () {
-        return view('admin.dashboard');
-    });
+    Route::get('admin/dashboard', [DashboardController::class, 'index']);
     Route::get('admin/manage/datasets', [ManageDatasetsController::class, 'index']);
     Route::get('admin/detail/dataset/{id}', [ManageDatasetsController::class, 'show']);
     Route::put('admin/validate/dataset/{id}', [ManageDatasetsController::class, 'valid']);
-    Route::put('admin/invalid/dataset/{id}', [ManageDatasetsController::class, 'invalid']);
+    Route::post('admin/invalid/dataset/{id}', [ManageDatasetsController::class, 'invalid']);
 
     Route::get('admin/manage/users', [UserController::class, 'index']);
 });

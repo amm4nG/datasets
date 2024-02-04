@@ -76,7 +76,7 @@
                     </div> --}}
 
                     <div class="row mt-4">
-                        @foreach ($datasets as $dataset)
+                        @forelse ($datasets as $dataset)
                             <div class="col-md-12 mb-2 shadow-sm">
                                 <div class="card p-4">
                                     <div class="row align-items-center">
@@ -86,25 +86,43 @@
                                         </div>
                                         <div class="col-md-11 mb-2">
                                             <a href="{{ url('detail/dataset/' . $dataset->id) }}">
-                                                <h5 class="text-capitalize" style="color: #38527E">{{ $dataset->name }}</h5>
+                                                <h5 class="text-capitalize" style="color: #38527E">{{ $dataset->name }}
+                                                </h5>
                                             </a>
                                             <p>{{ $dataset->abstract }}
                                             </p>
                                             <div class="input-group gap-5">
-                                                <a href="" class="nav-link"><i
-                                                        class="bi bi-search me-2"></i>Clasification</a>
-                                                <a href="" class="nav-link"><i
-                                                        class="bi bi-journal-text me-2"></i>Tabular</a>
-                                                <a href="" class="nav-link"><i class="bi bi-building me-2"></i>{{ $dataset->instances }}
+                                                <a href="" class="nav-link"><i class="bi bi-download me-2"></i>
+                                                    @php
+                                                        $count = 0;
+                                                    @endphp
+                                                    @foreach ($countDownloads as $countDownload)
+                                                        @if ($countDownload == $dataset->id)
+                                                            @php
+                                                                $count++;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    {{ $count }}
+                                                </a>
+                                                <a href="#" class="nav-link"><i
+                                                        class="bi bi-building me-2"></i>{{ $dataset->instances }}
                                                     Instances</a>
-                                                <a href="" class="nav-link"><i class="bi bi-table me-2"></i>{{ $dataset->features }}
+                                                <a href="#" class="nav-link"><i
+                                                        class="bi bi-table me-2"></i>{{ $dataset->features }}
                                                     Features</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
+                        @empty
+                            <div class="col-md-3">
+                                <p>The data is empty <span><a href="{{ url('donation') }}"> Contribute New
+                                            Dataset</a></span></p>
+                                <img src="{{ asset('assets/img/data-empty.png') }}" class="img-fluid" alt="">
+                            </div>
+                        @endforelse
                     </div>
                 </div>
             </div>

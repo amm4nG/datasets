@@ -56,8 +56,8 @@
         <div class="container" style="margin-top: 7rem">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="fw-bold" style="color: #38527E"><a style="color: #38527E" href="{{ url('datasets') }}"><i
-                                class="bi bi-arrow-left-short fs-2 "></i></a>Detail Dataset</h1>
+                    <h3 class="fw-bold" style="color: #38527E"><a style="color: #38527E" href="{{ url('datasets') }}"><i
+                                class="bi bi-arrow-left-short fs-3 "></i></a>Detail Dataset</h3>
                     <div class="card p-3">
                         <div class="row align-items-center">
                             <div class="col-md-1" id="img-dataset">
@@ -71,7 +71,8 @@
 
                             </div>
                             <div class="col-md-12 ms-3">
-                                <a href="{{ url('download/' . $id) }}" class="btn btn-warning btn-sm mb-2">Download</a>
+                                <a href="{{ url('download/' . $id) }}" class="btn btn-sm mb-2 text-white p-2"
+                                    style="background-color: #38527E"><i class="bi bi-download me-1"></i> Download</a>
                                 <p>{{ $dataset->abstract }}</p>
                             </div>
                             <div class="col-md-3 ms-3">
@@ -129,8 +130,9 @@
                     <div class="card p-4">
                         <h4>Papers</h4>
                         @foreach ($papers as $paper)
-                            <p><i class="bi bi-book me-2"></i><a href=""
-                                    style="color: #38527E">{{ $paper->title }}</a></p>
+                            <p class="fs-5"><i class="bi bi-journal me-2" style="color: #38527E"></i><a target="_blank"
+                                    href="{{ url('' . $paper->url) }}" style="color: #38527E">{{ $paper->title }}</a></p>
+                            <p style="margin-top: -17px">{{ $paper->description }}</p>
                         @endforeach
                     </div>
                 </div>
@@ -157,7 +159,5 @@
     </main>
 @endsection
 @section('scripts')
-    <script>
-        
-    </script>
+    <script></script>
 @endsection
