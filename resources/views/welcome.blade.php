@@ -81,21 +81,67 @@
     <main id="main">
         <div class="container mt-4">
             <div class="row">
-                <div class="col-md-6 mb-3">
-                    <div class="card p-4 rounded-top-4 shadow-sm">
-                        <p class="fw-bold fs-3 text-center" style="color: #38527E"> Popular Datasets</p>
-                        <hr style="margin-top: -0px">
+                @if ($newDataset == false)
+                @else
+                    @if ($popularDataset != null)
+                        <div class="col-md-6 mb-3">
+                            <div class="card p-4 rounded-top-4 shadow-sm">
+                                <p class="fw-bold fs-3 text-center" style="color: #38527E"> Popular Datasets</p>
+                                <hr style="margin-top: -0px">
+                                <div class="row align-items-center">
+                                    <div class="col-md-2" id="img-dataset">
+                                        <img class="img-fluid" src="{{ asset('assets/img/clients/client-6.png') }}"
+                                            alt="">
+                                    </div>
+                                    <div class="col-md-10 mb-2">
+                                        <a href="{{ url('detail/dataset/' . optional($popularDataset)->id) }}">
+                                            <h5 class="text-capitalize" style="color: #38527E">
+                                                {{ optional($popularDataset)->name }}
+                                            </h5>
+                                        </a>
+                                        <p>{{ Str::limit(optional($popularDataset)->abstract, 40, '...') }}
+                                        </p>
+                                        <div class="input-group gap-5">
+                                            <a href="" class="nav-link"><i class="bi bi-download me-2"></i>
+                                                @php
+                                                    $count = 0;
+                                                @endphp
+                                                @foreach ($countDownloads as $countDownload)
+                                                    @if ($countDownload == $popularDataset->id)
+                                                        @php
+                                                            $count++;
+                                                        @endphp
+                                                    @endif
+                                                @endforeach
+                                                {{ $count }}
+                                            </a>
+                                            <a href="#" class="nav-link"><i
+                                                    class="bi bi-building me-2"></i>{{ optional($popularDataset)->instances }}
+                                                Instances</a>
+                                            <a href="#" class="nav-link"><i
+                                                    class="bi bi-table me-2"></i>{{ optional($popularDataset)->features }}
+                                                Features</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                    <div class="col-md-6">
+                        <div class="card p-4 rounded-top-4 shadow-sm">
+                            <p class="fw-bold fs-3 text-center" style="color: #38527E"> New Datasets</p>
+                            <hr style="margin-top: -0px">
                             <div class="row align-items-center">
                                 <div class="col-md-2" id="img-dataset">
                                     <img class="img-fluid" src="{{ asset('assets/img/clients/client-6.png') }}"
                                         alt="">
                                 </div>
                                 <div class="col-md-10 mb-2">
-                                    <a href="{{ url('detail/dataset/' . $popularDataset->id) }}">
-                                        <h5 class="text-capitalize" style="color: #38527E">{{ $popularDataset->name }}
+                                    <a href="{{ url('detail/dataset/' . optional($dataset)->id) }}">
+                                        <h5 class="text-capitalize" style="color: #38527E">{{ optional($dataset)->name }}
                                         </h5>
                                     </a>
-                                    <p>{{ Str::limit($popularDataset->abstract, 40, '...') }}
+                                    <p>{{ Str::limit(optional($dataset)->abstract, 40, '...') }}
                                     </p>
                                     <div class="input-group gap-5">
                                         <a href="" class="nav-link"><i class="bi bi-download me-2"></i>
@@ -103,7 +149,7 @@
                                                 $count = 0;
                                             @endphp
                                             @foreach ($countDownloads as $countDownload)
-                                                @if ($countDownload == $popularDataset->id)
+                                                @if ($countDownload == $dataset->id)
                                                     @php
                                                         $count++;
                                                     @endphp
@@ -112,58 +158,18 @@
                                             {{ $count }}
                                         </a>
                                         <a href="#" class="nav-link"><i
-                                                class="bi bi-building me-2"></i>{{ $popularDataset->instances }}
+                                                class="bi bi-building me-2"></i>{{ optional($dataset)->instances }}
                                             Instances</a>
                                         <a href="#" class="nav-link"><i
-                                                class="bi bi-table me-2"></i>{{ $popularDataset->features }}
+                                                class="bi bi-table me-2"></i>{{ optional($dataset)->features }}
                                             Features</a>
                                     </div>
                                 </div>
                             </div>
-                    </div>
-                </div>
-
-
-                <div class="col-md-6">
-                    <div class="card p-4 rounded-top-4 shadow-sm">
-                        <p class="fw-bold fs-3 text-center" style="color: #38527E"> New Datasets</p>
-                        <hr style="margin-top: -0px">
-                        <div class="row align-items-center">
-                            <div class="col-md-2" id="img-dataset">
-                                <img class="img-fluid" src="{{ asset('assets/img/clients/client-6.png') }}" alt="">
-                            </div>
-                            <div class="col-md-10 mb-2">
-                                <a href="{{ url('detail/dataset/' . $dataset->id) }}">
-                                    <h5 class="text-capitalize" style="color: #38527E">{{ $dataset->name }}
-                                    </h5>
-                                </a>
-                                <p>{{ Str::limit($dataset->abstract, 40, '...') }}
-                                </p>
-                                <div class="input-group gap-5">
-                                    <a href="" class="nav-link"><i class="bi bi-download me-2"></i>
-                                        @php
-                                            $count = 0;
-                                        @endphp
-                                        @foreach ($countDownloads as $countDownload)
-                                            @if ($countDownload == $dataset->id)
-                                                @php
-                                                    $count++;
-                                                @endphp
-                                            @endif
-                                        @endforeach
-                                        {{ $count }}
-                                    </a>
-                                    <a href="#" class="nav-link"><i
-                                            class="bi bi-building me-2"></i>{{ $dataset->instances }}
-                                        Instances</a>
-                                    <a href="#" class="nav-link"><i
-                                            class="bi bi-table me-2"></i>{{ $dataset->features }}
-                                        Features</a>
-                                </div>
-                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
+
             </div>
         </div>
 

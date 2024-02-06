@@ -23,24 +23,48 @@ Route::get('/', function () {
         }
     }
 
-    $count = max(array_count_values($countDownloads));
+    // $count = max(array_count_values($countDownloads));
 
     $dataset = Dataset::where('status', 'valid')
         ->latest()
-        ->first(); 
+        ->first();
 
-    // Menghitung berapa kali setiap nilai muncul dalam array
-    $counts = array_count_values($countDownloads);
+    $newDataset = true;
+    if (empty($dataset)) {
+        $newDataset = false;
+    }
 
-    // Menentukan nilai yang paling banyak muncul
-    $maxCount = max($counts);
+    // // Menghitung berapa kali setiap nilai muncul dalam array
+    // $counts = array_count_values($countDownloads);
 
-    // Mendapatkan nilai yang paling banyak muncul
-    $mostCommonValue = array_search($maxCount, $counts);
+    // // Menentukan nilai yang paling banyak muncul
+    // $maxCount = max($counts);
 
-    $popularDataset = Dataset::findOrFail($mostCommonValue);
+    // // Mendapatkan nilai yang paling banyak muncul
+    // $mostCommonValue = array_search($maxCount, $counts);
 
-    return view('welcome', compact(['dataset', 'countDownloads', 'popularDataset']));
+    // $popularDataset = Dataset::findOrFail($mostCommonValue);
+    // Check if $countDownloads is not empty before using max
+    if (!empty($countDownloads)) {
+        $count = max(array_count_values($countDownloads));
+
+        // Menghitung berapa kali setiap nilai muncul dalam array
+        $counts = array_count_values($countDownloads);
+
+        // Menentukan nilai yang paling banyak muncul
+        $maxCount = max($counts);
+
+        // Mendapatkan nilai yang paling banyak muncul
+        $mostCommonValue = array_search($maxCount, $counts);
+
+        $popularDataset = Dataset::findOrFail($mostCommonValue);
+    } else {
+        // Handle the case when $countDownloads is empty
+        $count = 0;
+        $popularDataset = null;
+    }
+
+    return view('welcome', compact(['dataset', 'countDownloads', 'popularDataset', 'newDataset']));
 });
 
 Route::get('download/{id}', [DownloadController::class, 'download'])->middleware('auth');
@@ -73,6 +97,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::post('admin/invalid/dataset/{id}', [ManageDatasetsController::class, 'invalid']);
 
     Route::get('admin/manage/users', [UserController::class, 'index']);
+    Route::delete('admin/delete/user/{id}', [UserController::class, 'destroy']);
 });
 
 Route::get('forgot', function () {

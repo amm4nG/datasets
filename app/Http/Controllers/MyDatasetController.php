@@ -34,7 +34,8 @@ class MyDatasetController extends Controller
         $associatedTasks = DatasetAssociatedTask::join('associated_tasks', 'associated_tasks.id', '=', 'dataset_associated_tasks.id_associated_task')
             ->where('id_dataset', $id)
             ->get();
-        return view('detail-my-dataset', compact(['dataset', 'characteristics', 'featureTypes', 'associatedTasks']));
+            $papers = Paper::where('id_dataset', $id)->get();
+        return view('detail-my-dataset', compact(['dataset', 'characteristics', 'featureTypes', 'associatedTasks', 'papers']));
     }
 
     public function destroy($id)
@@ -42,7 +43,8 @@ class MyDatasetController extends Controller
         DB::beginTransaction();
         try {
             $dataset = Dataset::findOrFail($id);
-            $id = $dataset->id;$dataset->delete();
+            $id = $dataset->id;
+            $dataset->delete();
 
             $characteristics = DatasetCharacteristic::where('id_dataset', $id)->get();
             foreach ($characteristics as $characteristic) {

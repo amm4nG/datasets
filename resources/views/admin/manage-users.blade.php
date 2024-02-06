@@ -154,8 +154,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span
-                                    class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->email }}</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->email }}</span>
                                 <img class="img-profile rounded-circle" src="{{ asset('img/undraw_profile.svg') }}">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -207,10 +206,7 @@
                                                     <td class="align-middle">{{ $user->full_name }}</td>
                                                     <td class="align-middle">{{ $user->email }}</td>
                                                     <td class="align-middle">
-                                                        <a href=""
-                                                            class="ml-1 btn btn-primary btn-sm mb-1 text-center"
-                                                            style="width: 1cm"><i class="fas fa-eye"></i></a>
-                                                        <a href=""
+                                                        <a href="#" onclick="deleteUser({{ $user->id }})"
                                                             class="ml-1 btn btn-sm btn-danger mb-1 text-center"
                                                             style="width: 1cm"><i class="fas fa-trash"></i></a>
                                                     </td>
@@ -290,5 +286,45 @@
         $(document).ready(function() {
             $('#datasets').DataTable();
         });
+
+        function deleteUser(id) {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "The dataset uploaded by this user will also be deleted",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+
+                    fetch('/admin/delete/user/' + id, {
+                            method: 'DELETE',
+                            headers: {
+                                'X-CSRF-TOKEN': csrfToken,
+                            },
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! Status: ${response.status}`);
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            console.log(data);
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "The user has been successfully deleted",
+                                icon: "success"
+                            });
+                        })
+                        .catch(error => {
+                            console.error('Ada kesalahan:', error.message);
+                        });
+                }
+            });
+        }
     </script>
 @endsection

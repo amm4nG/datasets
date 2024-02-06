@@ -47,8 +47,8 @@
         <div class="container" style="margin-top: 7rem">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="fw-bold" style="color: #38527E"><a style="color: #38527E" href="{{ url('my/dataset') }}"><i
-                                class="bi bi-arrow-left-short fs-2 "></i></a>Detail My Dataset</h1>
+                    <h3 class="fw-bold" style="color: #38527E"><a style="color: #38527E" href="{{ url('my/dataset') }}"><i
+                                class="bi bi-arrow-left-short fs-3 "></i></a>Detail My Dataset</h3>
                     <div class="card p-3">
                         <div class="row align-items-center">
                             <div class="col-md-1" id="img-dataset">
@@ -58,7 +58,8 @@
                                 <a href="{{ url('detail') }}">
                                     <h2 class="mt-3 text-capitalize" style="color: #38527E">{{ $dataset->name }}</h2>
                                 </a>
-                                <p><span class="badge bg-info p-1 me-2">{{ $dataset->status }}</span></span><span class="text-danger">{{ $dataset->note }}</span></p>
+                                <p><span class="badge bg-info p-1 me-2">{{ $dataset->status }}</span></span><span
+                                        class="text-danger">{{ $dataset->note }}</span></p>
 
                             </div>
                             <div class="col-md-12 ms-3">
@@ -90,7 +91,7 @@
                                 <h4>Feature Type</h4>
                                 <p>
                                     @foreach ($featureTypes as $featureType)
-                                    {{ $featureType->name_feature_type }}
+                                        {{ $featureType->name_feature_type }}
                                     @endforeach
                                 </p>
                             </div>
@@ -105,7 +106,7 @@
 
                         </div>
                     </div>
-                </div> 
+                </div>
             </div>
             <div class="row mt-3">
                 <div class="col-md-12">
@@ -114,7 +115,20 @@
                     </div>
                 </div>
             </div>
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <div class="card p-4">
+                        <h4>Papers</h4>
+                        @foreach ($papers as $paper)
+                            <p class="fs-5"><i class="bi bi-journal me-2" style="color: #38527E"></i><a target="_blank"
+                                    href="{{ url('' . $paper->url) }}" style="color: #38527E">{{ $paper->title }}</a></p>
+                            <p style="margin-top: -17px">{{ $paper->description }}</p>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
         </div>
+
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
