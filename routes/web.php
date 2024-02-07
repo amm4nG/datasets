@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContributeDatasetController;
 use App\Http\Controllers\DatasetController;
 use App\Http\Controllers\DownloadController;
+use App\Http\Controllers\LoginGithubController;
 use App\Http\Controllers\LoginGoogleController;
 use App\Http\Controllers\MyDatasetController;
 use App\Http\Controllers\RegistrationController;
@@ -58,9 +59,15 @@ Route::get('/', function () {
     return view('welcome', compact(['dataset', 'countDownloads', 'popularDataset', 'newDataset']));
 });
 
-Route::get('/auth/google', [LoginGoogleController::class, 'googleRedirect']);
+// login with google
+Route::get('/auth/google/redirect', [LoginGoogleController::class, 'googleRedirect']);
 Route::get('/auth/google/callback', [LoginGoogleController::class, 'googleCallback']);
 
+// login with github
+Route::get('/auth/github/redirect', [LoginGithubController::class, 'githubRedirect']);
+Route::get('/auth/github/callback', [LoginGithubController::class, 'githubCallback']);
+
+// download dataset
 Route::get('download/{id}', [DownloadController::class, 'download'])->middleware('auth');
 
 Route::get('datasets', [DatasetController::class, 'index']);
