@@ -89,18 +89,19 @@
 
                                 <div class="row mt-3 justify-content-center">
                                     <div class="col-md-3 ">
-
-                                        <div class="card p-2">
-                                            <iconify-icon icon="flat-color-icons:google" class="fs-2 ms-3 "></iconify-icon>
-                                        </div>
-
+                                        <a href="{{ url('auth/google') }}">
+                                            <div class="card p-2">
+                                                <iconify-icon icon="flat-color-icons:google"
+                                                    class="fs-2 ms-2"></iconify-icon>
+                                            </div>
+                                        </a>
                                     </div>
                                     <div class="col-md-3 ">
-
-                                        <div class="card p-2">
-                                            <iconify-icon icon="devicon:github" class="fs-2 ms-3"></iconify-icon>
-                                        </div>
-
+                                        <a href="">
+                                            <div class="card p-2">
+                                                <iconify-icon icon="devicon:github" class="fs-2 ms-2"></iconify-icon>
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
                             </form>

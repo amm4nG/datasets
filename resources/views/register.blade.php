@@ -88,8 +88,9 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="confirm password" class="form-label">Confirm Password</label>
-                                    <input type="password" name="password_confirmation" class="form-control @error('password') is-invalid @enderror"
-                                        id="confirm password" placeholder="">
+                                    <input type="password" name="password_confirmation"
+                                        class="form-control @error('password') is-invalid @enderror" id="confirm password"
+                                        placeholder="">
                                 </div>
                                 <button type="submit" class="btn  w-40" style="background-color: #38527E">
                                     <h5 class="text-light mt-2">Submit</h5>
@@ -98,18 +99,19 @@
 
                                 <div class="row mt-3 justify-content-center">
                                     <div class="col-md-3 ">
-
-                                        <div class="card p-2">
-                                            <iconify-icon icon="flat-color-icons:google" class="fs-2 ms-3"></iconify-icon>
-                                        </div>
-
+                                        <a href="{{ url('auth/google') }}">
+                                            <div class="card p-2">
+                                                <iconify-icon icon="flat-color-icons:google"
+                                                    class="fs-2 ms-2"></iconify-icon>
+                                            </div>
+                                        </a>
                                     </div>
                                     <div class="col-md-3 ">
-
-                                        <div class="card p-2">
-                                            <iconify-icon icon="devicon:github" class="fs-2 ms-3"></iconify-icon>
-                                        </div>
-
+                                        <a href="">
+                                            <div class="card p-2">
+                                                <iconify-icon icon="devicon:github" class="fs-2 ms-2"></iconify-icon>
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
                             </form>

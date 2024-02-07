@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,12 +21,15 @@ class AuthController extends Controller
         ]);
 
         $credential = $request->only('email', 'password');
-        if (Auth::attempt($credential)) {
-            $user = Auth::user();
-            if ($user->role == 'admin') {
-                return redirect()->intended('admin/dashboard');
+        $user = User::where('email', $credential['email'])->first();
+        if ($user && !is_null($user->password)) {
+            if (Auth::attempt($credential)) {
+                $user = Auth::user();
+                if ($user->role == 'admin') {
+                    return redirect()->intended('admin/dashboard');
+                }
+                return redirect()->intended('/');
             }
-            return redirect()->intended('/');
         }
         return back()->withErrors([
             'message' => 'Email or password invalid',

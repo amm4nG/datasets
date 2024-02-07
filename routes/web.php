@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContributeDatasetController;
 use App\Http\Controllers\DatasetController;
 use App\Http\Controllers\DownloadController;
+use App\Http\Controllers\LoginGoogleController;
 use App\Http\Controllers\MyDatasetController;
 use App\Http\Controllers\RegistrationController;
 use App\Models\Dataset;
@@ -34,16 +35,6 @@ Route::get('/', function () {
         $newDataset = false;
     }
 
-    // // Menghitung berapa kali setiap nilai muncul dalam array
-    // $counts = array_count_values($countDownloads);
-
-    // // Menentukan nilai yang paling banyak muncul
-    // $maxCount = max($counts);
-
-    // // Mendapatkan nilai yang paling banyak muncul
-    // $mostCommonValue = array_search($maxCount, $counts);
-
-    // $popularDataset = Dataset::findOrFail($mostCommonValue);
     // Check if $countDownloads is not empty before using max
     if (!empty($countDownloads)) {
         $count = max(array_count_values($countDownloads));
@@ -66,6 +57,9 @@ Route::get('/', function () {
 
     return view('welcome', compact(['dataset', 'countDownloads', 'popularDataset', 'newDataset']));
 });
+
+Route::get('/auth/google', [LoginGoogleController::class, 'googleRedirect']);
+Route::get('/auth/google/callback', [LoginGoogleController::class, 'googleCallback']);
 
 Route::get('download/{id}', [DownloadController::class, 'download'])->middleware('auth');
 
