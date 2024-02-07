@@ -88,7 +88,7 @@
                                 <div class="divider "><span>Or Login with Provider</span></div>
 
                                 <div class="row mt-3 justify-content-center">
-                                    <div class="col-md-3 ">
+                                    <div class="col-md-3 mb-2">
                                         <a href="{{ url('auth/google/redirect') }}">
                                             <div class="card p-2">
                                                 <iconify-icon icon="flat-color-icons:google"
@@ -96,7 +96,7 @@
                                             </div>
                                         </a>
                                     </div>
-                                    <div class="col-md-3 ">
+                                    <div class="col-md-3">
                                         <a href="{{ url('auth/github/redirect') }}">
                                             <div class="card p-2">
                                                 <iconify-icon icon="devicon:github" class="fs-2 ms-2"></iconify-icon>
