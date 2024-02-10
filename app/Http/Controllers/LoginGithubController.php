@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -25,9 +24,10 @@ class LoginGithubController extends Controller
                 $newUser->email = $githubUser->getEmail();
                 $newUser->github_id = $githubUser->getId();
                 $newUser->role = 'user';
+                $newUser->email_verified_at = now();
                 $newUser->save();
                 Auth::login($newUser);
-                return redirect('/');
+                return redirect()->intended('/');
             } else {
                 Auth::login($user);
                 return redirect()->intended('/');

@@ -69,23 +69,28 @@
                             <p class="card-title fs-2 text-start" style="color: #38527E; ">Basic
                                 Info</p>
                             <div class="card p-4 rounded-3">
-                                <div class="card-body ">
+                                <div class="card-body">
                                     <div class="mb-3 position-relative">
                                         <label for="" class="form-label">Dataset Name</label>
                                         <input type="text" class="form-control" id="name" placeholder="">
+                                        <div class="invalid-feedback">
+                                        </div>
                                         <hr class="border-bottom">
                                     </div>
                                     <div class="mb-3 position-relative">
                                         <label for="" class="form-label">Abstract</label>
-                                        {{-- <input type="text" class="form-control p-5" id="abstract" placeholder=""> --}}
                                         <textarea name="" id="abstract" cols="30" class="form-control" rows="5"></textarea>
+                                        <div class="invalid-feedback">
+                                        </div>
                                         <p style="color: gray">Maximum 1000 Characters.</p>
                                         <hr class="border-bottom">
                                     </div>
                                     <div class="mb-3 position-relative">
                                         <label for="" class="form-label">Number of Instances (Rows) in
                                             Dataset</label>
-                                        <input type="number" class="form-control" id="instances" placeholder="">
+                                        <input type="number" class="form-control" name="instances" id="instances" placeholder="">
+                                        <div class="invalid-feedback">
+                                        </div>
                                         <hr class="border-bottom">
                                     </div>
                                     <div class="mb-3 position-relative">
@@ -101,7 +106,7 @@
                         <div class="col-md-8">
                             <p class="card-title fs-2 text-start" style="color: #38527E;">Dataset Characteristics</p>
                             <div class="card p-1 rounded-3">
-                                <div class="card-body">
+                                <div class="card-body" id="characteristics">
                                     @foreach ($characteristics as $characteristic)
                                         <div class="form-check d-flex align-items-center">
                                             <label class="form-check-label"
@@ -118,7 +123,7 @@
                         <div class="col-md-8">
                             <p class="card-title fs-2 text-start" style="color: #38527E;">Subject Area</p>
                             <div class="card p-1 rounded-3">
-                                <div class="card-body">
+                                <div class="card-body" id="subjectArea">
                                     @foreach ($subjectAreas as $subjectArea)
                                         <div class="form-check d-flex align-items-center">
                                             <label class="form-check-label"
@@ -136,7 +141,7 @@
                         <div class="col-md-8">
                             <p class="card-title fs-2 text-start" style="color: #38527E;">Associated Task</p>
                             <div class="card p-1 rounded-3">
-                                <div class="card-body">
+                                <div class="card-body" id="associatedTasks">
                                     @foreach ($associatedTasks as $associatedTask)
                                         <div class="form-check d-flex align-items-center">
                                             <label class="form-check-label"
@@ -153,7 +158,7 @@
                         <div class="col-md-8">
                             <p class="card-title fs-2 text-start" style="color: #38527E;">Feature Types</p>
                             <div class="card p-1 rounded-3">
-                                <div class="card-body">
+                                <div class="card-body" id="featureTypes">
                                     @foreach ($featureTypes as $featureType)
                                         <div class="form-check d-flex align-items-center">
                                             <label class="form-check-label"
@@ -255,6 +260,10 @@
         let formData = new FormData()
 
         function next() {
+            // Menghapus kelas 'is-invalid' dari semua elemen yang memiliki kelas tersebut
+            document.querySelectorAll('.is-invalid').forEach(function(elem) {
+                elem.classList.remove('is-invalid');
+            });
 
             document.getElementById('btnNext').disabled = true
 
@@ -308,7 +317,6 @@
             fetch('/more/info', {
                     method: 'POST',
                     headers: {
-                        // 'Content-Type': 'application/json',
                         'X-CSRF-TOKEN': csrfToken,
                     },
                     body: formData,
@@ -327,6 +335,35 @@
                             title: "Oops...",
                             text: data.message,
                         });
+                        const errorKey = data.key;
+
+                        // Membuat ID dari kunci yang gagal validasi
+                        const errorElementId = `${errorKey}`;
+
+                        // Mengarahkan ke elemen dengan ID yang sesuai
+                        const errorElement = document.getElementById(errorElementId);
+
+                        // Lakukan sesuatu dengan elemen yang bermasalah, misalnya menyoroti input
+                        if (errorElement) {
+                            // Menyoroti elemen yang bermasalah
+                            errorElement.classList.add('error-highlight');
+                            errorElement.classList.add('is-invalid');
+                            // Mengarahkan halaman ke atas (animasi smooth)
+                            window.scrollTo({
+                                top: errorElement.getBoundingClientRect().top + window.scrollY - 120,
+                                behavior: 'smooth'
+                            });
+                        }
+
+                        // Mengambil elemen dengan class "invalid-feedback"
+                        const invalidFeedback = document.querySelector('.invalid-feedback');
+
+                        // Memeriksa apakah elemen ditemukan
+                        if (invalidFeedback) {
+                            // Mengubah isi (teks) dari elemen
+                            invalidFeedback.textContent =
+                                data.message; // Gantilah dengan teks yang diinginkan
+                        }
                     } else {
                         document.getElementById('basic-info').style.display = "none"
                         document.getElementById('more-info').style.display = "block"

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -18,16 +17,17 @@ class LoginGoogleController extends Controller
     {
         try {
             $googleUser = Socialite::driver('google')->user();
-            $user = User::where('google_id', $googleUser->getId())->first();
+            $user = User::where('google_id', $googleUser->getId())->orWhere('email', $googleUser->getEmail())->first();
             if (!$user) {
                 $newUser = new User();
                 $newUser->full_name = $googleUser->getName();
                 $newUser->email = $googleUser->getEmail();
                 $newUser->google_id = $googleUser->getId();
                 $newUser->role = 'user';
+                $newUser->email_verified_at = now();
                 $newUser->save();
                 Auth::login($newUser);
-                return redirect('/');
+                return redirect()->intended('/');
             } else {
                 Auth::login($user);
                 return redirect()->intended('/');

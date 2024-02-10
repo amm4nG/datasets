@@ -22,16 +22,16 @@ class RegistrationController extends Controller
             'password' => ['required', 'confirmed'],
         ]);
 
-        try { 
+        try {
             $user = new User();
             $user->full_name = $request->full_name;
             $user->email = $request->email;
             $user->password = $request->password;
             $user->role = 'user';
             $user->save();
-
             $credential = $request->only('email', 'password');
             if (Auth::attempt($credential)) {
+                $request->user()->sendEmailVerificationNotification();
                 return redirect()->intended('/');
             }
         } catch (\Throwable $th) {

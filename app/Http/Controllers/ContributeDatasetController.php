@@ -57,6 +57,7 @@ class ContributeDatasetController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'status' => 422,
+                'key' => $validator->errors()->keys()[0],
                 'message' => $validator->errors()->first(),
             ]);
         }
@@ -106,7 +107,6 @@ class ContributeDatasetController extends Controller
             foreach ($request->file('files') as $file) {
                 $urlFiles = new UrlFile();
                 $urlFiles->id_dataset = $dataset->id;
-                // $path = $file->store('public/datasets');
                 $path = $file->storeAs('public/datasets/' . $dataset->id, $file->getClientOriginalName());
                 $urlFiles->url_file = str_replace('public/', '', $path);
                 $urlFiles->save();
