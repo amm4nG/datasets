@@ -118,6 +118,8 @@ Route::group(['middleware' => ['auth', 'verified', 'role:admin']], function () {
     Route::get('admin/dashboard', [DashboardController::class, 'index']);
     Route::get('admin/manage/datasets', [ManageDatasetsController::class, 'index']);
     Route::get('admin/detail/dataset/{id}', [ManageDatasetsController::class, 'show']);
+    Route::delete('admin/delete/dataset/{id}', [ManageDatasetsController::class, 'destroy']);
+
     Route::put('admin/validate/dataset/{id}', [ManageDatasetsController::class, 'valid']);
     Route::post('admin/invalid/dataset/{id}', [ManageDatasetsController::class, 'invalid']);
 

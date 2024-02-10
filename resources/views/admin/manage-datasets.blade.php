@@ -315,10 +315,8 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-                    let formData = new FormData();
-                    formData.append('name', 'Arman');
 
-                    fetch('/delete/my/dataset/' + id, {
+                    fetch('/admin/delete/dataset/' + id, {
                             method: 'DELETE',
                             headers: {
                                 'X-CSRF-TOKEN': csrfToken,
@@ -334,15 +332,28 @@
                             return response.json();
                         })
                         .then(data => {
-                            console.log(data);
+                            const table = $('#datasets').DataTable();
+                            // Clear existing rows using DataTables API
+                            table.rows().remove();
+                            let no = 0;
+                            data.datasets.forEach(dataset => {
+                                no++
+                                const status =
+                                    `<span class="badge bg-info p-1">${dataset.status}</span>`
+                                const btn = `<a href="{{ url('admin/detail/dataset/') }}/${dataset.id}" class="btn btn-sm btn-primary" style="width: 1cm"><i
+                                    class="fas fa-eye text-white fw-bold"></i></a>
+                            <a href="#" onclick="deleteDataset(${dataset.id})" class="btn btn-sm btn-danger" style="width: 1cm"><i
+                                    class="fas fa-trash text-white fw-bold"></i></a>`;
+                                table.row.add([no, dataset.name, dataset.full_name, status, dataset
+                                    .note, btn
+                                ]);
+                            });
+                            table.draw();
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Your file has been deleted.",
                                 icon: "success"
                             });
-                            setTimeout(() => {
-                                location.reload()
-                            }, 1500);
                         })
                         .catch(error => {
                             console.error('Ada kesalahan:', error.message);
