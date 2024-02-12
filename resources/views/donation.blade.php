@@ -261,8 +261,8 @@
 
         function next() {
             // Menghapus kelas 'is-invalid' dari semua elemen yang memiliki kelas tersebut
-            document.querySelectorAll('.is-invalid').forEach(function(elem) {
-                elem.classList.remove('is-invalid');
+            document.querySelectorAll('.is-invalid').forEach(function(element) {
+                element.classList.remove('is-invalid');
             });
 
             document.getElementById('btnNext').disabled = true

@@ -258,9 +258,9 @@
                         @if ($dataset->status == 'pending')
                             <div class="col-md-3" id="btnValidate">
                                 <a href="#" onclick="valid({{ $id }})"
-                                    class="btn btn-success btn-sm mt-2"><i class="fas fa-check mr-2"></i>Valid</a>
+                                    class="btn btn-success btn-sm mt-2"><i class="fas fa-check mr-1"></i>Valid</a>
                                 <button data-toggle="modal" data-target="#modalInvalid"
-                                    class="btn btn-danger btn-sm mt-2"><i class="fas fa-times mr-2"></i>Invalid</button>
+                                    class="btn btn-danger btn-sm mt-2"><i class="fas fa-times mr-1"></i>Invalid</button>
                             </div>
                         @endif
                     </div>

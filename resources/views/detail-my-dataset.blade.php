@@ -49,6 +49,12 @@
                 <div class="col-md-12">
                     <h3 class="fw-bold" style="color: #38527E"><a style="color: #38527E" href="{{ url('my/dataset') }}"><i
                                 class="bi bi-arrow-left-short fs-3 "></i></a>Detail My Dataset</h3>
+                    @if ($dataset->status == 'invalid')
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <strong>Dataset invalid!</strong> Please re-register your dataset.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
                     <div class="card p-3">
                         <div class="row align-items-center">
                             <div class="col-md-1" id="img-dataset">

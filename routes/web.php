@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContributeDatasetController;
 use App\Http\Controllers\DatasetController;
 use App\Http\Controllers\DownloadController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\LoginGithubController;
 use App\Http\Controllers\LoginGoogleController;
 use App\Http\Controllers\MyDatasetController;
@@ -17,8 +18,6 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
-// Auth::routes(['verify' => true]);
 
 Route::get('/', function () {
     $datasets = Dataset::where('status', 'valid')->get();
@@ -127,9 +126,13 @@ Route::group(['middleware' => ['auth', 'verified', 'role:admin']], function () {
     Route::delete('admin/delete/user/{id}', [UserController::class, 'destroy']);
 });
 
-Route::get('forgot', function () {
-    return view('forgot');
-});
+Route::get('forgot/password', function () {
+    return view('forgot-password');
+})->middleware('guest');
+
+Route::post('send/code/verification', [ForgotPasswordController::class, 'sendCodeVerification']);
+Route::post('verify', [ForgotPasswordController::class, 'verify']);
+Route::post('reset/password', [ForgotPasswordController::class, 'resetPassword']);
 
 Route::get('donation/paper', function () {
     return view('donation-paper');

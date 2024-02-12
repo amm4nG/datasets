@@ -80,7 +80,7 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <a href="{{ url('forgot') }}">Forgot Password?</a>
+                                    <a href="{{ url('forgot/password') }}">Forgot Password?</a>
                                 </div>
                                 <button type="submit" class="btn  w-100" style="background-color: #38527E">
                                     <h5 class="text-light mt-2">Submit</h5>
