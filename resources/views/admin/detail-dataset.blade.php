@@ -244,15 +244,40 @@
                         <div class="col-md-12">
                             <div class="card p-4">
                                 <h3 style="color: #38527E">Dataset Information</h3>
-                                <p class="fw-bold mt-3">What do the instances in this dataset represent?</p>
-                                <p style="margin-top: -15px">Each instance is a plant</p>
-                                <p class="fw-bold mt-3">Additional Information</p>
-                                <p style="margin-top: -15px">This is one of the earliest datasets used in the literature on
-                                    classification methods and widely used in statistics and
-                                    machine learning. The data set contains 3 classes of 50 instances each, where each class
-                                    refers to a type of iris plant.
-                                    One class is linearly separable from the other 2; the latter are not linearly separable
-                                    from each other.</p>
+                                {!! $dataset->information !!}
+                                {{-- <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card p-3 mb-3">
+                                            @foreach ($data as $item)
+                                                <h3 style="color: #38527E">{{ $item['file'] }}</h3>
+                                                <div class="table-responsive mb-3"
+                                                    style="max-height: 300px; overflow-y: auto;">
+                                                    <table class="table text-center table-striped table-sm">
+                                                    @foreach ($item['records'] as $record)
+                                                        <tr>
+                                                            @foreach ($record as $value)
+                                                                <td>{{ $value }}</td>
+                                                            @endforeach
+                                                        </tr>
+                                                    @endforeach
+                                                </table>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div> --}}
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-3">
+                            <div class="card p-4">
+                                <h4>Papers</h4>
+                                @foreach ($papers as $paper)
+                                    <p class="fs-5"><i class="fas fa-book me-2" style="color: #38527E"></i><a
+                                            style="text-decoration: none; color: #38527E" class="" target="_blank"
+                                            href="{{ url('' . $paper->url) }}"
+                                            style="color: #38527E">{{ $paper->title }}</a></p>
+                                    <p style="margin-top: -17px">{{ $paper->description }}</p>
+                                @endforeach
                             </div>
                         </div>
                         @if ($dataset->status == 'pending')

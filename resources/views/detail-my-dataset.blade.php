@@ -24,9 +24,6 @@
                             <li><a href="{{ url('contact/information') }}">Contact Information</a></li>
                         </ul>
                     </li>
-                    <li><a class="getstarted scrollto" href="#" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"><i class="bi bi-search me-2"></i>Search</a>
-                    </li>
                     <li class="dropdown"><a href="#"><span>{{ Auth::user()->email }}</span><i
                                 class="bi bi-chevron-down"></i></a>
                         <ul>
@@ -133,25 +130,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Search DataSet</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <input type="text" class="form-control" placeholder="Search">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Search</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </div> 
 
     </main>
 @endsection

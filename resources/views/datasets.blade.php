@@ -24,8 +24,11 @@
                             <li><a href="{{ url('contact/information') }}">Contact Information</a></li>
                         </ul>
                     </li>
-                    <li><a class="getstarted scrollto" href="#" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"><i class="bi bi-search me-2"></i>Search</a>
+                    <li>
+                        <input id="search" autocomplete="off" type="text" class="form-control rounded-pill ms-3 me-3"
+                            style="max-width: 15rem" placeholder="Search">
+                        <div class="dropdown-menu ms-4 mt-2" aria-labelledby="dropdownMenuButton" id="resultDropdown">
+                        </div>
                     </li>
                     @auth
                         <li class="dropdown"><a href="#"><span>{{ Auth::user()->email }}</span><i
@@ -60,21 +63,6 @@
             <div class="row">
                 <div class="col-md-12">
                     <h3 style="color: #38527E">Browse Datasets</h3>
-
-                    {{-- <div class="dropdown">
-                        <a class="btn btn-secondary dropdown-toggle" style="background-color: #38527E" href="#"
-                            role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-filter-left"
-                                style="color: #FFD000"></i>
-                            SORT BY # VIEWS, DESC
-                        </a>
-
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </div> --}}
-
                     <div class="row mt-4">
                         @forelse ($datasets as $dataset)
                             <div class="col-md-12 mb-2 shadow-sm">
@@ -128,6 +116,7 @@
             </div>
         </div>
 
+
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -148,7 +137,62 @@
 
     </main><!-- End #main -->
 
-    <!-- ======= Footer ======= -->
 @endsection
+@section('scripts')
+    <script>
+        // Menggunakan event focus untuk menampilkan dropdown saat inputan mendapatkan fokus
+        document.getElementById('search').addEventListener('focus', function() {
+            var resultDropdown = document.getElementById('resultDropdown');
+            // Memunculkan dropdown
+            // resultDropdown.innerHTML = "No Matching Data"
 
-<!-- ======= Header ======= -->
+            let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+            let search = document.getElementById('search')
+            let formData = new FormData();
+            search.addEventListener('input', function() {
+                formData.append('name', search.value);
+
+                fetch('/search/dataset/', {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': csrfToken,
+                        },
+                        body: formData,
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        resultDropdown.style.display = 'block';
+                        resultDropdown.innerHTML = ""
+                        console.log(data);
+                        data.forEach(element => {
+                            resultDropdown.innerHTML +=
+                                `<p onclick="detail(${element.id})" class="dropdown-item-text">${element.name}</p>`
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Ada kesalahan:', error.message);
+                    });
+            })
+        });
+
+        // Menggunakan event blur untuk menyembunyikan dropdown saat inputan kehilangan fokus
+        document.getElementById('search').addEventListener('blur', function() {
+            var resultDropdown = document.getElementById('resultDropdown');
+
+            // Menyembunyikan dropdown setelah jeda kecil untuk memberi waktu pengguna memilih
+            setTimeout(function() {
+                resultDropdown.style.display = 'none';
+            }, 200);
+        });
+
+
+        function detail(id) {
+            window.location.href = "detail/dataset/" + id
+        }
+    </script>
+@endsection

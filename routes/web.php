@@ -18,6 +18,8 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
+use League\Csv\Reader;
 
 Route::get('/', function () {
     $datasets = Dataset::where('status', 'valid')->get();
@@ -143,4 +145,9 @@ Route::get('contact/information', function () {
 });
 Route::get('about', function () {
     return view('about');
+});
+
+Route::post('search/dataset', function (Request $request) {
+    $datasets = Dataset::where('name', 'like', '%' . $request->name . '%')->get();
+    return response()->json($datasets);
 });

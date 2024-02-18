@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\VerificationCodeEmail;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class ForgotPasswordController extends Controller
@@ -31,8 +34,13 @@ class ForgotPasswordController extends Controller
                 ]);
             }
 
-            $user->password = Hash::make('1234');
+            $codeVerification = Str::random(6);
+            $user->password = Hash::make($codeVerification);
             $user->update();
+
+            Mail::raw("This is your verification code $codeVerification, don't give it to anyone", function ($message) use ($request) {
+                $message->to($request->email)->subject('Code Verification');
+            });
 
             return response()->json([
                 'status' => 200,

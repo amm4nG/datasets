@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use League\Csv\Reader;
 
 class ManageDatasetsController extends Controller
 {
@@ -26,7 +27,38 @@ class ManageDatasetsController extends Controller
     public function show($id)
     {
         $dataset = Dataset::join('users', 'users.id', '=', 'datasets.id_user')->findOrFail($id);
-        return view('admin.detail-dataset', compact(['dataset', 'id']));
+        $papers = Paper::where('id_dataset', $id)->get();
+
+        // $filePath = Storage::path('public/datasets/12/movies.csv');
+
+        // // Buat instance dari Reader
+        // $csv = Reader::createFromPath($filePath, 'r');
+
+        // // Baca data dari file CSV
+        // $headers = $csv->fetchOne();
+        // $records = $csv->getRecords();
+        // $folderPath = 'public/datasets/' . $id;
+        // $files = Storage::files($folderPath);
+        // $data = [];
+
+        // foreach ($files as $file) {
+        //     $filePath = Storage::path($file);
+
+        //     // Buat instance dari Reader
+        //     $csv = Reader::createFromPath($filePath, 'r');
+
+        //     // Baca data dari file CSV
+        //     $headers = $csv->fetchOne();
+        //     $records = $csv->getRecords();
+
+        //     // Simpan data ke dalam array
+        //     $data[] = [
+        //         'file' => basename($file),
+        //         'headers' => $headers,
+        //         'records' => $records,
+        //     ];
+        // }
+        return view('admin.detail-dataset', compact(['dataset', 'papers', 'id']));
     }
 
     public function valid($id)

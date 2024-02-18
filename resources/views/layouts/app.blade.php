@@ -51,8 +51,26 @@
             margin-bottom: 10px
         }
 
+        #search {
+            display: none;
+        }
+
+        #resultDropdown {
+            max-height: 200px;
+            /* Sesuaikan dengan tinggi maksimum yang diinginkan */
+            overflow-y: auto;
+        }
+
+        #resultDropdown::-webkit-scrollbar{
+            width: 0px
+        }
+
         @media (min-width: 1200px) {
             #img-dataset {
+                display: block;
+            }
+
+            #search {
                 display: block;
             }
         }
@@ -88,7 +106,7 @@
                     <div class="col-lg-3 col-md-6 footer-contact">
                         <h3>DATASETS</h3>
                         <p>
-                            Program Studi Teknik Informatika <br> Universitas Sulawesi Barat.  <br><br>
+                            Program Studi Teknik Informatika <br> Universitas Sulawesi Barat. <br><br>
                             <strong>Phone:</strong> +62822 9076 2799<br>
                             <strong>Email:</strong> ammangdeveloper@gmail.com<br>
                         </p>

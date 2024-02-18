@@ -25,9 +25,6 @@
                             <li><a href="{{ url('contact/information') }}">Contact Information</a></li>
                         </ul>
                     </li>
-                    <li><a class="getstarted scrollto" href="#" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"><i class="bi bi-search me-2"></i>Search</a>
-                    </li>
                     @auth
                         <li class="dropdown"><a href="#"><span>{{ Auth::user()->email }}</span><i
                                     class="bi bi-chevron-down"></i></a>
