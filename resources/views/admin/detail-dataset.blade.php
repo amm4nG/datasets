@@ -245,27 +245,32 @@
                             <div class="card p-4">
                                 <h3 style="color: #38527E">Dataset Information</h3>
                                 {!! $dataset->information !!}
-                                {{-- <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="card p-3 mb-3">
-                                            @foreach ($data as $item)
-                                                <h3 style="color: #38527E">{{ $item['file'] }}</h3>
-                                                <div class="table-responsive mb-3"
-                                                    style="max-height: 300px; overflow-y: auto;">
-                                                    <table class="table text-center table-striped table-sm">
-                                                    @foreach ($item['records'] as $record)
+                                @foreach ($data as $item)
+                                    <div class="row mb-3">
+                                        <div class="col-md-12">
+                                            <h3 style="color: #38527E">
+                                                {{ $item['fileName'] }}
+                                            </h3>
+                                            <p style="margin-top: -7px">Data example</p>
+                                            <div class="table-responsive">
+                                                <table class="table table-sm table-striped">
+                                                    @php
+                                                        $records = $item['records'];
+                                                    @endphp
+                                                    @foreach ($records as $record)
                                                         <tr>
-                                                            @foreach ($record as $value)
-                                                                <td>{{ $value }}</td>
+                                                            @foreach ($record as $r)
+                                                                <td class="text-capitalize text-center">
+                                                                    {{ $r }}
+                                                                </td>
                                                             @endforeach
                                                         </tr>
                                                     @endforeach
                                                 </table>
-                                                </div>
-                                            @endforeach
+                                            </div>
                                         </div>
                                     </div>
-                                </div> --}}
+                                @endforeach
                             </div>
                         </div>
                         <div class="col-md-12 mt-3">

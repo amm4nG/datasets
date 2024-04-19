@@ -60,7 +60,8 @@
                 <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
                     data-aos="fade-up" data-aos-delay="200">
                     <h1>Welcome</h1>
-                    <h2>We are team of talented designers making websites with Bootstrap</h2>
+                    <h2>Dataset collection platform, where each contribution positively impacts research and innovation
+                        advancement.</h2>
                     <div class="d-flex justify-content-center justify-content-lg-start">
                         <a href="{{ url('datasets') }}" class="btn-get-started scrollto">View Datasets</a>
                         <a href="{{ url('donation') }}" class="btn-get-started scrollto ms-3">Contribute a Dataset</a>

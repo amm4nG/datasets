@@ -118,26 +118,38 @@
             <div class="row mt-3">
                 <div class="col-md-12">
                     <div class="card p-4">
-                        {!! $dataset->information !!}
+                        <div class="card-header">
+                            <h3 style="color: #38527E">Dataset Information</h3>
+                        </div>
+                        <div class="card-body">
+                            {!! $dataset->information !!}
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="col-md-12">
                     <div class="card p-4">
-                        <h4>Papers</h4>
+                        <div class="card-header">
+                            <h4>Papers</h4>
+                        </div>
+                        <div class="card-body">
                         @foreach ($papers as $paper)
                             <p class="fs-5"><i class="bi bi-journal me-2" style="color: #38527E"></i><a target="_blank"
                                     href="{{ url('' . $paper->url) }}" style="color: #38527E">{{ $paper->title }}</a></p>
                             <p style="margin-top: -17px">{{ $paper->description }}</p>
                         @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="col-md-12">
                     <div class="card p-4">
-                        <h4>Reviews</h4>
+                        <div class="card-header">
+                            <h4>Reviews</h4>
+                        </div>
+                        <div class="card-body">
                         <div class="input-group gap-3 fs-2">
                             <p class="" style="color: #38527E">5</p>
                             <i class="bi bi-star-fill text-warning"></i>
@@ -145,6 +157,7 @@
                             <i class="bi bi-star-fill text-warning"></i>
                             <i class="bi bi-star-fill text-warning"></i>
                             <i class="bi bi-star-fill text-warning"></i>
+                        </div>
                         </div>
                     </div>
                 </div>

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use League\Csv\Reader;
+use League\Csv\Statement;
 
 class ManageDatasetsController extends Controller
 {
@@ -29,36 +30,33 @@ class ManageDatasetsController extends Controller
         $dataset = Dataset::join('users', 'users.id', '=', 'datasets.id_user')->findOrFail($id);
         $papers = Paper::where('id_dataset', $id)->get();
 
-        // $filePath = Storage::path('public/datasets/12/movies.csv');
+        $desiredRowCount = 6;
 
-        // // Buat instance dari Reader
-        // $csv = Reader::createFromPath($filePath, 'r');
+        // $records = $stmt->process($csv);
+        $folderPath = 'public/datasets/' . $id;
+        $files = Storage::files($folderPath);
+        $data = [];
 
-        // // Baca data dari file CSV
-        // $headers = $csv->fetchOne();
-        // $records = $csv->getRecords();
-        // $folderPath = 'public/datasets/' . $id;
-        // $files = Storage::files($folderPath);
-        // $data = [];
+        foreach ($files as $file) {
+            $filePath = Storage::path($file);
 
-        // foreach ($files as $file) {
-        //     $filePath = Storage::path($file);
+            // Buat instance dari Reader
+            $csv = Reader::createFromPath($filePath, 'r');
+            $stmt = (new Statement())->offset(0)->limit($desiredRowCount);
 
-        //     // Buat instance dari Reader
-        //     $csv = Reader::createFromPath($filePath, 'r');
+            $records = $stmt->process($csv);
 
-        //     // Baca data dari file CSV
-        //     $headers = $csv->fetchOne();
-        //     $records = $csv->getRecords();
+            // Baca data dari file CSV
+            $headers = $csv->fetchOne();
 
-        //     // Simpan data ke dalam array
-        //     $data[] = [
-        //         'file' => basename($file),
-        //         'headers' => $headers,
-        //         'records' => $records,
-        //     ];
-        // }
-        return view('admin.detail-dataset', compact(['dataset', 'papers', 'id']));
+            // Simpan data ke dalam array
+            $data[] = [
+                'fileName' => basename($file),
+                'records' => $records,
+            ];
+        }
+
+        return view('admin.detail-dataset', compact(['dataset', 'papers', 'id', 'data']));
     }
 
     public function valid($id)
