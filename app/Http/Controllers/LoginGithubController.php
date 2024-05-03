@@ -37,7 +37,7 @@ class LoginGithubController extends Controller
             return redirect()
                 ->route('login')
                 ->withErrors([
-                    'message' => 'There is an error',
+                    'message' => $th->getMessage(),
                 ]);
         }
     }

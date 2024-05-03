@@ -1,64 +1,16 @@
 @extends('layouts.app')
-@section('content')
-    <header id="header" class="fixed-top " style="background-color: #38527E">
-        <div class="container d-flex align-items-center">
-
-            <h1 class="logo me-auto"><a href="{{ url('/') }}">Datasets</a></h1>
-            <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
-            <nav id="navbar" class="navbar ">
-                <ul>
-                    <li><a class="nav-link scrollto" href="{{ url('datasets') }}">Datasets</a></li>
-                    <li class="dropdown"><a href="#" class="active"><span>Contribute dataset</span> <i
-                                class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li><a href="#">Donate New</a></li>
-                            <li><a href="#">Link External</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="dropdown"><a href="#"><span>About Us</span><i class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li><a href="{{ url('about') }}">Who We Are</a></li>
-                            <li><a href="{{ url('contact/information') }}">Contact Information</a></li>
-                        </ul>
-                    </li>
-                    @auth
-                        <li class="dropdown"><a href="#"><span>{{ Auth::user()->email }}</span><i
-                                    class="bi bi-chevron-down"></i></a>
-                            <ul>
-                                @if (Auth::user()->role == 'admin')
-                                    <li><a href="{{ url('admin/dashboard') }}">Dashboard Admin</a></li>
-                                @else
-                                    <li><a href="#">Profile</a></li>
-                                @endif
-                                <li><a href="{{ url('logout') }}">Logout</a></li>
-                            </ul>
-                        </li>
-                    @endauth
-                    </li>
-                    @guest
-                        <a href="{{ url('login') }}" class="text-center">Login</a>
-                    @endguest
-                    </li>
-                </ul>
-                <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav><!-- .navbar -->
-            <!-- Modal -->
-        </div>
-    </header><!-- End Header -->
+@section('content') 
     @if (optional($myDataset)->count() < 1)
         <main id="basic-info">
-            <div class="container login-container" style="margin-top: 7rem; margin-bottom: 3rem">
+            <div class="container login-container" style="margin-top: 10rem; margin-bottom: 3rem">
                 <div class="text-center">
-                    <h1 class="fw-bold" style="color: #38527E">Dataset Donation Form </h1>
+                    <h1 class="fw-bold mb-4" style="color: #38527E"><i class="fad fa-database"></i> Dataset Donation Form </h1>
                     <h5 style="color: gray">We offer users the option to upload their dataset data to our repository.</h5>
                     <h5 style="color: gray">Users can provide tabular or non-tabular dataset data which will be made
                         publicly
                         available on our
                         repository. Donators are free to edit their donated datasets, but edits must be approved before
-                        finalizing. <a href="{{ url('my/dataset') }}">Show My Dataset</a></h5>
+                        finalizing. <a style="color: #38527E" href="{{ url('my/dataset') }}">Show My Dataset <i class="fas fa-angle-double-right"></i></a></h5>
                 </div>
                 <form>
                     <div class="row justify-content-center mt-5">
@@ -171,7 +123,7 @@
                     <div class="row justify-content-center mt-3">
                         <div class="col-md-8">
                             <button type="button" id="btnNext" onclick="next()" class="btn fs-5 text-light"
-                                style="background-color: #38527E; width: 6rem">Next
+                                style="background-color: #38527E; width: 6rem"><i class="fas fa-angle-double-right"></i> Next
                             </button>
                         </div>
                     </div>

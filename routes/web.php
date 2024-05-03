@@ -129,7 +129,7 @@ Route::group(['middleware' => ['auth', 'verified', 'role:admin']], function () {
 });
 
 Route::get('forgot/password', function () {
-    return view('forgot-password');
+    return view('auth.forgot-password');
 })->middleware('guest');
 
 Route::post('send/code/verification', [ForgotPasswordController::class, 'sendCodeVerification']);
@@ -151,3 +151,14 @@ Route::post('search/dataset', function (Request $request) {
     $datasets = Dataset::where('name', 'like', '%' . $request->name . '%')->get();
     return response()->json($datasets);
 });
+
+// Route::post('post', function(Request $request){
+
+//     // lakukan operasi untuk menyimpan data suhu
+
+//     // kemudian kembalika dalam bentuk json
+//     return response()->json([
+//         'message' => 'Successfully',
+//         'suhu' => $request->suhu
+//     ]);
+// });

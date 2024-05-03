@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
     <!-- Page Wrapper -->
-    <div id="wrapper">
+    <div id="wrapper" class="">
 
         <!-- Sidebar -->
         <ul class="navbar-nav sidebar sidebar-dark accordion" style="background-color: #38527E" id="accordionSidebar">

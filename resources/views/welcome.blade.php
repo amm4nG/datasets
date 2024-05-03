@@ -1,57 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    <header id="header" class="fixed-top ">
-        <div class="container d-flex align-items-center">
-
-            <h1 class="logo me-auto"><a href="{{ url('/') }}">Datasets</a></h1>
-            <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
-            <nav id="navbar" class="navbar">
-                <ul>
-                    <li><a class="nav-link" href="{{ url('datasets') }}">Datasets</a></li>
-                    <li class="dropdown"><a href="#"><span>Contribute dataset</span> <i
-                                class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li><a href="{{ url('donation') }}">Donate New</a></li>
-                            <li><a href="#">Link External</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="dropdown"><a href="#"><span>About Us</span><i class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li><a href="{{ url('about') }}">Who We Are</a></li>
-                            <li><a href="{{ url('contact/information') }}">Contact Information</a></li>
-                        </ul>
-                    </li>
-                    @auth
-                        <li class="dropdown"><a href="#"><span>{{ Auth::user()->email }}</span><i
-                                    class="bi bi-chevron-down"></i></a>
-                            <ul>
-                                @if (Auth::user()->role == 'admin')
-                                    <li><a href="{{ url('admin/dashboard') }}">Dashboard Admin</a></li>
-                                @else
-                                    <li><a href="#">Profile</a></li>
-                                @endif
-                                <li><a href="{{ url('logout') }}">Logout</a></li>
-                            </ul>
-                        </li>
-                    @endauth
-                    </li>
-                    @guest
-                        <a href="{{ url('login') }}" class="text-center">Login</a>
-                    @endguest
-                    </li>
-                </ul>
-
-                <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav><!-- .navbar -->
-            <!-- Modal -->
-
-
-        </div>
-    </header><!-- End Header -->
-
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="d-flex align-items-center">
 
@@ -63,8 +11,8 @@
                     <h2>Dataset collection platform, where each contribution positively impacts research and innovation
                         advancement.</h2>
                     <div class="d-flex justify-content-center justify-content-lg-start">
-                        <a href="{{ url('datasets') }}" class="btn-get-started scrollto">View Datasets</a>
-                        <a href="{{ url('donation') }}" class="btn-get-started scrollto ms-3">Contribute a Dataset</a>
+                        <a href="{{ url('datasets') }}" class="btn-get-started scrollto"><i class="fal fa-database"></i> View Datasets</a>
+                        <a href="{{ url('donation') }}" class="btn-get-started scrollto ms-3"><i class="fal fa-database"></i> Contribute a Dataset</a>
                     </div>
 
                 </div>
@@ -84,12 +32,11 @@
                     @if ($popularDataset != null)
                         <div class="col-md-6 mb-3">
                             <div class="card p-4 rounded-top-4 shadow-sm">
-                                <p class="fw-bold fs-3 text-center" style="color: #38527E"> Popular Datasets</p>
+                                <p class="fw-bold fs-3 text-center" style="color: #38527E"><i class="fad fa-database"></i> Popular Datasets</p>
                                 <hr style="margin-top: -0px">
                                 <div class="row align-items-center">
                                     <div class="col-md-2" id="img-dataset">
-                                        <img class="img-fluid" src="{{ asset('assets/img/clients/client-6.png') }}"
-                                            alt="">
+                                        <i class="fad fa-database fa-4x" style="color: #38527E"></i>
                                     </div>
                                     <div class="col-md-10 mb-2">
                                         <a href="{{ url('detail/dataset/' . optional($popularDataset)->id) }}">
@@ -127,12 +74,11 @@
                     @endif
                     <div class="col-md-6">
                         <div class="card p-4 rounded-top-4 shadow-sm">
-                            <p class="fw-bold fs-3 text-center" style="color: #38527E"> New Datasets</p>
+                            <p class="fw-bold fs-3 text-center" style="color: #38527E"><i class="fad fa-database"></i> New Datasets</p>
                             <hr style="margin-top: -0px">
                             <div class="row align-items-center">
                                 <div class="col-md-2" id="img-dataset">
-                                    <img class="img-fluid" src="{{ asset('assets/img/clients/client-6.png') }}"
-                                        alt="">
+                                    <i class="fad fa-database fa-4x" style="color: #38527E"></i>
                                 </div>
                                 <div class="col-md-10 mb-2">
                                     <a href="{{ url('detail/dataset/' . optional($dataset)->id) }}">
