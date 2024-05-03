@@ -1,7 +1,7 @@
 <!-- Start Header -->
 <header id="header" class="fixed-top" style="background-color: #38527E">
     <div class="container d-flex align-items-center">
-        <h1 class="logo me-auto"><a href="{{ url('/') }}"><i class="fad fa-database"></i> Datau</a></h1>
+        <h1 class="logo me-auto ms-2"><a href="{{ url('/') }}"><i class="fad fa-database"></i> Datau</a></h1>
         <!-- start navbar -->
         <nav id="navbar" class="navbar p-4">
             <ul>

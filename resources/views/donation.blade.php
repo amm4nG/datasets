@@ -2,7 +2,7 @@
 @section('content') 
     @if (optional($myDataset)->count() < 1)
         <main id="basic-info">
-            <div class="container login-container" style="margin-top: 10rem; margin-bottom: 3rem">
+            <div class="container login-container p-3" style="margin-top: 10rem; margin-bottom: 3rem">
                 <div class="text-center">
                     <h1 class="fw-bold mb-4" style="color: #38527E"><i class="fad fa-database"></i> Dataset Donation Form </h1>
                     <h5 style="color: gray">We offer users the option to upload their dataset data to our repository.</h5>
@@ -168,7 +168,7 @@
             </div>
         </main>
         <main id="pending" style="display: none">
-            <div class="container login-container" style="margin-top: 7rem; margin-bottom: 3rem">
+            <div class="container login-container p-3" style="margin-top: 7rem; margin-bottom: 3rem">
                 <div class="row justify-content-center">
                     <div class="col-md-10">
                         <div class="card p-4">
@@ -187,7 +187,7 @@
         </main>
     @else
         <main id="pending">
-            <div class="container login-container" style="margin-top: 7rem; margin-bottom: 3rem">
+            <div class="container login-container p-3" style="margin-top: 7rem; margin-bottom: 3rem">
                 <div class="row justify-content-center">
                     <div class="col-md-10">
                         <div class="card p-4">

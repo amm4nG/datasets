@@ -2,7 +2,7 @@
 @section('content') 
 
     <main id="main">
-        <div class="container login-container" style="margin-top: 9rem; margin-bottom: 3rem">
+        <div class="container login-container p-3" style="margin-top: 9rem; margin-bottom: 1rem">
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="">
@@ -30,9 +30,5 @@
             </div>
         </div>
     </main>
-    <!-- End #main -->
-
-    <!-- ======= Footer ======= -->
-@endsection
-
-<!-- ======= Header ======= -->
+    <!-- End #main --> 
+@endsection 

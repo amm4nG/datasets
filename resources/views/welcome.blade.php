@@ -3,7 +3,7 @@
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="d-flex align-items-center">
 
-        <div class="container">
+        <div class="container p-3">
             <div class="row">
                 <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
                     data-aos="fade-up" data-aos-delay="200">
@@ -25,7 +25,7 @@
     </section><!-- End Hero -->
 
     <main id="main">
-        <div class="container mt-4">
+        <div class="container mt-4 p-3">
             <div class="row">
                 @if ($newDataset == false)
                 @else

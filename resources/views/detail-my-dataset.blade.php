@@ -1,47 +1,7 @@
 @extends('layouts.app')
-@section('content')
-    <header id="header" class="fixed-top " style="background-color: #38527E">
-        <div class="container d-flex align-items-center">
-
-            <h1 class="logo me-auto"><a href="{{ url('/') }}">Datasets</a></h1>
-            <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
-            <nav id="navbar" class="navbar ">
-                <ul>
-                    <li><a class="nav-link scrollto" href="{{ url('datasets') }}">Datasets</a></li>
-                    <li class="dropdown"><a href="#" class="active"><span>Contribute dataset</span> <i
-                                class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li><a href="{{ url('donation') }}">Donate New</a></li>
-                            <li><a href="#">Link External</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="dropdown"><a href="#"><span>About Us</span><i class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li><a href="{{ url('about') }}">Who We Are</a></li>
-                            <li><a href="{{ url('contact/information') }}">Contact Information</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown"><a href="#"><span>{{ Auth::user()->email }}</span><i
-                                class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            @if (Auth::user()->role == 'admin')
-                                <li><a href="{{ url('admin/dashboard') }}">Dashboard Admin</a></li>
-                            @else
-                                <li><a href="#">Profile</a></li>
-                            @endif
-                            <li><a href="{{ url('logout') }}">Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav><!-- .navbar -->
-        </div>
-    </header><!-- End Header -->
+@section('content') 
     <main id="main">
-        <div class="container" style="margin-top: 7rem">
+        <div class="container p-3" style="margin-top: 7rem">
             <div class="row">
                 <div class="col-md-12">
                     <h3 class="fw-bold" style="color: #38527E"><a style="color: #38527E" href="{{ url('my/dataset') }}"><i

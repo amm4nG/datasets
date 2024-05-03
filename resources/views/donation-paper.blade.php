@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content') 
     <main id="main">
-        <div class="container login-container" style="margin-top: 9rem; margin-bottom: 3rem">
+        <div class="container login-container p-3" style="margin-top: 9rem; margin-bottom: 3rem">
             <div class="text-center">
                 <h1 class="fw-bold" style="color: #38527E"><i class="fas fa-book-alt"></i> Donation Paper</h1>
                 <h5 style="color: gray">We offer users the option to upload their dataset data to our repository.</h5>
@@ -11,9 +11,7 @@
                     finalizing.</h5>
             </div> 
         </div>
-    </main><!-- End #main -->
-
-    <!-- ======= Footer ======= -->
+    </main><!-- End #main --> 
 @endsection
 
 <!-- ======= Header ======= -->

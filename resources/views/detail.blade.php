@@ -2,7 +2,7 @@
 @section('content') 
 
     <main id="main">
-        <div class="container" style="margin-top: 9rem">
+        <div class="container p-3" style="margin-top: 9rem">
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="fw-bold mb-4" style="color: #38527E"><a style="color: #38527E" href="{{ url('datasets') }}">

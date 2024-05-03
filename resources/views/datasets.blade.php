@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content') 
     <main id="main">
-        <div class="container" style="margin-top: 9rem">
+        <div class="container p-3" style="margin-top: 9rem">
             <div class="row">
                 <div class="col-md-12">
                     <h3 style="color: #38527E"><i class="fad fa-search"></i> BROWSE DATAU</h3>

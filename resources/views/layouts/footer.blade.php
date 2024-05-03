@@ -1,10 +1,8 @@
 <!-- Start Footer -->
 <footer id="footer">
-
     <div class="footer-top">
-        <div class="container">
+        <div class="container p-3">
             <div class="row">
-
                 <div class="col-lg-3 col-md-6 footer-contact">
                     <h3><i class="fad fa-database"></i> DATAU</h3>
                     <p>
