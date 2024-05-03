@@ -8,7 +8,7 @@
                     <h2 class="mb-5" style="color: #38527E"><a style="color: #38527E" href="{{ url('datasets') }}">
                         <i class="far fa-angle-double-left fs-3 me-2"></i></a>Detail Dataset</h2>
                     <div class="card p-5">
-                        <div class="row align-items-center" style="margin-top:-40px">
+                        <div class="row align-items-center" style="margin-top:-27px">
                             <div class="col-md-1" id="img-dataset">
                                 <i class="fad fa-database fa-4x" style="color: #38527E"></i>
                             </div>
