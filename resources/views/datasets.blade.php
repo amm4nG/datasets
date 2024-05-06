@@ -1,10 +1,18 @@
 @extends('layouts.app')
-@section('content') 
+@section('content')
     <main id="main">
         <div class="container p-3" style="margin-top: 9rem">
             <div class="row">
                 <div class="col-md-12">
                     <h3 style="color: #38527E"><i class="fad fa-search"></i> BROWSE DATAU</h3>
+                    <div class="row mt-4">
+                        <div class="col-md-5">
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                <label for="floatingInput">Search dataset</label>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row mt-4">
                         @forelse ($datasets as $dataset)
                             <div class="col-md-12 mb-2 shadow-sm">
@@ -46,10 +54,18 @@
                                 </div>
                             </div>
                         @empty
-                            <div class="col-md-3">
-                                <p>The data is empty <span><a href="{{ url('donation') }}"> Contribute New
-                                            Dataset</a></span></p>
-                                <img src="{{ asset('assets/img/data-empty.png') }}" class="img-fluid" alt="">
+                            <div class="col-md-4">
+                                <p>The data is empty!,
+                                    <span>
+                                        <a href="{{ url('donation') }}" style="color: #38527E"> Contribute New
+                                            Dataset
+                                        </a>
+                                    </span>
+                                </p>
+                                <p class="text-center mt-4">
+                                    <i class="fal fa-file-search fa-5x" style="color: #38527E"></i>
+                                </p>
+                                {{-- <img src="{{ asset('assets/img/data-empty.png') }}" class="img-fluid" alt=""> --}}
                             </div>
                         @endforelse
                     </div>
@@ -84,56 +100,57 @@
         // Menggunakan event focus untuk menampilkan dropdown saat inputan mendapatkan fokus
         // document.getElementById('search').addEventListener('focus', function() {
         //     var resultDropdown = document.getElementById('resultDropdown');
-            // Memunculkan dropdown
-            // resultDropdown.innerHTML = "No Matching Data"
+        // Memunculkan dropdown
+        // resultDropdown.innerHTML = "No Matching Data"
 
-            // let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-            // let search = document.getElementById('search')
-            // let formData = new FormData();
-            // search.addEventListener('input', function() {
-            //     formData.append('name', search.value);
+        // let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+        // let search = document.getElementById('search')
+        // let formData = new FormData();
+        // search.addEventListener('input', function() {
+        //     formData.append('name', search.value);
 
-            //     fetch('/search/dataset/', {
-            //             method: 'POST',
-            //             headers: {
-            //                 'X-CSRF-TOKEN': csrfToken,
-            //             },
-            //             body: formData,
-            //         })
-            //         .then(response => {
-            //             if (!response.ok) {
-            //                 throw new Error(`HTTP error! Status: ${response.status}`);
-            //             }
-            //             return response.json();
-            //         })
-            //         .then(data => {
-            //             resultDropdown.style.display = 'block';
-            //             resultDropdown.innerHTML = ""
-            //             console.log(data);
-            //             data.forEach(element => {
-            //                 resultDropdown.innerHTML +=
-            //                     `<p onclick="detail(${element.id})" class="dropdown-item-text">${element.name}</p>`
-            //             });
-            //         })
-            //         .catch(error => {
-            //             console.error('Ada kesalahan:', error.message);
-            //         });
-            // })
+        //     fetch('/search/dataset/', {
+        //             method: 'POST',
+        //             headers: {
+        //                 'X-CSRF-TOKEN': csrfToken,
+        //             },
+        //             body: formData,
+        //         })
+        //         .then(response => {
+        //             if (!response.ok) {
+        //                 throw new Error(`HTTP error! Status: ${response.status}`);
+        //             }
+        //             return response.json();
+        //         })
+        //         .then(data => {
+        //             resultDropdown.style.display = 'block';
+        //             resultDropdown.innerHTML = ""
+        //             console.log(data);
+        //             data.forEach(element => {
+        //                 resultDropdown.innerHTML +=
+        //                     `<p onclick="detail(${element.id})" class="dropdown-item-text">${element.name}</p>`
+        //             });
+        //         })
+        //         .catch(error => {
+        //             console.error('Ada kesalahan:', error.message);
+        //         });
+        // })
         // });
 
         // Menggunakan event blur untuk menyembunyikan dropdown saat inputan kehilangan fokus
         // document.getElementById('search').addEventListener('blur', function() {
         //     var resultDropdown = document.getElementById('resultDropdown');
 
-            // Menyembunyikan dropdown setelah jeda kecil untuk memberi waktu pengguna memilih
+        // Menyembunyikan dropdown setelah jeda kecil untuk memberi waktu pengguna memilih
         //     setTimeout(function() {
         //         resultDropdown.style.display = 'none';
         //     }, 200);
         // });
 
 
-    //     function detail(id) {
-    //         window.location.href = "detail/dataset/" + id
-    //     }
-    // </script>
+        //     function detail(id) {
+        //         window.location.href = "detail/dataset/" + id
+        //     }
+        // 
+    </script>
 @endsection
