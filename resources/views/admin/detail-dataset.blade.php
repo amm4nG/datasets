@@ -260,7 +260,7 @@
                                                     @foreach ($records as $record)
                                                         <tr>
                                                             @foreach ($record as $r)
-                                                                <td class="text-capitalize text-center">
+                                                                <td class="text-capitalize text-end">
                                                                     {{ $r }}
                                                                 </td>
                                                             @endforeach
@@ -288,9 +288,9 @@
                         @if ($dataset->status == 'pending')
                             <div class="col-md-3" id="btnValidate">
                                 <a href="#" onclick="valid({{ $id }})"
-                                    class="btn btn-success btn-sm mt-2"><i class="fas fa-check mr-1"></i>Valid</a>
+                                    class="btn btn-success btn-sm mt-2"><i class="fas fa-check mr-1"></i>Approve</a>
                                 <button data-toggle="modal" data-target="#modalInvalid"
-                                    class="btn btn-danger btn-sm mt-2"><i class="fas fa-times mr-1"></i>Invalid</button>
+                                    class="btn btn-danger btn-sm mt-2"><i class="fas fa-times mr-1"></i>Reject</button>
                             </div>
                         @endif
                     </div>
@@ -373,7 +373,7 @@
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, validate it!"
+                confirmButtonText: "Yes, approve it!"
             }).then((result) => {
                 if (result.isConfirmed) {
                     let csrfToken = document.querySelector('meta[name="csrf-token"]').content;

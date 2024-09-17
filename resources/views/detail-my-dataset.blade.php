@@ -4,8 +4,8 @@
         <div class="container p-3" style="margin-top: 7rem">
             <div class="row">
                 <div class="col-md-12">
-                    <h3 class="fw-bold" style="color: #38527E"><a style="color: #38527E" href="{{ url('my/dataset') }}"><i
-                                class="bi bi-arrow-left-short fs-3 "></i></a>Detail My Dataset</h3>
+                    <h2 class="fw-bold mt-3 mb-4" style="color: #38527E"><a style="color: #38527E" href="{{ url('my/dataset') }}"><i
+                                class="bi bi-arrow-left-short fs-3 "></i></a>Detail My Dataset</h2>
                     @if ($dataset->status == 'invalid')
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
                             <strong>Dataset invalid!</strong> Please re-register your dataset.

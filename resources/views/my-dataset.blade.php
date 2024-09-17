@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('content') 
     <main>
-        <div class="container login-container p-3" style="margin-top: 9rem; margin-bottom: 3rem">
+        <div class="container login-container p-3" style="margin-top: 8rem; margin-bottom: 3rem">
             <div class="row justify-content-center">
                 <div class="col-md-12">
-                    <h2 class="mb-5" style="color: #38527E"><a style="color: #38527E" href="{{ url('donation') }}"><i class="far fa-angle-double-left me-2 fs-3"></i></a>My Datasets</h2>
+                    <h2 class="mb-4 fw-bold" style="color: #38527E"><a style="color: #38527E" href="{{ url('donation') }}"><i class="bi bi-arrow-left-short fs-3 "></i></a>My Datasets</h2>
                     <div class="card p-4">
                         <div class="table-responsive">
                             <table id="my-datasets" class="text-center table table-bordered table-striped table-sm mt-3">

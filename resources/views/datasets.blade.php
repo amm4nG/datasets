@@ -7,10 +7,7 @@
                     <h3 style="color: #38527E"><i class="fad fa-search"></i> BROWSE DATAU</h3>
                     <div class="row mt-4">
                         <div class="col-md-5">
-                            <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                                <label for="floatingInput">Search dataset</label>
-                            </div>
+                            <input type="text" class="form-control p-3" id="searching" placeholder="Searh Data">
                         </div>
                     </div>
                     <div class="row mt-4">
@@ -98,8 +95,11 @@
 @section('scripts')
     <script>
         // Menggunakan event focus untuk menampilkan dropdown saat inputan mendapatkan fokus
-        // document.getElementById('search').addEventListener('focus', function() {
-        //     var resultDropdown = document.getElementById('resultDropdown');
+        document.getElementById('searching').addEventListener('focus', function() {
+            console.log("Hello World");
+            
+        })
+            // var resultDropdown = document.getElementById('resultDropdown');
         // Memunculkan dropdown
         // resultDropdown.innerHTML = "No Matching Data"
 

@@ -5,6 +5,7 @@
         <!-- start navbar -->
         <nav id="navbar" class="navbar p-4">
             <ul>
+                {{-- <li><input type="text" class="form-control ms-2 mr-2" name="" id=""></li> --}}
                 <li><a class="nav-link" href="{{ url('datasets') }}">Datasets</a></li>
                 <li class="dropdown"><a href="#"><span>Contribute dataset</span> <i
                             class="bi bi-chevron-down"></i></a>

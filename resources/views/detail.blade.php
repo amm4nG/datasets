@@ -1,12 +1,11 @@
 @extends('layouts.app')
-@section('content') 
-
+@section('content')
     <main id="main">
         <div class="container p-3" style="margin-top: 9rem">
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="mb-5" style="color: #38527E"><a style="color: #38527E" href="{{ url('datasets') }}">
-                        <i class="far fa-angle-double-left fs-3 me-2"></i></a>Detail Dataset</h2>
+                            <i class="bi bi-arrow-left-short fs-3 "></i></a>Detail Dataset</h2>
                     <div class="card p-5">
                         <div class="row align-items-center" style="margin-top:-27px">
                             <div class="col-md-1" id="img-dataset">
@@ -20,12 +19,12 @@
 
                             </div>
                             <div class="col-md-12">
-                                <a href="{{ url('download/' . $id) }}" class="btn btn-sm mb-3 text-white p-2"
+                                <a href="{{ url('download/' . $id) }}" class="btn btn-sm mb-3 text-white p-2 ps-3 pe-3"
                                     style="background-color: #38527E"><i class="bi bi-download me-1"></i> Download</a>
                                 <p>{{ $dataset->abstract }}</p>
                             </div>
                             <div class="col-md-3">
-                                <h4>Dataset Characteristics</h4>
+                                <h4>Characteristics</h4>
                                 <p>
                                     @foreach ($characteristics as $characteristic)
                                         {{ $characteristic->name_characteristic }}
@@ -83,19 +82,19 @@
                 <div class="col-md-12">
                     <div class="card p-4">
                         <div class="card-header">
-                            <h4 style="color: #38527E"><i class="fad fa-book-user"></i> Papers</h4>
+                            <h4 style="color: #38527E"><i class="fad fa-book-user"></i> Related Papers</h4>
                         </div>
                         <div class="card-body">
-                        @foreach ($papers as $paper)
-                            <p class="fs-5"><i class="fal fa-book-alt me-2"></i><a target="_blank"
-                                    href="{{ url('' . $paper->url) }}" style="color: #38527E">{{ $paper->title }}</a></p>
-                            <p style="margin-top: -17px">{{ $paper->description }}</p>
-                        @endforeach
+                            @foreach ($papers as $paper)
+                                <p class="fs-5"><a target="_blank" href="{{ url('' . $paper->url) }}"
+                                        style="color: #38527E">{{ $paper->title }}</a></p>
+                                <p style="margin-top: -17px">{{ $paper->description }}</p>
+                            @endforeach
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row mt-3">
+            {{-- <div class="row mt-3">
                 <div class="col-md-12">
                     <div class="card p-4">
                         <div class="card-header">
@@ -113,8 +112,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div> 
+            </div> --}}
+        </div>
     </main>
 @endsection
 @section('scripts')

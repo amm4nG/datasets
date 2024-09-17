@@ -75,14 +75,14 @@ class ContributeDatasetController extends Controller
             [
                 'information' => ['required'],
                 'files' => ['required'],
-                'title' => ['required'],
-                'description' => ['required'],
-                'urlPaper' => ['required'],
+                // 'title' => ['required'],
+                // 'description' => ['required'],
+                // 'urlPaper' => ['required'],
             ],
             [
                 'information.required' => 'The dataset information field is required',
                 'files' => 'The file dataset field is required',
-                'urlPaper.required' => 'The link paper field is required',
+                // 'urlPaper.required' => 'The link paper field is required',
             ],
         );
 
