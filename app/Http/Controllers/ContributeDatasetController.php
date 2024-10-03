@@ -37,7 +37,7 @@ class ContributeDatasetController extends Controller
             $request->all(),
             [
                 'name' => ['required'],
-                'abstract' => ['required', 'max:1000'],
+                'abstract' => ['required'],
                 'instances' => ['required', 'numeric'],
                 'features' => ['nullable', 'numeric'],
                 'characteristics' => ['required'],
@@ -74,7 +74,7 @@ class ContributeDatasetController extends Controller
             $request->all(),
             [
                 'information' => ['required'],
-                'files' => ['required'],
+                // 'files' => ['required'],
                 // 'title' => ['required'],
                 // 'description' => ['required'],
                 // 'urlPaper' => ['required'],

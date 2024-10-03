@@ -4,8 +4,8 @@
         <div class="container p-3" style="margin-top: 9rem">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="mb-5" style="color: #38527E"><a style="color: #38527E" href="{{ url('datasets') }}">
-                            <i class="bi bi-arrow-left-short fs-3 "></i></a>Detail Dataset</h2>
+                    <p class="mb-5 fs-2" style="color: #38527E"><a style="color: #38527E" href="{{ url('datasets') }}">
+                            <i class="bi bi-arrow-left-short fs-3 "></i></a>Detail Dataset</p>
                     <div class="card p-5">
                         <div class="row align-items-center" style="margin-top:-27px">
                             <div class="col-md-1" id="img-dataset">
@@ -70,7 +70,7 @@
                 <div class="col-md-12">
                     <div class="card p-4">
                         <div class="card-header">
-                            <h3 style="color: #38527E"><i class="far fa-info-circle"></i> Dataset Information</h3>
+                            <p class="fs-2" style="color: #38527E">Dataset Information</p>
                         </div>
                         <div class="card-body">
                             {!! $dataset->information !!}
@@ -82,7 +82,7 @@
                 <div class="col-md-12">
                     <div class="card p-4">
                         <div class="card-header">
-                            <h4 style="color: #38527E"><i class="fad fa-book-user"></i> Related Papers</h4>
+                            <p class="fs-2" style="color: #38527E">Related Papers</p>
                         </div>
                         <div class="card-body">
                             @foreach ($papers as $paper)

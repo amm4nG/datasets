@@ -5,7 +5,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="">
-                        <h1 class="fw-bold " style="color: #38527E">Contact <i class="fad fa-phone"></i></h1>
+                        <p class="fs-2" style="color: #38527E">Contact <i class="fad fa-phone"></i></p>
                         <h5 class="text-start mt-5" style="color: gray;">
                             To share bug reports or feature requests with us, you can create an issue in this GitHub
                             repository.

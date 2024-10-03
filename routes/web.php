@@ -150,7 +150,7 @@ Route::get('about', function () {
 });
 
 Route::post('search/dataset', function (Request $request) {
-    $datasets = Dataset::where('name', 'like', '%' . $request->name . '%')->get();
+    $datasets = Dataset::where('name', 'like', '%' . $request->name . '%')->where('status', 'valid')->get();
     return response()->json($datasets);
 });
 
@@ -166,9 +166,9 @@ Route::post('search/dataset', function (Request $request) {
 // });
 
 // testing
-Route::get('test', function(){
-    return view('test');
-});
+// Route::get('test', function(){
+//     return view('test');
+// });
 
 // scapping
-Route::get('scrapping', [ScrappingController::class, 'index']);
+// Route::get('scrapping', [ScrappingController::class, 'index']);

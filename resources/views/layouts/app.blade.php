@@ -38,8 +38,20 @@
     </script>
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-
     <style>
+        .dropdown-menu {
+            width: 100%;
+        }
+
+        #searching:focus {
+            outline: none;
+        }
+
+        mark {
+            background-color: yellow;
+            padding: 0;
+        }
+
         #img-dataset {
             display: none;
         }

@@ -9,9 +9,9 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/') }}">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <i class="fas fa-database"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3"> <sup>datasets</sup></div>
+                <div class="sidebar-brand-text mx-3"> <sup>DATAU</sup></div>
             </a>
 
             <!-- Divider -->
@@ -243,30 +243,36 @@
                     <div class="row mt-3">
                         <div class="col-md-12">
                             <div class="card p-4">
-                                <h3 style="color: #38527E">Dataset Information</h3>
-                                {!! $dataset->information !!}
+                                <div class="card-header">
+                                    <p class="fs-2" style="color: #38527E">Dataset Information</p>
+                                </div>
+                                <div class="card-body">
+                                    {!! $dataset->information !!}
+                                </div>
                                 @foreach ($data as $item)
                                     <div class="row mb-3">
                                         <div class="col-md-12">
-                                            <h3 style="color: #38527E">
-                                                {{ $item['fileName'] }}
-                                            </h3>
-                                            <p style="margin-top: -7px">Data example</p>
-                                            <div class="table-responsive">
-                                                <table class="table table-sm table-striped">
-                                                    @php
-                                                        $records = $item['records'];
-                                                    @endphp
-                                                    @foreach ($records as $record)
-                                                        <tr>
-                                                            @foreach ($record as $r)
-                                                                <td class="text-capitalize text-end">
-                                                                    {{ $r }}
-                                                                </td>
-                                                            @endforeach
-                                                        </tr>
-                                                    @endforeach
-                                                </table>
+                                            <div class="card-body">
+                                                <h3 style="color: #38527E">
+                                                    {{ $item['fileName'] }}
+                                                </h3>
+                                                <p style="margin-top: -7px">Data example</p>
+                                                <div class="table-responsive">
+                                                    <table class="table table-sm table-striped">
+                                                        @php
+                                                            $records = $item['records'];
+                                                        @endphp
+                                                        @foreach ($records as $record)
+                                                            <tr>
+                                                                @foreach ($record as $r)
+                                                                    <td class="text-capitalize text-end">
+                                                                        {{ $r }}
+                                                                    </td>
+                                                                @endforeach
+                                                            </tr>
+                                                        @endforeach
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -275,14 +281,18 @@
                         </div>
                         <div class="col-md-12 mt-3">
                             <div class="card p-4">
-                                <h4>Papers</h4>
-                                @foreach ($papers as $paper)
-                                    <p class="fs-5"><i class="fas fa-book me-2" style="color: #38527E"></i><a
-                                            style="text-decoration: none; color: #38527E" class="" target="_blank"
-                                            href="{{ url('' . $paper->url) }}"
-                                            style="color: #38527E">{{ $paper->title }}</a></p>
-                                    <p style="margin-top: -17px">{{ $paper->description }}</p>
-                                @endforeach
+                                <div class="card-header">
+                                    <p class="fs-2" style="color: #38527E">Related Papers</p>
+                                </div>
+                                <div class="card-body">
+                                    @foreach ($papers as $paper)
+                                        <p class="fs-5"><a class="nav-link" target="_blank"
+                                                href="{{ url('' . $paper->url) }}"
+                                                style="color: #38527E">{{ $paper->title }}</a>
+                                        </p>
+                                        <p style="margin-top: -17px">{{ $paper->description }}</p>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                         @if ($dataset->status == 'pending')

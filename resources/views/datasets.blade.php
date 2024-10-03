@@ -4,15 +4,24 @@
         <div class="container p-3" style="margin-top: 9rem">
             <div class="row">
                 <div class="col-md-12">
-                    <h3 style="color: #38527E"><i class="fad fa-search"></i> BROWSE DATAU</h3>
+                    <p class="fs-2" style="color: #38527E"><i class="fad fa-search"></i> Browse Dataset</p>
                     <div class="row mt-4">
-                        <div class="col-md-5">
-                            <input type="text" class="form-control p-3" id="searching" placeholder="Searh Data">
+                        <div class="col-md-4">
+                            <input type="text" class="form-control p-3 rounded-4" autocomplete="off" id="searching"
+                                placeholder="Search Data">
+                            <div class="dropdown mt-2">
+                                <div class="dropdown-menu p-0" id="search-results">
+                                    @foreach ($datasets as $dataset)
+                                        <a href="#" class="dropdown-item">{{ $dataset->name }}</a>
+                                    @endforeach
+                                    <!-- Hasil pencarian akan ditampilkan di sini -->
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="row mt-4">
+                    <div class="row mt-4" id="datasets">
                         @forelse ($datasets as $dataset)
-                            <div class="col-md-12 mb-2 shadow-sm">
+                            <div class="col-md-12 mb-2 mb-3">
                                 <div class="card p-4">
                                     <div class="row align-items-center">
                                         <div class="col-md-1" id="img-dataset">
@@ -23,7 +32,7 @@
                                                 <h5 class="text-capitalize" style="color: #38527E">{{ $dataset->name }}
                                                 </h5>
                                             </a>
-                                            <p>{{ $dataset->abstract }}
+                                            <p>{{ Str::limit($dataset->abstract, 100, '...') }}
                                             </p>
                                             <div class="input-group gap-5">
                                                 <a href="" class="nav-link"><i class="bi bi-download me-2"></i>
@@ -93,57 +102,71 @@
 
 @endsection
 @section('scripts')
-    <script>
-        // Menggunakan event focus untuk menampilkan dropdown saat inputan mendapatkan fokus
+    {{-- <script>
+        let datasets = document.getElementById('datasets')
+        let searchResults = document.getElementById('search-results');
+
         document.getElementById('searching').addEventListener('focus', function() {
-            console.log("Hello World");
-            
+            datasets.classList.add('d-none')
+            searchResults.classList.add('show')
         })
-            // var resultDropdown = document.getElementById('resultDropdown');
-        // Memunculkan dropdown
-        // resultDropdown.innerHTML = "No Matching Data"
 
-        // let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-        // let search = document.getElementById('search')
-        // let formData = new FormData();
-        // search.addEventListener('input', function() {
-        //     formData.append('name', search.value);
-
-        //     fetch('/search/dataset/', {
-        //             method: 'POST',
-        //             headers: {
-        //                 'X-CSRF-TOKEN': csrfToken,
-        //             },
-        //             body: formData,
-        //         })
-        //         .then(response => {
-        //             if (!response.ok) {
-        //                 throw new Error(`HTTP error! Status: ${response.status}`);
-        //             }
-        //             return response.json();
-        //         })
-        //         .then(data => {
-        //             resultDropdown.style.display = 'block';
-        //             resultDropdown.innerHTML = ""
-        //             console.log(data);
-        //             data.forEach(element => {
-        //                 resultDropdown.innerHTML +=
-        //                     `<p onclick="detail(${element.id})" class="dropdown-item-text">${element.name}</p>`
-        //             });
-        //         })
-        //         .catch(error => {
-        //             console.error('Ada kesalahan:', error.message);
-        //         });
-        // })
+        let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+        let search = document.getElementById('searching')
+        let formData = new FormData();
+        search.addEventListener('input', function() {
+            formData.append('name', search.value);
+            fetch('/search/dataset/', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken,
+                    },
+                    body: formData,
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    searchResults.classList.add('show');
+                    searchResults.innerHTML = ""
+                    if (search.value.length > 0) {
+                        searchResults.innerHTML +=
+                            `
+                            <a href="#" class="dropdown-item disabled">Hasil Pencarian Anda :</a>
+                            `
+                        if (data.length > 0) {
+                            data.forEach(element => {
+                                searchResults.innerHTML +=
+                                    `
+                                    <a href="#" class="dropdown-item">${element.name}</a>
+                                    `
+                                // `<p onclick="detail(${element.id})" class="dropdown-item-text">${element.name}</p>`
+                            });
+                        } else {
+                            searchResults.innerHTML = ""
+                            searchResults.innerHTML +=
+                                `
+                            <a href="#" class="dropdown-item disabled">Data Tidak Ditemukan</a>
+                            `
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Ada kesalahan:', error.message);
+                });
+        })
         // });
 
         // Menggunakan event blur untuk menyembunyikan dropdown saat inputan kehilangan fokus
         // document.getElementById('search').addEventListener('blur', function() {
-        //     var resultDropdown = document.getElementById('resultDropdown');
+        //     var searchResults = document.getElementById('searchResults');
 
         // Menyembunyikan dropdown setelah jeda kecil untuk memberi waktu pengguna memilih
         //     setTimeout(function() {
-        //         resultDropdown.style.display = 'none';
+        //         searchResults.style.display = 'none';
         //     }, 200);
         // });
 
@@ -152,5 +175,5 @@
         //         window.location.href = "detail/dataset/" + id
         //     }
         // 
-    </script>
+    </script> --}}
 @endsection

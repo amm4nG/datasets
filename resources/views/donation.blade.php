@@ -15,7 +15,7 @@
                 <form>
                     <div class="row justify-content-center mt-5">
                         <div class="col-md-8">
-                            <p class="card-title fs-2 text-start" style="color: #38527E; ">Basic
+                            <p class="card-title fs-2 mb-2 text-start" style="color: #38527E; ">Basic
                                 Info</p>
                             <div class="card p-4 rounded-3">
                                 <div class="card-body">
@@ -31,7 +31,7 @@
                                         <textarea name="" id="abstract" cols="30" class="form-control" rows="5"></textarea>
                                         <div class="invalid-feedback">
                                         </div>
-                                        <p style="color: gray">Maximum 1000 Characters.</p>
+                                        {{-- <p style="color: gray">Maximum 1000 Characters.</p> --}}
                                         <hr class="border-bottom">
                                     </div>
                                     <div class="mb-3 position-relative">
@@ -53,7 +53,7 @@
                     </div>
                     <div class="row justify-content-center mt-3">
                         <div class="col-md-8">
-                            <p class="card-title fs-2 text-start" style="color: #38527E;">Dataset Characteristics</p>
+                            <p class="card-title fs-2 text-start mb-2" style="color: #38527E;">Dataset Characteristics</p>
                             <div class="card p-1 rounded-3">
                                 <div class="card-body" id="characteristics">
                                     @foreach ($characteristics as $characteristic)
@@ -70,7 +70,7 @@
                     </div>
                     <div class="row justify-content-center mt-3">
                         <div class="col-md-8">
-                            <p class="card-title fs-2 text-start" style="color: #38527E;">Subject Area</p>
+                            <p class="card-title fs-2 text-start mb-2" style="color: #38527E;">Subject Area</p>
                             <div class="card p-1 rounded-3">
                                 <div class="card-body" id="subjectArea">
                                     @foreach ($subjectAreas as $subjectArea)
@@ -88,7 +88,7 @@
                     </div>
                     <div class="row justify-content-center mt-3">
                         <div class="col-md-8">
-                            <p class="card-title fs-2 text-start" style="color: #38527E;">Associated Task</p>
+                            <p class="card-title fs-2 text-start mb-2" style="color: #38527E;">Associated Task</p>
                             <div class="card p-1 rounded-3">
                                 <div class="card-body" id="associatedTasks">
                                     @foreach ($associatedTasks as $associatedTask)
@@ -105,7 +105,7 @@
                     </div>
                     <div class="row justify-content-center mt-3">
                         <div class="col-md-8">
-                            <p class="card-title fs-2 text-start" style="color: #38527E;">Feature Types</p>
+                            <p class="card-title fs-2 text-start mb-2" style="color: #38527E;">Feature Types</p>
                             <div class="card p-1 rounded-3">
                                 <div class="card-body" id="featureTypes">
                                     @foreach ($featureTypes as $featureType)
@@ -122,7 +122,7 @@
                     </div>
                     <div class="row justify-content-center mt-3">
                         <div class="col-md-8">
-                            <button type="button" id="btnNext" onclick="next()" class="btn fs-5 text-light"
+                            <button type="button" id="btnNext" onclick="next()" class="btn fs-5 text-light mt-2"
                                 style="background-color: #38527E; width: 6rem"><i class="fas fa-angle-double-right"></i> Next
                             </button>
                         </div>
@@ -187,7 +187,7 @@
         </main>
     @else
         <main id="pending">
-            <div class="container login-container p-3" style="margin-top: 7rem; margin-bottom: 3rem">
+            <div class="container login-container p-3" style="margin-top: 10rem; margin-bottom: 3rem">
                 <div class="row justify-content-center">
                     <div class="col-md-10">
                         <div class="card p-4">
@@ -299,7 +299,7 @@
                             errorElement.classList.add('is-invalid');
                             // Mengarahkan halaman ke atas (animasi smooth)
                             window.scrollTo({
-                                top: errorElement.getBoundingClientRect().top + window.scrollY - 120,
+                                top: errorElement.getBoundingClientRect().top + window.scrollY - 165,
                                 behavior: 'smooth'
                             });
                         }

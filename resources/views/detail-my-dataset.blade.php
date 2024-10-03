@@ -1,11 +1,11 @@
 @extends('layouts.app')
-@section('content') 
+@section('content')
     <main id="main">
         <div class="container p-3" style="margin-top: 7rem">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="fw-bold mt-3 mb-4" style="color: #38527E"><a style="color: #38527E" href="{{ url('my/dataset') }}"><i
-                                class="bi bi-arrow-left-short fs-3 "></i></a>Detail My Dataset</h2>
+                    <p class="fs-2 mt-3 mb-4" style="color: #38527E"><a style="color: #38527E" href="{{ url('my/dataset') }}"><i
+                                class="bi bi-arrow-left-short fs-3 "></i></a>Detail My Dataset</p>
                     @if ($dataset->status == 'invalid')
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
                             <strong>Dataset invalid!</strong> Please re-register your dataset.
@@ -74,23 +74,33 @@
             <div class="row mt-3">
                 <div class="col-md-12">
                     <div class="card p-4">
-                        {!! $dataset->information !!}
+                        <div class="card-header">
+                            <p class="fs-2" style="color: #38527E">Dataset Information</p>
+                        </div>
+                        <div class="card-body">
+                            {!! $dataset->information !!}
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="col-md-12">
                     <div class="card p-4">
-                        <h4>Papers</h4>
-                        @foreach ($papers as $paper)
-                            <p class="fs-5"><i class="bi bi-journal me-2" style="color: #38527E"></i><a target="_blank"
-                                    href="{{ url('' . $paper->url) }}" style="color: #38527E">{{ $paper->title }}</a></p>
-                            <p style="margin-top: -17px">{{ $paper->description }}</p>
-                        @endforeach
+                        <div class="card-header">
+                            <p class="fs-2" style="color: #38527E">Related Papers</p>
+                        </div>
+                        <div class="card-body">
+                            @foreach ($papers as $paper)
+                                <p class="fs-5"><a target="_blank" href="{{ url('' . $paper->url) }}"
+                                        style="color: #38527E">{{ $paper->title }}</a>
+                                </p>
+                                <p style="margin-top: -17px">{{ $paper->description }}</p>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
 
     </main>
 @endsection
