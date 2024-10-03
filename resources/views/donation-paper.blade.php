@@ -11,7 +11,5 @@
                     finalizing.</h5>
             </div> 
         </div>
-    </main><!-- End #main --> 
+    </main>
 @endsection
-
-<!-- ======= Header ======= -->

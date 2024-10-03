@@ -74,15 +74,11 @@ class ContributeDatasetController extends Controller
             $request->all(),
             [
                 'information' => ['required'],
-                // 'files' => ['required'],
-                // 'title' => ['required'],
-                // 'description' => ['required'],
-                // 'urlPaper' => ['required'],
+                'files' => ['required'], 
             ],
             [
                 'information.required' => 'The dataset information field is required',
                 'files' => 'The file dataset field is required',
-                // 'urlPaper.required' => 'The link paper field is required',
             ],
         );
 
@@ -142,7 +138,7 @@ class ContributeDatasetController extends Controller
             $paper = new Paper();
             $paper->id_user = Auth::user()->id;
             $paper->id_dataset = $dataset->id;
-            $paper->title = $request->title;
+            $paper->title = $request->title ?? '-';
             $paper->description = $request->description;
             $paper->url = $request->urlPaper;
             $paper->save();
@@ -157,7 +153,7 @@ class ContributeDatasetController extends Controller
             DB::rollBack();
             return response()->json([
                 'status' => 500,
-                'message' => $th->getMessage(),
+                'message' => 'There is an error',
             ]);
         }
     }

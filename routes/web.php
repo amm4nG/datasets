@@ -12,14 +12,11 @@ use App\Http\Controllers\LoginGithubController;
 use App\Http\Controllers\LoginGoogleController;
 use App\Http\Controllers\MyDatasetController;
 use App\Http\Controllers\RegistrationController;
-use App\Http\Controllers\ScrappingController;
 use App\Models\Dataset;
 use App\Models\Download;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Storage;
 use League\Csv\Reader;
 use GuzzleHttp\Client;
 
@@ -164,11 +161,3 @@ Route::post('search/dataset', function (Request $request) {
 //         'suhu' => $request->suhu
 //     ]);
 // });
-
-// testing
-// Route::get('test', function(){
-//     return view('test');
-// });
-
-// scapping
-// Route::get('scrapping', [ScrappingController::class, 'index']);

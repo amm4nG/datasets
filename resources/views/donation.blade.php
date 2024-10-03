@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('content') 
+@section('content')
     @if (optional($myDataset)->count() < 1)
         <main id="basic-info">
             <div class="container login-container p-3" style="margin-top: 10rem; margin-bottom: 3rem">
@@ -10,7 +10,8 @@
                         publicly
                         available on our
                         repository. Donators are free to edit their donated datasets, but edits must be approved before
-                        finalizing. <a style="color: #38527E" href="{{ url('my/dataset') }}">Show My Dataset <i class="fas fa-angle-double-right"></i></a></h5>
+                        finalizing. <a style="color: #38527E" href="{{ url('my/dataset') }}">Show My Dataset <i
+                                class="fas fa-angle-double-right"></i></a></h5>
                 </div>
                 <form>
                     <div class="row justify-content-center mt-5">
@@ -37,7 +38,8 @@
                                     <div class="mb-3 position-relative">
                                         <label for="" class="form-label">Number of Instances (Rows) in
                                             Dataset</label>
-                                        <input type="number" class="form-control" name="instances" id="instances" placeholder="">
+                                        <input type="number" class="form-control" name="instances" id="instances"
+                                            placeholder="">
                                         <div class="invalid-feedback">
                                         </div>
                                         <hr class="border-bottom">
@@ -123,7 +125,8 @@
                     <div class="row justify-content-center mt-3">
                         <div class="col-md-8">
                             <button type="button" id="btnNext" onclick="next()" class="btn fs-5 text-light mt-2"
-                                style="background-color: #38527E; width: 6rem"><i class="fas fa-angle-double-right"></i> Next
+                                style="background-color: #38527E; width: 6rem"><i class="fas fa-angle-double-right"></i>
+                                Next
                             </button>
                         </div>
                     </div>
@@ -134,13 +137,14 @@
             <div class="container" style="margin-top: 6rem; margin-bottom: 3rem">
                 <div class="row justify-content-center">
                     <div class="col-md-8">
-                        <p class="card-title fs-2 mt-3 text-start" style="color: #38527E;">Dataset Information</p>
+                        <p class="card-title fs-2 mt-5 mb-1 text-start" style="color: #38527E;">
+                            Dataset Information</p>
                         <textarea name="information" id="information" cols="30" class="form-control" rows="10"></textarea>
                     </div>
                 </div>
                 <div class="row justify-content-center mt-3">
                     <div class="col-md-8">
-                        <p class="card-title fs-2 text-start" style="color: #38527E;">File Dataset</p>
+                        <p class="card-title fs-2 mb-1 text-start" style="color: #38527E;">File Dataset</p>
                         <div class="card p-4">
                             <input type="file" multiple class="form-control" name="" id="file">
                         </div>
@@ -148,13 +152,13 @@
                 </div>
                 <div class="row justify-content-center mt-3">
                     <div class="col-md-8">
-                        <p class="card-title fs-2 text-start" style="color: #38527E;">Paper</p>
+                        <p class="card-title fs-2 mb-1 text-start" style="color: #38527E;">Related Paper</p>
                         <div class="card p-4">
-                            <input type="text" placeholder="Title paper" class="form-control mb-3" name=""
+                            <input type="text" placeholder="Title paper" class="form-control mb-3" name="title"
                                 id="title">
-                            <textarea name="" id="description" cols="30" class="form-control mb-3" rows="5"
+                            <textarea name="description" id="description" cols="30" class="form-control mb-3" rows="5"
                                 placeholder="Description"></textarea>
-                            <input type="text" class="form-control" placeholder="Link paper" name=""
+                            <input type="url" class="form-control" placeholder="Link paper" name="urlPaper"
                                 id="urlPaper">
                         </div>
                     </div>
@@ -168,7 +172,7 @@
             </div>
         </main>
         <main id="pending" style="display: none">
-            <div class="container login-container p-3" style="margin-top: 7rem; margin-bottom: 3rem">
+            <div class="container login-container p-3" style="margin-top: 10rem; margin-bottom: 3rem">
                 <div class="row justify-content-center">
                     <div class="col-md-10">
                         <div class="card p-4">
