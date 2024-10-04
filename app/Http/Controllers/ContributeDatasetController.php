@@ -38,19 +38,19 @@ class ContributeDatasetController extends Controller
             [
                 'name' => ['required'],
                 'abstract' => ['required'],
-                'instances' => ['required', 'numeric'],
+                'instances' => ['nullable', 'numeric'],
                 'features' => ['nullable', 'numeric'],
-                'characteristics' => ['required'],
-                'subjectArea' => ['required'],
-                'associatedTasks' => ['required'],
+                'characteristics' => ['nullable'],
+                'subjectArea' => ['nullable'],
+                'associatedTasks' => ['nullable'],
                 'featureTypes' => ['nullable'],
             ],
             [
                 'name.required' => 'The dataset name field is required',
-                'instances.required' => 'The number of instances field is required',
-                'characteristics.required' => 'Select dataset characteristics',
-                'subjectArea.required' => 'Please select subject area',
-                'associatedTasks.required' => 'Please select associated task',
+                // 'instances.required' => 'The number of instances field is required',
+                // 'characteristics.required' => 'Select dataset characteristics',
+                // 'subjectArea.required' => 'Please select subject area',
+                // 'associatedTasks.required' => 'Please select associated task',
             ],
         );
 
@@ -74,11 +74,11 @@ class ContributeDatasetController extends Controller
             $request->all(),
             [
                 'information' => ['required'],
-                'files' => ['required'], 
+                'files' => ['required'],
             ],
             [
                 'information.required' => 'The dataset information field is required',
-                'files' => 'The file dataset field is required',
+                'files.required' => 'The file dataset field is required',
             ],
         );
 
@@ -157,4 +157,5 @@ class ContributeDatasetController extends Controller
             ]);
         }
     }
+
 }

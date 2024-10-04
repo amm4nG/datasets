@@ -32,28 +32,32 @@ class ManageDatasetsController extends Controller
 
         $desiredRowCount = 6;
 
-        // $records = $stmt->process($csv);
+        // Lokasi folder tempat dataset disimpan
         $folderPath = 'public/datasets/' . $id;
         $files = Storage::files($folderPath);
         $data = [];
 
         foreach ($files as $file) {
-            $filePath = Storage::path($file);
+            // Periksa apakah file memiliki ekstensi .csv
+            if (pathinfo($file, PATHINFO_EXTENSION) === 'csv') {
+                $filePath = Storage::path($file);
 
-            // Buat instance dari Reader
-            $csv = Reader::createFromPath($filePath, 'r');
-            $stmt = (new Statement())->offset(0)->limit($desiredRowCount);
+                // Buat instance dari Reader
+                $csv = Reader::createFromPath($filePath, 'r');
+                $stmt = (new Statement())->offset(0)->limit($desiredRowCount);
 
-            $records = $stmt->process($csv);
+                // Proses data CSV
+                $records = $stmt->process($csv);
 
-            // Baca data dari file CSV
-            $headers = $csv->fetchOne();
+                // Baca header dari file CSV
+                $headers = $csv->fetchOne();
 
-            // Simpan data ke dalam array
-            $data[] = [
-                'fileName' => basename($file),
-                'records' => $records,
-            ];
+                // Simpan data ke dalam array
+                $data[] = [
+                    'fileName' => basename($file),
+                    'records' => $records,
+                ];
+            }
         }
 
         return view('admin.detail-dataset', compact(['dataset', 'papers', 'id', 'data']));

@@ -11,7 +11,7 @@
                             class="bi bi-chevron-down"></i></a>
                     <ul>
                         <li><a href="{{ url('donation') }}">Donate New</a></li>
-                        <li><a href="#">Link External</a></li>
+                        <li><a href="{{ url('my/dataset') }}">My Dataset</a></li>
                     </ul>
                 </li>
 
@@ -28,7 +28,7 @@
                             @if (Auth::user()->role == 'admin')
                                 <li><a href="{{ url('admin/dashboard') }}">Dashboard Admin</a></li>
                             @else
-                                <li><a href="#">Profile</a></li>
+                                {{-- <li><a href="#">Profile</a></li> --}}
                             @endif
                             <li><a href="{{ url('logout') }}">Logout</a></li>
                         </ul>

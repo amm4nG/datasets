@@ -17,8 +17,6 @@ use App\Models\Download;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use League\Csv\Reader;
-use GuzzleHttp\Client;
 
 Route::get('/', function () {
     $datasets = Dataset::where('status', 'valid')->get();
@@ -111,6 +109,7 @@ Route::get('donation', [ContributeDatasetController::class, 'index'])->middlewar
 Route::post('more/info', [ContributeDatasetController::class, 'moreInfo'])->middleware(['auth', 'verified']);
 Route::post('donation/store', [ContributeDatasetController::class, 'store'])->middleware(['auth', 'verified']);
 Route::get('my/dataset', [MyDatasetController::class, 'index'])->middleware(['auth', 'verified']);
+Route::get('my/dataset/edit/{id}', [MyDatasetController::class, 'edit'])->middleware(['auth', 'verified']);
 Route::get('my/dataset/{id}', [MyDatasetController::class, 'show'])->middleware(['auth', 'verified']);
 Route::delete('delete/my/dataset/{id}', [MyDatasetController::class, 'destroy'])->middleware(['auth', 'verified']);
 

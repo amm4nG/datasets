@@ -12,6 +12,7 @@
         "laravel/socialite": "^5.11",
         "laravel/tinker": "^2.8",
         "league/csv": "^9.14",
+        "phpoffice/phpspreadsheet": "^3.3",
         "symfony/dom-crawler": "^7.1"
     },
     "require-dev": {
