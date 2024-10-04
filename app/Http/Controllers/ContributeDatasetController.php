@@ -38,8 +38,8 @@ class ContributeDatasetController extends Controller
             [
                 'name' => ['required'],
                 'abstract' => ['required'],
-                'instances' => ['nullable', 'numeric'],
-                'features' => ['nullable', 'numeric'],
+                'instances' => ['required', 'numeric'],
+                'features' => ['required', 'numeric'],
                 'characteristics' => ['nullable'],
                 'subjectArea' => ['nullable'],
                 'associatedTasks' => ['nullable'],
@@ -47,10 +47,8 @@ class ContributeDatasetController extends Controller
             ],
             [
                 'name.required' => 'The dataset name field is required',
-                // 'instances.required' => 'The number of instances field is required',
-                // 'characteristics.required' => 'Select dataset characteristics',
-                // 'subjectArea.required' => 'Please select subject area',
-                // 'associatedTasks.required' => 'Please select associated task',
+                'instances.required' => 'The number of instances field is required',
+                'features.required' => 'The number of features field is required',
             ],
         );
 
