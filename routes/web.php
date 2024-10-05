@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContributeDatasetController;
 use App\Http\Controllers\DatasetController;
+use App\Http\Controllers\DonationPaperController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\LoginGithubController;
@@ -110,8 +111,11 @@ Route::post('more/info', [ContributeDatasetController::class, 'moreInfo'])->midd
 Route::post('donation/store', [ContributeDatasetController::class, 'store'])->middleware(['auth', 'verified']);
 Route::get('my/dataset', [MyDatasetController::class, 'index'])->middleware(['auth', 'verified']);
 Route::get('my/dataset/edit/{id}', [MyDatasetController::class, 'edit'])->middleware(['auth', 'verified']);
+Route::post('more/info/my/dataset', [MyDatasetController::class, 'moreInfo'])->middleware(['auth', 'verified']);
+Route::put('my/dataset/update/{id}', [MyDatasetController::class, 'update'])->middleware(['auth', 'verified']);
 Route::get('my/dataset/{id}', [MyDatasetController::class, 'show'])->middleware(['auth', 'verified']);
 Route::delete('delete/my/dataset/{id}', [MyDatasetController::class, 'destroy'])->middleware(['auth', 'verified']);
+Route::post('donation/paper', [DonationPaperController::class, 'store'])->middleware(['auth', 'verified']);
 
 Route::group(['middleware' => ['auth', 'verified', 'role:admin']], function () {
     Route::get('admin/dashboard', [DashboardController::class, 'index']);
@@ -133,10 +137,6 @@ Route::get('forgot/password', function () {
 Route::post('send/code/verification', [ForgotPasswordController::class, 'sendCodeVerification']);
 Route::post('verify', [ForgotPasswordController::class, 'verify']);
 Route::post('reset/password', [ForgotPasswordController::class, 'resetPassword']);
-
-Route::get('donation/paper', function () {
-    return view('donation-paper');
-});
 
 Route::get('contact/information', function () {
     return view('contact-information');

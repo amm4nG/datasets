@@ -244,44 +244,27 @@
                         <div class="col-md-12">
                             <div class="card p-4">
                                 <div class="card-header">
-                                    <p class="fs-2" style="color: #38527E">Dataset Information</p>
+                                    <p class="fs-2 mt-2" style="color: #38527E">Dataset Information</p>
                                 </div>
                                 <div class="card-body">
                                     {!! $dataset->information !!}
                                 </div>
-                                @foreach ($data as $item)
-                                    <div class="row mb-3">
-                                        <div class="col-md-12">
-                                            <div class="card-body">
-                                                <h3 style="color: #38527E">
-                                                    {{ $item['fileName'] }}
-                                                </h3>
-                                                <p style="margin-top: -7px">Data example</p>
-                                                <div class="table-responsive">
-                                                    <table class="table table-sm table-striped">
-                                                        @php
-                                                            $records = $item['records'];
-                                                        @endphp
-                                                        @foreach ($records as $record)
-                                                            <tr>
-                                                                @foreach ($record as $r)
-                                                                    <td class="text-capitalize text-end">
-                                                                        {{ $r }}
-                                                                    </td>
-                                                                @endforeach
-                                                            </tr>
-                                                        @endforeach
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
+                                <div class="card-header">
+                                    <p class="fs-2 mt-2" style="color: #38527E">Dataset Files</p>
+                                </div>
+                                <div class="card-body">
+                                    <p><a href="{{ url('download/' . $id) }}" style="color: #38527E; text-decoration: none">Download</a> to review</p>
+                                    @foreach ($files as $file)
+                                    <li>
+                                        {{ basename($file) }}
+                                    </li>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12 mt-3">
                             <div class="card p-4">
-                                <div class="card-header">
+                                <div class="card-header mt-2">
                                     <p class="fs-2" style="color: #38527E">Related Papers</p>
                                 </div>
                                 <div class="card-body">

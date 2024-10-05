@@ -183,6 +183,7 @@
                     <div class="col-md-8">
                         <button id="submit" onclick="submit()" type="button" class="btn fs-5 text-light"
                             style="background-color: #38527E">Update</button>
+                            <a href="{{ url('my/dataset') }}" class="btn fs-5 btn-secondary">Cancel</a>
                     </div>
                 </div>
             </div>
@@ -278,7 +279,7 @@
 
             let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 
-            fetch('/more/info', {
+            fetch('/more/info/my/dataset', {
                     method: 'POST',
                     headers: {
                         'X-CSRF-TOKEN': csrfToken,
@@ -360,14 +361,14 @@
 
             let urlPaper = document.getElementById('urlPaper').value
             formData.append('urlPaper', urlPaper)
-
-            console.log(urlPaper);
-
+            formData.append('_method', 'PUT')
             let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-            fetch('/donation/update', {
+            let idDataset = "{{ $dataset->id_dataset }}"
+            fetch('http://127.0.0.1:8000/my/dataset/update/' + idDataset, {
                     method: 'POST',
                     headers: {
                         'X-CSRF-TOKEN': csrfToken,
+                        '_method': 'PUT'
                     },
                     body: formData,
                 })

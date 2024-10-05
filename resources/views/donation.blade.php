@@ -10,8 +10,7 @@
                         publicly
                         available on our
                         repository. Donators are free to edit their donated datasets, but edits must be approved before
-                        finalizing. <a style="color: #38527E" href="{{ url('my/dataset') }}">Show My Dataset <i
-                                class="fas fa-angle-double-right"></i></a></h5>
+                        finalizing. 
                 </div>
                 <form>
                     <div class="row justify-content-center mt-5">

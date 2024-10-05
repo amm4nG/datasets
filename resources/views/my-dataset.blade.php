@@ -1,10 +1,11 @@
 @extends('layouts.app')
-@section('content') 
+@section('content')
     <main>
         <div class="container login-container p-3" style="margin-top: 8rem; margin-bottom: 3rem">
             <div class="row justify-content-center">
                 <div class="col-md-12">
-                    <p class="mb-4 fs-2" style="color: #38527E"><a style="color: #38527E" href="{{ url('donation') }}"><i class="bi bi-arrow-left-short fs-3 "></i></a>My Datasets</p>
+                    <p class="mb-4 fs-2" style="color: #38527E"><a style="color: #38527E" href="{{ url('donation') }}"><i
+                                class="bi bi-arrow-left-short fs-3 "></i></a>My Datasets</p>
                     <div class="card p-4">
                         <div class="table-responsive">
                             <table id="my-datasets" class="text-center table table-bordered table-striped table-sm mt-3">
@@ -33,9 +34,7 @@
                                             </td>
                                             <td>
                                                 <a href="{{ url('my/dataset/edit/' . $dataset->id) }}"
-                                                    class="btn btn-sm btn-warning mb-1 @if($dataset->status == 'pending')
-                                                        disabled
-                                                    @endif"><i
+                                                    class="btn btn-sm btn-warning mb-1 @if ($dataset->status == 'pending') disabled @endif"><i
                                                         class="bi bi-pen text-white fw-bold"></i></a>
                                                 <a href="{{ url('my/dataset/' . $dataset->id) }}"
                                                     class="btn btn-sm btn-primary mb-1"><i
@@ -100,7 +99,8 @@
                                 no++
                                 const status =
                                     `<span class="badge bg-info p-1">${dataset.status}</span>`
-                                const btn = `<a href="{{ url('my/dataset/') }}/${dataset.id}" class="btn btn-sm btn-primary"><i
+                                const btn = `<a href="{{ url('my/dataset/edit/') }}/${dataset.id}" class="btn btn-sm btn-warning mb-1 ${dataset.status === 'pending' ? 'disabled' : ''}"><i class="bi bi-pen text-white fw-bold"></i></a>
+                                <a href="{{ url('my/dataset/') }}/${dataset.id}" class="btn btn-sm btn-primary"><i
                                         class="bi bi-eye text-white fw-bold"></i></a>
                                 <a href="#" onclick="deleteDataset(${dataset.id})" class="btn btn-sm btn-danger"><i
                                         class="bi bi-trash text-white fw-bold"></i></a>`;

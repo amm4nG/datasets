@@ -182,7 +182,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0" style="color: #38527E">Manage Users</h1>
+                        <p class="fs-2 mb-0" style="color: #38527E">Manage Users</p>
                     </div>
 
                     <!-- Content Row -->

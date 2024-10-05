@@ -60,13 +60,14 @@ class ManageDatasetsController extends Controller
             }
         }
 
-        return view('admin.detail-dataset', compact(['dataset', 'papers', 'id', 'data']));
+        return view('admin.detail-dataset', compact(['dataset', 'papers', 'id', 'data', 'files']));
     }
 
     public function valid($id)
     {
         $dataset = Dataset::findOrFail($id);
         $dataset->status = 'valid';
+        $dataset->note = '-';
         $dataset->update();
         return response()->json([
             'message' => 'success',
