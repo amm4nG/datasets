@@ -102,13 +102,13 @@
 
 @endsection
 @section('scripts')
-    {{-- <script>
-        let datasets = document.getElementById('datasets')
+    <script>
+        // let datasets = document.getElementById('datasets')
         let searchResults = document.getElementById('search-results');
 
         document.getElementById('searching').addEventListener('focus', function() {
-            datasets.classList.add('d-none')
-            searchResults.classList.add('show')
+            // datasets.classList.add('d-none')
+            // searchResults.classList.add('show')
         })
 
         let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
@@ -143,7 +143,6 @@
                                     `
                                     <a href="#" class="dropdown-item">${element.name}</a>
                                     `
-                                // `<p onclick="detail(${element.id})" class="dropdown-item-text">${element.name}</p>`
                             });
                         } else {
                             searchResults.innerHTML = ""
@@ -152,28 +151,13 @@
                             <a href="#" class="dropdown-item disabled">Data Tidak Ditemukan</a>
                             `
                         }
+                    }else{
+                    searchResults.classList.remove('show');
                     }
                 })
                 .catch(error => {
                     console.error('Ada kesalahan:', error.message);
                 });
         })
-        // });
-
-        // Menggunakan event blur untuk menyembunyikan dropdown saat inputan kehilangan fokus
-        // document.getElementById('search').addEventListener('blur', function() {
-        //     var searchResults = document.getElementById('searchResults');
-
-        // Menyembunyikan dropdown setelah jeda kecil untuk memberi waktu pengguna memilih
-        //     setTimeout(function() {
-        //         searchResults.style.display = 'none';
-        //     }, 200);
-        // });
-
-
-        //     function detail(id) {
-        //         window.location.href = "detail/dataset/" + id
-        //     }
-        // 
-    </script> --}}
+    </script>
 @endsection

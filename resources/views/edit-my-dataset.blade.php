@@ -149,11 +149,19 @@
                         <p class="card-title fs-2 mb-1 text-start" style="color: #38527E;">File Dataset</p>
                         <div class="card p-4">
                             <input type="file" multiple class="form-control" name="" id="file">
-                            <p class="mt-2 ms-2"> Files:
+                            <p class="mt-4"> Files:
                                 @foreach ($files as $file)
-                                    {{ basename($file->url_file) }}@if (!$loop->last)
-                                        ,
-                                    @endif
+                                    <li class="ms-2" id="file-{{ $file->id }}">
+                                        <span href="#"
+                                            class="text-dark">{{ basename($file->url_file) }}</span><span
+                                            class="p-2"><a href="#" data-idFile="{{ $file->id }}"
+                                                class="remove-file">
+                                                {{-- @if ($files->count() > 1)
+                                                <i id="idFileIcon-{{ $file->id }}"
+                                                    class="fas fa-trash-alt text-danger icon-file-remove"></i>
+                                                @endif --}}
+                                                </a></span>
+                                    </li>
                                 @endforeach
                             </p>
                         </div>
@@ -174,7 +182,8 @@
                                     <li class="ms-2"id="paper-{{ $paper->id }}">
                                         <a href="{{ $paper->url }}" class="text-dark">{{ $paper->title }}</a><span
                                             class="p-2"><a href="#" data-idPaper="{{ $paper->id }}"
-                                                class="remove-paper"><i id="idIcon-{{ $paper->id }}"
+                                                class="remove-paper">
+                                                <i id="idIcon-{{ $paper->id }}"
                                                     class="fas fa-trash-alt text-danger icon-remove"></i></a></span>
                                     </li>
                                 @endforeach
@@ -343,6 +352,25 @@
                 });
         }
 
+        // let removedFiles = [];
+        // document.querySelectorAll('.remove-file').forEach(function(icon) {
+        //     icon.addEventListener('click', function(event) {
+        //         event.preventDefault();
+        //         const idFile = Number(this.getAttribute('data-idFile'));
+        //         const iconElement = this.querySelector('svg');
+        //         if (!removedFiles.includes(idFile)) {
+        //             removedFiles.push(idFile);
+        //             iconElement.classList.remove('fa-trash-alt');
+        //             iconElement.classList.add('fa-times-circle');
+        //         } else {
+        //             removedFiles = removedFiles.filter(id => id !== idFile);
+        //             iconElement.classList.remove('fa-times-circle');
+        //             iconElement.classList.add('fa-trash-alt');
+        //         }
+        //         console.log(removedFiles);
+        //     });
+        // });
+
         let removedPapers = [];
         document.querySelectorAll('.remove-paper').forEach(function(icon) {
             icon.addEventListener('click', function(event) {
@@ -360,8 +388,6 @@
                     iconElement.classList.remove('fa-times-circle');
                     iconElement.classList.add('fa-trash-alt');
                 }
-                // console.log(removedPapers);
-
             });
         });
 
@@ -386,6 +412,10 @@
 
             let urlPaper = document.getElementById('urlPaper').value
             formData.append('urlPaper', urlPaper)
+
+            // removedFiles.forEach(id => {
+            //     formData.append('removeFiles[]', id);
+            // });
 
             removedPapers.forEach(id => {
                 formData.append('removePapers[]', id);

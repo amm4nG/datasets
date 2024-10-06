@@ -156,6 +156,14 @@ class MyDatasetController extends Controller
                 }
             }
 
+            // if (!empty($request->removeFiles)) {
+            //     foreach ($request->removeFiles as $removeFile) {
+            //         $file = UrlFile::find($removeFile);
+            //         Storage::delete('public/' . $file->url_file);
+            //         $file->delete();
+            //     }
+            // }
+
             DB::commit();
 
             return response()->json([
@@ -166,8 +174,8 @@ class MyDatasetController extends Controller
             DB::rollBack();
             return response()->json([
                 'status' => 500,
-                'message' => $th->getMessage(),
-                // 'message' => 'There is an error',
+                // 'message' => $th->getMessage(),
+                'message' => 'There is an error',
             ]);
         }
     }
@@ -243,6 +251,7 @@ class MyDatasetController extends Controller
                 Storage::delete('public/' . $urlFile->url_file);
                 $urlFile->delete();
             }
+
             DB::commit();
 
             $datasets = Dataset::where('id_user', Auth::user()->id)->get();
