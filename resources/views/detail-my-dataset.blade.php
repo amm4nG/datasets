@@ -15,7 +15,7 @@
                     <div class="card p-3">
                         <div class="row align-items-center">
                             <div class="col-md-1" id="img-dataset">
-                                <img class="img-fluid" src="{{ asset('assets/img/clients/client-6.png') }}" alt="">
+                                <i class="fad fa-database fa-4x ms-3" style="color: #38527E"></i>
                             </div>
                             <div class="col-md-11 mb-2">
                                 <a href="{{ url('detail') }}">
@@ -31,31 +31,47 @@
                             <div class="col-md-3 ms-3">
                                 <h4>Dataset Characteristics</h4>
                                 <p>
-                                    @foreach ($characteristics as $characteristic)
-                                        {{ $characteristic->name_characteristic }}
-                                    @endforeach
+                                    @if ($characteristics->count() > 0)
+                                        @foreach ($characteristics as $characteristic)
+                                            {{ $characteristic->name_characteristic }} @if (!$loop->last)
+                                                ,
+                                            @endif
+                                        @endforeach
+                                    @else
+                                        -
+                                    @endif
                                 </p>
                             </div>
                             <div class="col-md-3 ms-3">
                                 <h4>Subject Area</h4>
                                 <p>
-                                    {{ $dataset->name_subject_area }}
+                                    {{ $dataset->name_subject_area ?? '-' }}
                                 </p>
                             </div>
                             <div class="col-md-3 ms-3">
                                 <h4>Associated Tasks</h4>
                                 <p>
-                                    @foreach ($associatedTasks as $associatedTask)
-                                        {{ $associatedTask->name_associated_task }}
-                                    @endforeach
+                                    @if ($associatedTasks->count() > 0)
+                                        @foreach ($associatedTasks as $associatedTask)
+                                            {{ $associatedTask->name_associated_task }} @if (!$loop->last)
+                                                ,
+                                            @endif
+                                        @endforeach
+                                    @else
+                                        -
+                                    @endif
                                 </p>
                             </div>
                             <div class="col-md-3 ms-3">
                                 <h4>Feature Type</h4>
                                 <p>
-                                    @foreach ($featureTypes as $featureType)
-                                        {{ $featureType->name_feature_type }}
-                                    @endforeach
+                                    @if ($featureTypes->count() > 0)
+                                        @foreach ($featureTypes as $featureType)
+                                            {{ $featureType->name_feature_type }}
+                                        @endforeach
+                                    @else
+                                        -
+                                    @endif
                                 </p>
                             </div>
                             <div class="col-md-3 ms-3">

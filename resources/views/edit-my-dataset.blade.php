@@ -126,10 +126,10 @@
                     </div>
                     <div class="row justify-content-center mt-3">
                         <div class="col-md-8">
-                            <button type="button" id="btnNext" onclick="next()" class="btn fs-5 text-light mt-2"
+                            <a href="#" id="btnNext" onclick="next()" class="btn fs-5 text-light mt-2"
                                 style="background-color: #38527E; width: 6rem"><i class="fas fa-angle-double-right"></i>
                                 Next
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </form>
@@ -160,7 +160,7 @@
                                                 <i id="idFileIcon-{{ $file->id }}"
                                                     class="fas fa-trash-alt text-danger icon-file-remove"></i>
                                                 @endif --}}
-                                                </a></span>
+                                            </a></span>
                                     </li>
                                 @endforeach
                             </p>
@@ -193,8 +193,11 @@
                 </div>
                 <div class="row justify-content-center mt-4">
                     <div class="col-md-8">
+                        <a href="#" class="btn btn-secondary fs-5" onclick="previous()" id="previous"><i
+                                class="fas fa-angle-double-left"></i>
+                            Previous</a>
                         <button id="submit" onclick="submit()" type="button" class="btn fs-5 text-light"
-                            style="background-color: #38527E">Update</button>
+                            style="background-color: #38527E"><i class="fas fa-save"></i> Submit</button>
                         <a href="{{ url('my/dataset') }}" class="btn fs-5 btn-secondary">Cancel</a>
                     </div>
                 </div>
@@ -390,6 +393,12 @@
                 }
             });
         });
+
+        function previous() {
+            document.getElementById('basic-info').style.display = "block"
+            document.getElementById('more-info').style.display = "none"
+            document.getElementById('btnNext').disabled = false
+        }
 
         function submit() {
             document.getElementById('submit').disabled = true

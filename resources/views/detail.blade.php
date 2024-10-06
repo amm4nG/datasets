@@ -26,31 +26,47 @@
                             <div class="col-md-3">
                                 <h4>Characteristics</h4>
                                 <p>
-                                    @foreach ($characteristics as $characteristic)
-                                        {{ $characteristic->name_characteristic }}
-                                    @endforeach
+                                    @if ($characteristics->count() > 0)
+                                        @foreach ($characteristics as $characteristic)
+                                            {{ $characteristic->name_characteristic }} @if (!$loop->last)
+                                                ,
+                                            @endif
+                                        @endforeach
+                                    @else
+                                        -
+                                    @endif
                                 </p>
                             </div>
                             <div class="col-md-3">
                                 <h4>Subject Area</h4>
                                 <p>
-                                    {{ $dataset->name_subject_area }}
+                                    {{ $dataset->name_subject_area ?? '-' }}
                                 </p>
                             </div>
                             <div class="col-md-3">
                                 <h4>Associated Tasks</h4>
                                 <p>
-                                    @foreach ($associatedTasks as $associatedTask)
-                                        {{ $associatedTask->name_associated_task }}
-                                    @endforeach
+                                    @if ($associatedTasks->count() > 0)
+                                        @foreach ($associatedTasks as $associatedTask)
+                                            {{ $associatedTask->name_associated_task }} @if (!$loop->last)
+                                                ,
+                                            @endif
+                                        @endforeach
+                                    @else
+                                        -
+                                    @endif
                                 </p>
                             </div>
                             <div class="col-md-3">
                                 <h4>Feature Type</h4>
                                 <p>
-                                    @foreach ($featureTypes as $featureType)
-                                        {{ $featureType->name_feature_type }}
-                                    @endforeach
+                                    @if ($featureTypes->count() > 0)
+                                        @foreach ($featureTypes as $featureType)
+                                            {{ $featureType->name_feature_type }}
+                                        @endforeach
+                                    @else
+                                        -
+                                    @endif
                                 </p>
                             </div>
                             <div class="col-md-3">
@@ -90,10 +106,11 @@
                                         style="color: #38527E">{{ $paper->title }}</a></p>
                                 <p style="margin-top: -17px">{{ $paper->description ?? '-' }}</p>
                             @endforeach
-                        </div> 
+                        </div>
                         <div class="card-body">
                             <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                class="btn btn-sm p-2 text-white ps-3 pe-3" style="background-color: #38527E">Donation paper</a>
+                                class="btn btn-sm p-2 text-white ps-3 pe-3" style="background-color: #38527E">Donation
+                                paper</a>
                         </div>
                     </div>
                 </div>

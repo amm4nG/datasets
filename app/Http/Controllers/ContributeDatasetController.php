@@ -133,13 +133,22 @@ class ContributeDatasetController extends Controller
                 }
             }
 
-            $paper = new Paper();
-            $paper->id_user = Auth::user()->id;
-            $paper->id_dataset = $dataset->id;
-            $paper->title = $request->title ?? '-';
-            $paper->description = $request->description;
-            $paper->url = $request->urlPaper;
-            $paper->save();
+            if ($request->title) {
+                if (!$request->url) {
+                    return response()->json([
+                        'status' => 422,
+                        'message' => 'The link paper field is required'
+                    ]);
+                }
+                $paper = new Paper();
+                $paper->id_user = Auth::user()->id;
+                $paper->id_dataset = $dataset->id;
+                $paper->title = $request->title ?? '-';
+                $paper->description = $request->description;
+                $paper->url = $request->urlPaper;
+                $paper->save();
+            }
+
 
             DB::commit();
 
