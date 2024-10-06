@@ -27,7 +27,7 @@ class DatasetController extends Controller
 
     public function show($id)
     {
-        $dataset = Dataset::join('subject_areas', 'subject_areas.id', '=', 'datasets.id_subject_area')->join('users', 'users.id', '=', 'datasets.id_user')->find($id);
+        $dataset = Dataset::leftJoin('subject_areas', 'subject_areas.id', '=', 'datasets.id_subject_area')->join('users', 'users.id', '=', 'datasets.id_user')->find($id);
         $characteristics = DatasetCharacteristic::join('characteristics', 'characteristics.id', '=', 'dataset_characteristics.id_characteristic')
             ->where('id_dataset', $id)
             ->get();

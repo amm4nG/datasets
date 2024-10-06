@@ -3,7 +3,7 @@
     <div class="footer-top">
         <div class="container p-3">
             <div class="row">
-                <div class="col-lg-3 col-md-6 footer-contact">
+                <div class="col-lg-4 col-md-6 footer-contact">
                     <h3><i class="fad fa-database"></i> DATAU</h3>
                     <p>
                         Program Studi Teknik Informatika <br> Universitas Sulawesi Barat. <br><br>
@@ -12,7 +12,7 @@
                     </p>
                 </div>
 
-                <div class="col-lg-3 col-md-6 footer-links">
+                <div class="col-lg-4 col-md-6 footer-links">
                     <h4><i class="far fa-link"></i> Useful Links</h4>
                     <ul>
                         <li><i class="bx bx-chevron-right"></i> <a href="#">Datasets</a></li>
@@ -21,15 +21,14 @@
                     </ul>
                 </div>
 
-                <div class="col-lg-3 col-md-6 footer-links">
+                <div class="col-lg-4 col-md-6 footer-links">
                     <h4><i class="far fa-wreath"></i> Our Services</h4>
-                    <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
+                    <ul> 
                         <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
                     </ul>
                 </div>
 
-                <div class="col-lg-3 col-md-6 footer-links">
+                {{-- <div class="col-lg-3 col-md-6 footer-links">
                     <h4><i class="far fa-share-alt"></i> Our Social Networks</h4>
                     <div class="social-links mt-3">
                         <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
@@ -38,7 +37,7 @@
                         <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
                         <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
                     </div>
-                </div>
+                </div> --}}
 
             </div>
         </div>

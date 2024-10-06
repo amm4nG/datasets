@@ -94,7 +94,7 @@
                                 <p class="fs-5"><a target="_blank" href="{{ url('' . $paper->url) }}"
                                         style="color: #38527E">{{ $paper->title }}</a>
                                 </p>
-                                <p style="margin-top: -17px">{{ $paper->description }}</p>
+                                <p style="margin-top: -17px">{{ $paper->description ?? '-' }}</p>
                             @endforeach
                         </div>
                     </div>

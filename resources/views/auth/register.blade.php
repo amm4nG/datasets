@@ -54,23 +54,23 @@
                                         placeholder="">
                                 </div>
                                 <button type="submit" class="btn form-control" style="background-color: #38527E">
-                                    <h5 class="text-light mt-2"><i class="far fa-user-plus"></i> Submit</h5>
+                                    <h5 class="text-light mt-2"><i class="far fa-user-plus"></i> Register</h5>
                                 </button>
                                 <div class="divider "><span>Or Login with Provider</span></div>
 
                                 <div class="row mt-3 justify-content-center">
                                     <div class="col-md-3 mb-2">
                                         <a href="{{ url('auth/google/redirect') }}">
-                                            <div class="card p-2">
+                                            <div class="card p-2 d-flex justify-content-center align-items-center">
                                                 <iconify-icon icon="flat-color-icons:google"
-                                                    class="fs-2 ms-2"></iconify-icon>
+                                                    class="fs-2"></iconify-icon>
                                             </div>
                                         </a>
                                     </div>
                                     <div class="col-md-3 ">
                                         <a href="{{ url('auth/github/redirect') }}">
-                                            <div class="card p-2">
-                                                <iconify-icon icon="devicon:github" class="fs-2 ms-2"></iconify-icon>
+                                            <div class="card p-2 d-flex justify-content-center align-items-center">
+                                                <iconify-icon icon="devicon:github" class="fs-2"></iconify-icon>
                                             </div>
                                         </a>
                                     </div>

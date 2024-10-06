@@ -150,6 +150,12 @@ class MyDatasetController extends Controller
                 $paper->save();
             }
 
+            if (!empty($request->removePapers)) {
+                foreach ($request->removePapers as $removePaper) {
+                    Paper::find($removePaper)->delete();
+                }
+            }
+
             DB::commit();
 
             return response()->json([

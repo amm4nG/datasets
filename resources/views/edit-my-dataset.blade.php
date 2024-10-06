@@ -169,11 +169,14 @@
                                 placeholder="Description"></textarea>
                             <input type="url" class="form-control" placeholder="Link paper" name="urlPaper"
                                 id="urlPaper">
-                            <p class="mt-2 ms-2"> Papers:
+                            <p class="mt-4"> Papers:
                                 @foreach ($papers as $paper)
-                                    {{ $paper->title }}@if (!$loop->last)
-                                        ,
-                                    @endif
+                                    <li class="ms-2"id="paper-{{ $paper->id }}">
+                                        <a href="{{ $paper->url }}" class="text-dark">{{ $paper->title }}</a><span
+                                            class="p-2"><a href="#" data-idPaper="{{ $paper->id }}"
+                                                class="remove-paper"><i id="idIcon-{{ $paper->id }}"
+                                                    class="fas fa-trash-alt text-danger icon-remove"></i></a></span>
+                                    </li>
                                 @endforeach
                             </p>
                         </div>
@@ -183,7 +186,7 @@
                     <div class="col-md-8">
                         <button id="submit" onclick="submit()" type="button" class="btn fs-5 text-light"
                             style="background-color: #38527E">Update</button>
-                            <a href="{{ url('my/dataset') }}" class="btn fs-5 btn-secondary">Cancel</a>
+                        <a href="{{ url('my/dataset') }}" class="btn fs-5 btn-secondary">Cancel</a>
                     </div>
                 </div>
             </div>
@@ -340,6 +343,28 @@
                 });
         }
 
+        let removedPapers = [];
+        document.querySelectorAll('.remove-paper').forEach(function(icon) {
+            icon.addEventListener('click', function(event) {
+                event.preventDefault();
+                const idPaper = Number(this.getAttribute('data-idPaper'));
+                const iconElement = this.querySelector('svg');
+                // console.log(iconElement);
+
+                if (!removedPapers.includes(idPaper)) {
+                    removedPapers.push(idPaper);
+                    iconElement.classList.remove('fa-trash-alt');
+                    iconElement.classList.add('fa-times-circle');
+                } else {
+                    removedPapers = removedPapers.filter(id => id !== idPaper);
+                    iconElement.classList.remove('fa-times-circle');
+                    iconElement.classList.add('fa-trash-alt');
+                }
+                // console.log(removedPapers);
+
+            });
+        });
+
         function submit() {
             document.getElementById('submit').disabled = true
             let information = document.getElementById('information').value
@@ -361,6 +386,11 @@
 
             let urlPaper = document.getElementById('urlPaper').value
             formData.append('urlPaper', urlPaper)
+
+            removedPapers.forEach(id => {
+                formData.append('removePapers[]', id);
+            });
+
             formData.append('_method', 'PUT')
             let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
             let idDataset = "{{ $dataset->id_dataset }}"

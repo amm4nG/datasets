@@ -90,14 +90,10 @@
                                         style="color: #38527E">{{ $paper->title }}</a></p>
                                 <p style="margin-top: -17px">{{ $paper->description ?? '-' }}</p>
                             @endforeach
-                        </div>
-                        <div class="card-header">
-                            <p class="fs-2 mt-2" style="color: #38527E">Donation Paper</p>
-                        </div>
+                        </div> 
                         <div class="card-body">
                             <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                class="btn btn-sm p-2 text-white ps-3 pe-3" style="background-color: #38527E">Show form
-                                donation</a>
+                                class="btn btn-sm p-2 text-white ps-3 pe-3" style="background-color: #38527E">Donation paper</a>
                         </div>
                     </div>
                 </div>
