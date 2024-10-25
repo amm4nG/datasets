@@ -6,11 +6,10 @@
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="">
-                        <p class="fs-2" style="color: #38527E">About <span class="fw-bold">DATAU</span></p>
+                        <p class="fs-2" style="color: #38527E">Siapa Kami ?<span class="fw-bold"></span></p>
                         <h5 class="text-start mt-5" style="color: gray;">
-                            The DATAU is a collection of databases, domain theories, and data
-                            generators that are used by the machine learning community for the empirical analysis of machine
-                            learning algorithms.
+                            DATAU adalah kumpulan dataset, teori domain, dan generator data yang digunakan oleh komunitas pembelajaran mesin
+                            untuk analisis empiris algoritma pembelajaran mesin.
                         </h5>
                     </div>
                 </div>

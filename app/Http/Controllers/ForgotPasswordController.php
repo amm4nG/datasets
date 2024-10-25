@@ -17,6 +17,8 @@ class ForgotPasswordController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'email' => ['required', 'email'],
+        ], [
+            'email.required' => 'Harap masukkan email Anda'
         ]);
 
         if ($validator->fails()) {
@@ -30,7 +32,7 @@ class ForgotPasswordController extends Controller
             if (!$user) {
                 return response()->json([
                     'status' => 404,
-                    'message' => 'Email not found',
+                    'message' => 'Email tidak ditemukan',
                 ]);
             }
 
@@ -38,13 +40,13 @@ class ForgotPasswordController extends Controller
             $user->password = Hash::make($codeVerification);
             $user->update();
 
-            Mail::raw("This is your verification code $codeVerification, don't give it to anyone", function ($message) use ($request) {
+            Mail::raw("Ini adalah kode verifikasi akun DATAU anda $codeVerification, jangan berikan kepada siapapun", function ($message) use ($request) {
                 $message->to($request->email)->subject('Code Verification');
             });
 
             return response()->json([
                 'status' => 200,
-                'message' => 'We have sent you a verification code',
+                'message' => 'Kami telah mengirim kode verifikasi ke email Anda',
             ]);
         } catch (\Throwable $th) {
             return response()->json([
@@ -69,13 +71,13 @@ class ForgotPasswordController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->code_verification])) {
             return response()->json([
                 'status' => 200,
-                'message' => 'Verification successful',
+                'message' => 'Verifikasi berhasil',
             ]);
         }
 
         return response()->json([
             'status' => 422,
-            'message' => 'Code verification is invalid',
+            'message' => 'Kode verifikasi tidak sesuai',
         ]);
     }
 
@@ -97,7 +99,7 @@ class ForgotPasswordController extends Controller
         $user->update();
         return response()->json([
             'status' => 200,
-            'message' => 'Password changed successfully',
+            'message' => 'Password berhasil dirubah',
         ]);
     }
 }

@@ -20,45 +20,46 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    $datasets = Dataset::where('status', 'valid')->get();
-    $countDownloads = [];
-    foreach ($datasets as $dataset) {
-        $downloads = Download::where('id_dataset', $dataset->id)->get();
-        foreach ($downloads as $download) {
-            $countDownloads[] = $dataset->id;
-        }
-    }
+    // $datasets = Dataset::where('status', 'valid')->get();
+    // $countDownloads = [];
+    // foreach ($datasets as $dataset) {
+    //     $downloads = Download::where('id_dataset', $dataset->id)->get();
+    //     foreach ($downloads as $download) {
+    //         $countDownloads[] = $dataset->id;
+    //     }
+    // }
 
-    // $count = max(array_count_values($countDownloads));
+    // // $count = max(array_count_values($countDownloads));
 
-    $dataset = Dataset::where('status', 'valid')->latest()->first();
+    // $dataset = Dataset::where('status', 'valid')->latest()->first();
 
-    $newDataset = true;
-    if (empty($dataset)) {
-        $newDataset = false;
-    }
+    // $newDataset = true;
+    // if (empty($dataset)) {
+    //     $newDataset = false;
+    // }
 
-    // Check if $countDownloads is not empty before using max
-    if (!empty($countDownloads)) {
-        $count = max(array_count_values($countDownloads));
+    // // Check if $countDownloads is not empty before using max
+    // if (!empty($countDownloads)) {
+    //     $count = max(array_count_values($countDownloads));
 
-        // Menghitung berapa kali setiap nilai muncul dalam array
-        $counts = array_count_values($countDownloads);
+    //     // Menghitung berapa kali setiap nilai muncul dalam array
+    //     $counts = array_count_values($countDownloads);
 
-        // Menentukan nilai yang paling banyak muncul
-        $maxCount = max($counts);
+    //     // Menentukan nilai yang paling banyak muncul
+    //     $maxCount = max($counts);
 
-        // Mendapatkan nilai yang paling banyak muncul
-        $mostCommonValue = array_search($maxCount, $counts);
+    //     // Mendapatkan nilai yang paling banyak muncul
+    //     $mostCommonValue = array_search($maxCount, $counts);
 
-        $popularDataset = Dataset::findOrFail($mostCommonValue);
-    } else {
-        // Handle the case when $countDownloads is empty
-        $count = 0;
-        $popularDataset = null;
-    }
+    //     $popularDataset = Dataset::findOrFail($mostCommonValue);
+    // } else {
+    //     // Handle the case when $countDownloads is empty
+    //     $count = 0;
+    //     $popularDataset = null;
+    // }
 
-    return view('welcome', compact(['dataset', 'countDownloads', 'popularDataset', 'newDataset']));
+    // return view('welcome', compact(['dataset', 'countDownloads', 'popularDataset', 'newDataset']));
+    return view('welcome');
 });
 
 Route::get('/email/verify', function () {
@@ -148,15 +149,4 @@ Route::get('about', function () {
 Route::post('search/dataset', function (Request $request) {
     $datasets = Dataset::where('name', 'like', '%' . $request->name . '%')->where('status', 'valid')->get();
     return response()->json($datasets);
-});
-
-// Route::post('post', function(Request $request){
-
-//     // lakukan operasi untuk menyimpan data suhu
-
-//     // kemudian kembalika dalam bentuk json
-//     return response()->json([
-//         'message' => 'Successfully',
-//         'suhu' => $request->suhu
-//     ]);
-// });
+}); 

@@ -46,9 +46,10 @@ class ContributeDatasetController extends Controller
                 'featureTypes' => ['nullable'],
             ],
             [
-                'name.required' => 'The dataset name field is required',
-                'instances.required' => 'The number of instances field is required',
-                'features.required' => 'The number of features field is required',
+                'name.required' => 'Harap masukkan nama dataset Anda',
+                'abstract.required' => 'Harap masukkan abstract dataset',
+                'instances.required' => 'Harap masukkan jumlah baris dalam dataset',
+                'features.required' => 'Harap masukkan jumlah fitur dalam dataset',
             ],
         );
 
@@ -75,8 +76,8 @@ class ContributeDatasetController extends Controller
                 'files' => ['required'],
             ],
             [
-                'information.required' => 'The dataset information field is required',
-                'files.required' => 'The file dataset field is required',
+                'information.required' => 'Harap masukkan informasi dataset',
+                'files.required' => 'Harap masukkan file dataset Anda',
             ],
         );
 
@@ -137,7 +138,7 @@ class ContributeDatasetController extends Controller
                 if (!$request->url) {
                     return response()->json([
                         'status' => 422,
-                        'message' => 'The link paper field is required'
+                        'message' => 'Harap isi link paper'
                     ]);
                 }
                 $paper = new Paper();
@@ -160,7 +161,7 @@ class ContributeDatasetController extends Controller
             DB::rollBack();
             return response()->json([
                 'status' => 500,
-                'message' => 'There is an error',
+                'message' => 'Terjadi kesalahan, silahkan coba lagi!',
             ]);
         }
     }

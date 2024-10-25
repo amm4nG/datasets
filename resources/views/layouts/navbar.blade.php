@@ -6,19 +6,20 @@
         <nav id="navbar" class="navbar p-4">
             <ul>
                 {{-- <li><input type="text" class="form-control ms-2 mr-2" name="" id=""></li> --}}
+                <li><a class="nav-link" href="{{ url('/') }}">Beranda</a></li>
                 <li><a class="nav-link" href="{{ url('datasets') }}">Datasets</a></li>
-                <li class="dropdown"><a href="#"><span>Contribute dataset</span> <i
+                <li class="dropdown"><a href="#"><span>Kontribusi Dataset</span> <i
                             class="bi bi-chevron-down"></i></a>
                     <ul>
-                        <li><a href="{{ url('donation') }}">Donate New</a></li>
-                        <li><a href="{{ url('my/dataset') }}">My Dataset</a></li>
+                        <li><a href="{{ url('donation') }}">Sumbang Dataset</a></li>
+                        <li><a href="{{ url('my/dataset') }}">Manajemen Dataset Saya</a></li>
                     </ul>
                 </li>
 
-                <li class="dropdown"><a href="#"><span>About Us</span><i class="bi bi-chevron-down"></i></a>
+                <li class="dropdown"><a href="#"><span>Tentang Kami</span><i class="bi bi-chevron-down"></i></a>
                     <ul>
-                        <li><a href="{{ url('about') }}">Who We Are</a></li>
-                        <li><a href="{{ url('contact/information') }}">Contact Information</a></li>
+                        <li><a href="{{ url('about') }}">Siapa Kami ?</a></li>
+                        <li><a href="{{ url('contact/information') }}">Informasi Kontak</a></li>
                     </ul>
                 </li>
                 @auth
@@ -30,14 +31,14 @@
                             @else
                                 {{-- <li><a href="#">Profile</a></li> --}}
                             @endif
-                            <li><a href="{{ url('logout') }}">Logout</a></li>
+                            <li><a href="{{ url('logout') }}">Keluar</a></li>
                         </ul>
                     </li>
                 @endauth
-                </li>
-                @guest
-                    <a href="{{ url('login') }}" class="text-center">Login</a>
-                @endguest
+                <li>
+                    @guest
+                        <a href="{{ url('login') }}" class="text-center">Masuk</a>
+                    @endguest
                 </li>
             </ul>
 

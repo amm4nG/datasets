@@ -4,11 +4,11 @@
         <div class="container p-3" style="margin-top: 9rem">
             <div class="row">
                 <div class="col-md-12">
-                    <p class="fs-2" style="color: #38527E"><i class="fad fa-search"></i> Browse Dataset</p>
+                    <p class="fs-2" style="color: #38527E"><i class="fad fa-search"></i> Temukan Dataset</p>
                     <div class="row mt-4">
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <input type="text" class="form-control p-3 rounded-4" autocomplete="off" id="searching"
-                                placeholder="Search Data">
+                                placeholder="Cari">
                             <div class="dropdown mt-2">
                                 <div class="dropdown-menu p-0" id="search-results">
                                     @foreach ($datasets as $dataset)
@@ -135,7 +135,7 @@
                     if (search.value.length > 0) {
                         searchResults.innerHTML +=
                             `
-                            <a href="#" class="dropdown-item disabled">Hasil Pencarian Anda :</a>
+                            <a href="#" class="dropdown-item disabled">Your search results :</a>
                             `
                         if (data.length > 0) {
                             data.forEach(element => {
@@ -148,7 +148,7 @@
                             searchResults.innerHTML = ""
                             searchResults.innerHTML +=
                                 `
-                            <a href="#" class="dropdown-item disabled">Data Tidak Ditemukan</a>
+                            <a href="#" class="dropdown-item disabled">Data not found</a>
                             `
                         }
                     }else{

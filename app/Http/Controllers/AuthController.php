@@ -18,6 +18,9 @@ class AuthController extends Controller
         $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
+        ], [
+            'email.required' => 'Harap masukkan email',
+            'password.required' => 'Harap masukkan password',
         ]);
 
         $credential = $request->only('email', 'password');
@@ -32,7 +35,7 @@ class AuthController extends Controller
             }
         }
         return back()->withErrors([
-            'message' => 'Email or password invalid',
+            'message' => 'Email atau password Anda salah',
         ]);
     }
 

@@ -8,16 +8,16 @@
                     <div class="card p-5 rounded-3">
                         <div class="card-body ">
                             <form id="test1">
-                                <h4 class="fs-2" style="color: #38527E">Forgot Password</h4>
+                                <h4 class="fs-2 mb-5 text-center" style="color: #38527E">Lupa Password</h4>
                                 <div class="mb-3">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" autofocus placeholder="example@gmail.com" class="form-control"
+                                    <label for="email" class="form-label">Masukkan Email</label>
+                                    <input type="email" autofocus placeholder="" class="form-control"
                                         name="email" id="email">
                                     <div id="invalid-feedback" class="invalid-feedback">
                                     </div>
                                     <button type="button" id="btnSendCode" onclick="sendCodeVerification()"
                                         class="btn  w-100 mt-4" style="background-color: #38527E">
-                                        <h5 class="text-light mt-2"><i class="fal fa-inbox-in"></i> Submit</h5>
+                                        <h5 class="text-light mt-2"><i class="fal fa-inbox-in"></i> Kirim</h5>
                                     </button>
                             </form>
                         </div>
@@ -68,7 +68,7 @@
                         document.getElementById('btnSendCode').disabled = false
                     } else {
                         document.getElementById('test1').innerHTML = `
-                            <h4 class="fs-2" style="color: #38527E">Verification Code</h4>
+                            <h4 class="fs-2" style="color: #38527E">Masukkan kode verifikasi</h4>
                             <div id="message" class="alert alert-warning alert-dismissible fade show" role="alert">
                                 ${data.message}
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -79,7 +79,7 @@
                                 </div>
                                 <button id="btnVerify" type="button" onclick="verify()" class="btn w-100 mt-4"
                                     style="background-color: #38527E">
-                                    <h5 class="text-light mt-2">Verify</h5>
+                                    <h5 class="text-light mt-2">Verifikasi</h5>
                                 </button>
                         `
                     }

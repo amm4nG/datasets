@@ -113,7 +113,7 @@
     @include('layouts.footer')
     <script>
         $('#information').summernote({
-            placeholder: 'Enter your dataset information here!',
+            placeholder: 'Masukkan informasi dataset',
             tabsize: 2,
             height: 120,
             toolbar: [

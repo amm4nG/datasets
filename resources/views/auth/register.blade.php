@@ -9,10 +9,10 @@
                         <div class="card-body">
                             <form action="{{ url('register/user') }}" method="post">
                                 @csrf
-                                <h4 class="fs-2" style="color: #38527E">Sign Up</h4>
-                                <h5>Already have an account? <a href="{{ url('login') }}">Sign In</a></h5>
+                                <h4 class="fs-2" style="color: #38527E">Daftar</h4>
+                                <h5>Sudah punya akun? <a href="{{ url('login') }}">Masuk</a></h5>
                                 <div class="mb-3">
-                                    <label for="Fullname" class="form-label">Full Name</label>
+                                    <label for="Fullname" class="form-label">Nama Lengkap</label>
                                     <input type="text" value="{{ old('full_name') }}"
                                         class="form-control @error('full_name') is-invalid                                        
                                     @enderror"
@@ -48,15 +48,15 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <label for="confirm password" class="form-label">Confirm Password</label>
+                                    <label for="confirm password" class="form-label">Konfirmasi Password</label>
                                     <input type="password" name="password_confirmation"
                                         class="form-control @error('password') is-invalid @enderror" id="confirm password"
                                         placeholder="">
                                 </div>
                                 <button type="submit" class="btn form-control" style="background-color: #38527E">
-                                    <h5 class="text-light mt-2"><i class="far fa-user-plus"></i> Register</h5>
+                                    <h5 class="text-light mt-2"><i class="far fa-user-plus"></i> Daftar</h5>
                                 </button>
-                                <div class="divider "><span>Or Login with Provider</span></div>
+                                <div class="divider "><span>Atau daftar dengan</span></div>
 
                                 <div class="row mt-3 justify-content-center">
                                     <div class="col-md-3 mb-2">

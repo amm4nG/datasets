@@ -5,17 +5,17 @@
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <p class="mb-4 fs-2" style="color: #38527E"><a style="color: #38527E" href="{{ url('donation') }}"><i
-                                class="bi bi-arrow-left-short fs-3 "></i></a>My Datasets</p>
+                                class="bi bi-arrow-left-short fs-3 "></i></a>Dataset Saya</p>
                     <div class="card p-4">
                         <div class="table-responsive">
                             <table id="my-datasets" class="text-center table table-bordered table-striped table-sm mt-3">
                                 <thead>
                                     <tr>
                                         <th class="text-center">No</th>
-                                        <th class="text-center">Name Dataset</th>
+                                        <th class="text-center">Nama Dataset</th>
                                         <th class="text-center">Status</th>
-                                        <th class="text-center">Note</th>
-                                        <th class="text-center">Action</th>
+                                        <th class="text-center">Catatan</th>
+                                        <th class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>

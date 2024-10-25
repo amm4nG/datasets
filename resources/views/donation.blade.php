@@ -4,30 +4,26 @@
         <main id="basic-info">
             <div class="container login-container p-3" style="margin-top: 10rem; margin-bottom: 3rem">
                 <div class="text-center">
-                    <h1 class="fw-bold mb-4" style="color: #38527E"><i class="fad fa-database"></i> Dataset Donation Form </h1>
-                    <h5 style="color: gray">We offer users the option to upload their dataset data to our repository.</h5>
-                    <h5 style="color: gray">Users can provide tabular or non-tabular dataset data which will be made
-                        publicly
-                        available on our
-                        repository. Donators are free to edit their donated datasets, but edits must be approved before
-                        finalizing. 
+                    <h1 class="fw-bold mb-4" style="color: #38527E"><i class="fad fa-database"></i> Formulir Donasi Dataset </h1>
+                    <h5 style="color: gray">Kami menawarkan kepada pengguna opsi untuk dataset mereka ke repositori kami.</h5>
+                    <h5 style="color: gray">Pengguna dapat menyediakan data tabular atau non-tabular yang akan tersedia untuk umum di repositori kami. Para
+                    donatur bebas mengedit dataset yang disumbangkan, tetapi pengeditan harus disetujui sebelum finalisasi.
                 </div>
                 <form>
                     <div class="row justify-content-center mt-5">
                         <div class="col-md-8">
-                            <p class="card-title fs-2 mb-2 text-start" style="color: #38527E; ">Basic
-                                Info</p>
+                            <p class="card-title fs-2 mb-2 text-start" style="color: #38527E; ">Info Dasar</p>
                             <div class="card p-4 rounded-3">
                                 <div class="card-body">
                                     <div class="mb-3 position-relative">
-                                        <label for="" class="form-label">Dataset Name</label>
+                                        <label for="" class="form-label">Nama Dataset <sup class="text-danger">*</sup></label>
                                         <input type="text" class="form-control" id="name" placeholder="">
                                         <div class="invalid-feedback">
                                         </div>
                                         <hr class="border-bottom">
                                     </div>
                                     <div class="mb-3 position-relative">
-                                        <label for="" class="form-label">Abstract</label>
+                                        <label for="" class="form-label"><span class="fw-bold">Abstract</span> (Gars besar mengenai dataset) <sup class="text-danger">*</sup></label>
                                         <textarea name="" id="abstract" cols="30" class="form-control" rows="5"></textarea>
                                         <div class="invalid-feedback">
                                         </div>
@@ -35,8 +31,8 @@
                                         <hr class="border-bottom">
                                     </div>
                                     <div class="mb-3 position-relative">
-                                        <label for="" class="form-label">Number of Instances (Rows) in
-                                            Dataset</label>
+                                        <label for="" class="form-label">Jumlah Baris dalam
+                                            Dataset <sup class="text-danger">*</sup></label>
                                         <input type="number" class="form-control" name="instances" id="instances"
                                             placeholder="">
                                         <div class="invalid-feedback">
@@ -44,7 +40,7 @@
                                         <hr class="border-bottom">
                                     </div>
                                     <div class="mb-3 position-relative">
-                                        <label for="" class="form-label">Number of Features in Dataset</label>
+                                        <label for="" class="form-label">Jumlah Fitur dalam Dataset <sup class="text-danger">*</sup></label>
                                         <input type="number" class="form-control" id="features" placeholder="">
                                         <hr class="border-bottom">
                                     </div>
@@ -54,7 +50,7 @@
                     </div>
                     <div class="row justify-content-center mt-3">
                         <div class="col-md-8">
-                            <p class="card-title fs-2 text-start mb-2" style="color: #38527E;">Dataset Characteristics</p>
+                            <p class="card-title fs-2 text-start mb-2" style="color: #38527E;">Karakteristik Dataset</p>
                             <div class="card p-1 rounded-3">
                                 <div class="card-body" id="characteristics">
                                     @foreach ($characteristics as $characteristic)
@@ -71,7 +67,7 @@
                     </div>
                     <div class="row justify-content-center mt-3">
                         <div class="col-md-8">
-                            <p class="card-title fs-2 text-start mb-2" style="color: #38527E;">Subject Area</p>
+                            <p class="card-title fs-2 text-start mb-2" style="color: #38527E;">Bidang Studi</p>
                             <div class="card p-1 rounded-3">
                                 <div class="card-body" id="subjectArea">
                                     @foreach ($subjectAreas as $subjectArea)
@@ -89,7 +85,7 @@
                     </div>
                     <div class="row justify-content-center mt-3">
                         <div class="col-md-8">
-                            <p class="card-title fs-2 text-start mb-2" style="color: #38527E;">Associated Task</p>
+                            <p class="card-title fs-2 text-start mb-2" style="color: #38527E;">Tugas Terkait</p>
                             <div class="card p-1 rounded-3">
                                 <div class="card-body" id="associatedTasks">
                                     @foreach ($associatedTasks as $associatedTask)
@@ -106,7 +102,7 @@
                     </div>
                     <div class="row justify-content-center mt-3">
                         <div class="col-md-8">
-                            <p class="card-title fs-2 text-start mb-2" style="color: #38527E;">Feature Types</p>
+                            <p class="card-title fs-2 text-start mb-2" style="color: #38527E;">Jenis Fitur</p>
                             <div class="card p-1 rounded-3">
                                 <div class="card-body" id="featureTypes">
                                     @foreach ($featureTypes as $featureType)
@@ -137,7 +133,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-8">
                         <p class="card-title fs-2 mt-5 mb-1 text-start" style="color: #38527E;">
-                            Dataset Information</p>
+                            Deskripsi Dataset</p>
                         <textarea name="information" id="information" cols="30" class="form-control" rows="10"></textarea>
                     </div>
                 </div>
@@ -151,12 +147,12 @@
                 </div>
                 <div class="row justify-content-center mt-3">
                     <div class="col-md-8">
-                        <p class="card-title fs-2 mb-1 text-start" style="color: #38527E;">Related Paper</p>
+                        <p class="card-title fs-2 mb-1 text-start" style="color: #38527E;">Paper Yang Berhubungan</p>
                         <div class="card p-4">
-                            <input type="text" placeholder="Title paper" class="form-control mb-3" name="title"
+                            <input type="text" placeholder="Judul paper" class="form-control mb-3" name="title"
                                 id="title">
                             <textarea name="description" id="description" cols="30" class="form-control mb-3" rows="5"
-                                placeholder="Description"></textarea>
+                                placeholder="Deskripsi"></textarea>
                             <input type="url" class="form-control" placeholder="Link paper" name="urlPaper"
                                 id="urlPaper">
                         </div>
@@ -164,9 +160,9 @@
                 </div>
                 <div class="row justify-content-center mt-4">
                     <div class="col-md-8">
-                        <a href="#" class="btn btn-secondary fs-5" onclick="previous()" id="previous"><i class="fas fa-angle-double-left"></i> Previous</a>
+                        <a href="#" class="btn btn-secondary fs-5" onclick="previous()" id="previous"><i class="fas fa-angle-double-left"></i> Sebelumnya</a>
                         <button id="submit" onclick="submit()" type="button" class="btn fs-5 text-light"
-                            style="background-color: #38527E"><i class="fas fa-save"></i> Submit</button>
+                            style="background-color: #38527E"><i class="fas fa-save"></i> Sumbang</button>
                     </div>
                 </div>
             </div>
@@ -176,14 +172,11 @@
                 <div class="row justify-content-center">
                     <div class="col-md-10">
                         <div class="card p-4">
-                            The dataset you uploaded is being processed, you can contribute a new dataset after the dataset
-                            you
-                            uploaded previously
-                            has been approved.
+                            Dataset yang Anda upload sedang diproses, Anda dapat menyumbangkan dataset baru setelah dataset yang Anda upload
+                            sebelumnya disetujui.
                             <p class="mt-2"><span class="badge bg-info">Status : pending</span></p>
                             <a href="{{ url('my/dataset') }}" class="btn text-white mt-3"
-                                style="background-color: #38527E; max-width: 10rem;">Show My
-                                Dataset</a>
+                                style="background-color: #38527E; max-width: 10rem;">Lihat Dataset Saya</a>
                         </div>
                     </div>
                 </div>
@@ -195,12 +188,12 @@
                 <div class="row justify-content-center">
                     <div class="col-md-10">
                         <div class="card p-4">
-                            The dataset you uploaded is being processed, you can contribute a new dataset after the dataset
-                            you uploaded previously
-                            has been approved.
+                            Dataset yang Anda upload sedang diproses, Anda dapat menyumbangkan dataset baru setelah dataset yang Anda upload
+                            sebelumnya
+                            telah disetujui.
                             <p class="mt-2"><span class="badge bg-info">Status : pending</span></p>
                             <a href="{{ url('my/dataset') }}" class="btn text-white mt-1"
-                                style="background-color: #38527E; max-width: 12rem;">Show My Datasets</a>
+                                style="background-color: #38527E; max-width: 12rem;">Lihat Dataset Saya</a>
                         </div>
                     </div>
                 </div>

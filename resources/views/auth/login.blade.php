@@ -8,8 +8,8 @@
                         <div class="card-body">
                             <form action="{{ url('login/validation') }}" method="post">
                                 @csrf
-                                <h4 class="fs-2" style="color: #38527E">Sign In</h4>
-                                <h5>Don't have an account? <a href="{{ url('register') }}">Sign Up</a></h5>
+                                <h4 class="fs-2" style="color: #38527E">Masuk</h4>
+                                <h5>Belum punya akun? <a href="{{ url('register') }}">Daftar</a></h5>
                                 @error('message')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
@@ -40,12 +40,12 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <a href="{{ url('forgot/password') }}">Forgot Password?</a>
+                                    <a href="{{ url('forgot/password') }}">Lupa Password?</a>
                                 </div>
                                 <button type="submit" class="btn  w-100" style="background-color: #38527E">
-                                    <h5 class="text-light mt-2"><i class="fal fa-sign-in"></i> Login</h5>
+                                    <h5 class="text-light mt-2"><i class="fal fa-sign-in"></i> Masuk</h5>
                                 </button>
-                                <div class="divider "><span>Or Login with Provider</span></div>
+                                <div class="divider "><span>Atau masuk dengan</span></div>
 
                                 <div class="row mt-3 justify-content-center">
                                     <div class="col-md-3 mb-2">

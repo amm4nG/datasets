@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <p class="fs-2 mt-3 mb-4" style="color: #38527E"><a style="color: #38527E" href="{{ url('my/dataset') }}"><i
-                                class="bi bi-arrow-left-short fs-3 "></i></a>Detail My Dataset</p>
+                                class="bi bi-arrow-left-short fs-3 "></i></a>Detail Dataset Saya</p>
                     @if ($dataset->status == 'invalid')
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
                             <strong>Dataset invalid!</strong> Please re-register your dataset.
@@ -29,7 +29,7 @@
                                 <p>{{ $dataset->abstract }}</p>
                             </div>
                             <div class="col-md-3 ms-3">
-                                <h4>Dataset Characteristics</h4>
+                                <h4>Karakteristik</h4>
                                 <p>
                                     @if ($characteristics->count() > 0)
                                         @foreach ($characteristics as $characteristic)
@@ -43,13 +43,13 @@
                                 </p>
                             </div>
                             <div class="col-md-3 ms-3">
-                                <h4>Subject Area</h4>
+                                <h4>Bidang Studi</h4>
                                 <p>
                                     {{ $dataset->name_subject_area ?? '-' }}
                                 </p>
                             </div>
                             <div class="col-md-3 ms-3">
-                                <h4>Associated Tasks</h4>
+                                <h4>Tugas Terkait</h4>
                                 <p>
                                     @if ($associatedTasks->count() > 0)
                                         @foreach ($associatedTasks as $associatedTask)
@@ -63,7 +63,7 @@
                                 </p>
                             </div>
                             <div class="col-md-3 ms-3">
-                                <h4>Feature Type</h4>
+                                <h4>Jenis Fitur</h4>
                                 <p>
                                     @if ($featureTypes->count() > 0)
                                         @foreach ($featureTypes as $featureType)
@@ -75,11 +75,11 @@
                                 </p>
                             </div>
                             <div class="col-md-3 ms-3">
-                                <h4># Instances</h4>
+                                <h4># Jumlah Baris</h4>
                                 <p>{{ $dataset->instances }}</p>
                             </div>
                             <div class="col-md-3 ms-3">
-                                <h4># Features</h4>
+                                <h4># Jumlah Fitur</h4>
                                 <p>{{ $dataset->features }}</p>
                             </div>
 
@@ -91,7 +91,7 @@
                 <div class="col-md-12">
                     <div class="card p-4">
                         <div class="card-header">
-                            <p class="fs-2" style="color: #38527E">Dataset Information</p>
+                            <p class="fs-2" style="color: #38527E">Informasi Dataset</p>
                         </div>
                         <div class="card-body">
                             {!! $dataset->information !!}
@@ -103,15 +103,17 @@
                 <div class="col-md-12">
                     <div class="card p-4">
                         <div class="card-header">
-                            <p class="fs-2" style="color: #38527E">Related Papers</p>
+                            <p class="fs-2" style="color: #38527E">Paper Yang Berhubungan</p>
                         </div>
                         <div class="card-body">
-                            @foreach ($papers as $paper)
+                            @forelse ($papers as $paper)
                                 <p class="fs-5"><a target="_blank" href="{{ url('' . $paper->url) }}"
                                         style="color: #38527E">{{ $paper->title }}</a>
                                 </p>
                                 <p style="margin-top: -17px">{{ $paper->description ?? '-' }}</p>
-                            @endforeach
+                                @empty
+                                - Tidak ada paper
+                            @endforelse
                         </div>
                     </div>
                 </div>

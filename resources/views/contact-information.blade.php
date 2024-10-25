@@ -5,14 +5,10 @@
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="">
-                        <p class="fs-2" style="color: #38527E">Contact <i class="fad fa-phone"></i></p>
+                        <p class="fs-2" style="color: #38527E">Informasi Kontak <i class="fad fa-phone"></i></p>
                         <h5 class="text-start mt-5" style="color: gray;">
-                            To share bug reports or feature requests with us, you can create an issue in this GitHub
-                            repository.
-                        </h5>
-                        <h5 class="text-start mt-2" style="color: gray; ">
-                            Any questions about the site or a dataset? Please direct all comments and inquiries to <a
-                                href="" style="color: #38527E">informatika.unsulbar.ac.id</a>
+                            Untuk berbagi laporan bug atau permintaan fitur dengan kami atau ada
+                            pertanyaan tentang situs atau dataset? Silakan arahkan semua komentar dan pertanyaan ke <a href="" style="color: #38527E">informatika.unsulbar.ac.id</a>
                         </h5>
                     </div>
                 </div>

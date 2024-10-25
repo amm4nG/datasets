@@ -15,7 +15,7 @@
                                 <a href="{{ url('detail') }}">
                                     <h2 class="mt-3 text-capitalize" style="color: #38527E">{{ $dataset->name }}</h2>
                                 </a>
-                                <p><span class="">Creator by {{ $dataset->full_name }}</span></p>
+                                <p>Disumbangkan oleh<span class="fw-bold"> {{ $dataset->full_name }}</span></p>
 
                             </div>
                             <div class="col-md-12">
@@ -24,7 +24,7 @@
                                 <p>{{ $dataset->abstract }}</p>
                             </div>
                             <div class="col-md-3">
-                                <h4>Characteristics</h4>
+                                <h4>Karakteristik</h4>
                                 <p>
                                     @if ($characteristics->count() > 0)
                                         @foreach ($characteristics as $characteristic)
@@ -38,13 +38,13 @@
                                 </p>
                             </div>
                             <div class="col-md-3">
-                                <h4>Subject Area</h4>
+                                <h4>Bidang Studi</h4>
                                 <p>
                                     {{ $dataset->name_subject_area ?? '-' }}
                                 </p>
                             </div>
                             <div class="col-md-3">
-                                <h4>Associated Tasks</h4>
+                                <h4>Tugas Terkait</h4>
                                 <p>
                                     @if ($associatedTasks->count() > 0)
                                         @foreach ($associatedTasks as $associatedTask)
@@ -58,7 +58,7 @@
                                 </p>
                             </div>
                             <div class="col-md-3">
-                                <h4>Feature Type</h4>
+                                <h4>Jenis Fitur</h4>
                                 <p>
                                     @if ($featureTypes->count() > 0)
                                         @foreach ($featureTypes as $featureType)
@@ -70,11 +70,11 @@
                                 </p>
                             </div>
                             <div class="col-md-3">
-                                <h4># Instances</h4>
+                                <h4># Jumlah Baris</h4>
                                 <p>{{ $dataset->instances }}</p>
                             </div>
                             <div class="col-md-3">
-                                <h4># Features</h4>
+                                <h4># Jumlah Fitur</h4>
                                 <p>{{ $dataset->features }}</p>
                             </div>
 
@@ -86,7 +86,7 @@
                 <div class="col-md-12">
                     <div class="card p-4">
                         <div class="card-header">
-                            <p class="fs-2 mt-2" style="color: #38527E">Dataset Information</p>
+                            <p class="fs-2 mt-2" style="color: #38527E">Informasi Dataset</p>
                         </div>
                         <div class="card-body">
                             {!! $dataset->information !!}
@@ -98,7 +98,7 @@
                 <div class="col-md-12">
                     <div class="card p-4">
                         <div class="card-header">
-                            <p class="fs-2 mt-2" style="color: #38527E">Related Papers</p>
+                            <p class="fs-2 mt-2" style="color: #38527E">Paper Yang Berhubungan</p>
                         </div>
                         <div class="card-body">
                             @foreach ($papers as $paper)
@@ -109,8 +109,9 @@
                         </div>
                         <div class="card-body">
                             <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                class="btn btn-sm p-2 text-white ps-3 pe-3" style="background-color: #38527E">Donation
-                                paper</a>
+                                class="btn btn-sm p-2 text-white ps-3 pe-3 @guest
+                                    disabled
+                                @endguest" style="background-color: #38527E">Sumbangkan Paper</a>
                         </div>
                     </div>
                 </div>

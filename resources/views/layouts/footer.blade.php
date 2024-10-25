@@ -6,7 +6,7 @@
                 <div class="col-lg-4 col-md-6 footer-contact">
                     <h3><i class="fad fa-database"></i> DATAU</h3>
                     <p>
-                        Program Studi Teknik Informatika <br> Universitas Sulawesi Barat. <br><br>
+                        Pusat Studi <br> Universitas Sulawesi Barat. <br><br>
                         <strong>Phone:</strong> +62822 9076 2799<br>
                         <strong>Email:</strong> ammangdeveloper@gmail.com<br>
                     </p>
