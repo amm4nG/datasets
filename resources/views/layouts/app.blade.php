@@ -31,6 +31,9 @@
     <link href="{{ asset('/') }}assets/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">
 
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

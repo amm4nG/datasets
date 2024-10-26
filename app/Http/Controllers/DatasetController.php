@@ -8,6 +8,7 @@ use App\Models\DatasetCharacteristic;
 use App\Models\DatasetFeatureType;
 use App\Models\Download;
 use App\Models\Paper;
+use App\Models\SubjectArea;
 use Illuminate\Http\Request;
 
 class DatasetController extends Controller
@@ -22,7 +23,8 @@ class DatasetController extends Controller
                 $countDownloads[] = $dataset->id;
             }
         }
-        return view('datasets', compact('datasets', 'countDownloads'));
+        $subjectAreas = SubjectArea::all();
+        return view('datasets', compact('datasets', 'countDownloads', 'subjectAreas'));
     }
 
     public function show($id)
@@ -39,5 +41,23 @@ class DatasetController extends Controller
             ->get();
         $papers = Paper::where('id_dataset', $id)->get();
         return view('detail', compact(['dataset', 'characteristics', 'featureTypes', 'associatedTasks', 'papers', 'id']));
+    }
+
+    public function filter($id){
+        $datasets = Dataset::all();
+        if ($id != 'all') {
+            $datasets = Dataset::where('id_subject_area', $id)->get();
+        }
+        $countDownloads = [];
+        foreach ($datasets as $dataset) {
+            $downloads = Download::where('id_dataset', $dataset->id)->get();
+            foreach ($downloads as $download) {
+                $countDownloads[] = $dataset->id;
+            }
+        }
+        return response()->json([
+            'datasets' => $datasets,
+            'countDownloads' => $countDownloads
+        ]);
     }
 }

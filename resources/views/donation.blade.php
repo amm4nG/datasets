@@ -276,11 +276,11 @@
                 .then(data => {
                     if (data.status == 422) {
                         document.getElementById('btnNext').disabled = false
-                        Swal.fire({
-                            icon: "error",
-                            title: "Oops...",
-                            text: data.message,
-                        });
+                        // Swal.fire({
+                        //     icon: "error",
+                        //     title: "Oops...",
+                        //     text: data.message,
+                        // });
                         const errorKey = data.key;
 
                         // Membuat ID dari kunci yang gagal validasi
@@ -292,11 +292,11 @@
                         // Lakukan sesuatu dengan elemen yang bermasalah, misalnya menyoroti input
                         if (errorElement) {
                             // Menyoroti elemen yang bermasalah
-                            errorElement.classList.add('error-highlight');
+                            // errorElement.classList.add('error-highlight');
                             errorElement.classList.add('is-invalid');
                             // Mengarahkan halaman ke atas (animasi smooth)
                             window.scrollTo({
-                                top: errorElement.getBoundingClientRect().top + window.scrollY - 165,
+                                top: errorElement.getBoundingClientRect().top + window.scrollY - 170,
                                 behavior: 'smooth'
                             });
                         }

@@ -3,33 +3,34 @@
     <div class="footer-top">
         <div class="container p-3">
             <div class="row">
-                <div class="col-lg-4 col-md-6 footer-contact">
+                <div class="col-lg-3 col-md-6 footer-contact">
                     <h3><i class="fad fa-database"></i> DATAU</h3>
                     <p>
-                        Pusat Studi <br> Universitas Sulawesi Barat. <br><br>
+                        Pusat Studi AI<br> Universitas Sulawesi Barat <br><br>
                         <strong>Phone:</strong> +62822 9076 2799<br>
                         <strong>Email:</strong> ammangdeveloper@gmail.com<br>
                     </p>
                 </div>
 
-                <div class="col-lg-4 col-md-6 footer-links">
-                    <h4><i class="far fa-link"></i> Useful Links</h4>
+                <div class="col-lg-3 col-md-6 footer-links">
+                    <h4><i class="far fa-link"></i> Tautan Berguna</h4>
                     <ul>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Beranda</a></li>
                         <li><i class="bx bx-chevron-right"></i> <a href="#">Datasets</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Contribute Dataset</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Sumbang Dataset</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Informasi Kontak</a></li>
                     </ul>
                 </div>
 
-                <div class="col-lg-4 col-md-6 footer-links">
-                    <h4><i class="far fa-wreath"></i> Our Services</h4>
+                <div class="col-lg-3 col-md-6 footer-links">
+                    <h4><i class="far fa-wreath"></i> Layanan Kami</h4>
                     <ul> 
                         <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
                     </ul>
                 </div>
 
-                {{-- <div class="col-lg-3 col-md-6 footer-links">
-                    <h4><i class="far fa-share-alt"></i> Our Social Networks</h4>
+                <div class="col-lg-3 col-md-6 footer-links">
+                    <h4><i class="far fa-share-alt"></i> Sosial Media</h4>
                     <div class="social-links mt-3">
                         <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
                         <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
@@ -37,7 +38,7 @@
                         <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
                         <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
                     </div>
-                </div> --}}
+                </div>
 
             </div>
         </div>

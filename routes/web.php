@@ -15,12 +15,20 @@ use App\Http\Controllers\MyDatasetController;
 use App\Http\Controllers\RegistrationController;
 use App\Models\Dataset;
 use App\Models\Download;
+use App\Models\SubjectArea;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    // $datasets = Dataset::where('status', 'valid')->get();
+    $subjectAreas = SubjectArea::all();
+    $data = [];
+    foreach ($subjectAreas as $subjectArea) {
+        $datasetCount = Dataset::where('id_subject_area', $subjectArea->id)->count();
+        array_push($data, $datasetCount);
+    }
+    // $data = [12, 19, 3, 5, 2, 3, 10, 12, 33, 5, 2];
+    // $biology = Dataset::where('', 'valid')->get();
     // $countDownloads = [];
     // foreach ($datasets as $dataset) {
     //     $downloads = Download::where('id_dataset', $dataset->id)->get();
@@ -59,7 +67,7 @@ Route::get('/', function () {
     // }
 
     // return view('welcome', compact(['dataset', 'countDownloads', 'popularDataset', 'newDataset']));
-    return view('welcome');
+    return view('welcome', compact(['subjectAreas', 'data']));
 });
 
 Route::get('/email/verify', function () {
@@ -147,6 +155,10 @@ Route::get('about', function () {
 });
 
 Route::post('search/dataset', function (Request $request) {
-    $datasets = Dataset::where('name', 'like', '%' . $request->name . '%')->where('status', 'valid')->get();
+    $datasets = Dataset::where('name', 'like', '%' . $request->name . '%')
+        ->where('status', 'valid')
+        ->get();
     return response()->json($datasets);
-}); 
+});
+
+Route::get('filter/{id}', [DatasetController::class, 'filter']);

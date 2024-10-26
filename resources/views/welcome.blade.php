@@ -7,13 +7,14 @@
                 <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
                     data-aos="fade-up" data-aos-delay="200">
                     <h1>Selamat Datang</h1>
-                    <h2>Platform pengumpulan dataset, di mana setiap kontribusi Anda berdampak positif terhadap kemajuan penelitian dan
-                    inovasi.</h2>
+                    <h2 class="fs-5">Platform pengumpulan dataset, di mana setiap kontribusi Anda berdampak positif terhadap kemajuan
+                        penelitian dan
+                        inovasi.</h2>
                     <div class="d-flex justify-content-center justify-content-lg-start">
                         <a href="{{ url('datasets') }}" class="btn-get-started scrollto"><i class="fal fa-database"></i> Lihat
                             Dataset</a>
                         <a href="{{ url('donation') }}" class="btn-get-started scrollto ms-3"><i
-                                class="fal fa-database"></i> Donasi Dataset</a>
+                                class="fal fa-database"></i> Sumbang Dataset</a>
                     </div>
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2 hero-img mt-5" data-aos="zoom-in" data-aos-delay="200">
@@ -123,7 +124,7 @@
         <!-- start chart -->
         <div class="container mt-5">
             <div class="row justify-content-center">
-                <div class="col-md-6">
+                <div class="col-md-8 mb-5">
                     <div class="card p-3 shadow">
                         <div class="card-title">
                             <h2 class="text-center mt-2" style="color: #38527E">Statistik Jumlah Dataset</h2>
@@ -133,10 +134,31 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-4">
+                    <p class="fs-5">Mungkin Anda tertarik membaca artikel berikut.</p>
+                    <div class="card shadow">
+                        <a href="https://fasttext.cc/" target="_blank" style="text-decoration: none; color: #333;">
+                            <img src="https://picsum.photos/300/150" alt="FastText Thumbnail"
+                                style="width: 100%; height: auto;">
+                            <div class="card-body">
+                                <h4 class="mt-3">FastText</h4>
+                                <p class="small">{{ Str::limit(
+                                    "Pustaka NLP efisien yang dikembangkan oleh Facebook AI Research untuk klasifikasi teks dan pembelajaran kata
+                                                            yang cepat.",
+                                    100,
+                                    '...',
+                                ) }}
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                    {{-- <div class="card">
+                        <div class="card-body">
+                            <h3></h3>
+                        </div>
+                    </div> --}}
+                </div>
             </div>
-            {{-- <div style="width: 50%; margin: auto;">
-                <canvas id="myBarChart"></canvas>
-            </div> --}}
         </div>
         <!-- end chart -->
     </main>
@@ -145,14 +167,17 @@
 @section('scripts')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
+        let subjectAreas = @json($subjectAreas).map(item => item.name_subject_area);
+        let data = @json($data);
+
         var ctx = document.getElementById('myBarChart').getContext('2d');
         var myBarChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Biology', 'Business', 'Computer  Science', 'Engineering', 'Games', 'Sosial Science'],
+                labels: subjectAreas,
                 datasets: [{
                     label: 'Jumlah Data',
-                    data: [12, 19, 3, 5, 2, 3],
+                    data: data,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
